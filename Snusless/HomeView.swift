@@ -11,6 +11,19 @@ import SwiftData
 struct HomeView: View {
     
     var body: some View {
+        NavigationStack{
+            ZStack {
+                VStack(spacing: 16){
+                    Text("Snusless")
+                        .font(.largeTitle)
+                        .padding(.top)
+                }
+            }
+        }
         
     }
+}
+
+#Preview {
+    HomeView()
 }
