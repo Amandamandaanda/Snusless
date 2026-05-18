@@ -10,9 +10,9 @@ import Foundation
 
 @Model
 class Streak {
-    var currentStreak: [Date] = []
+    var completedDays: [Date] = []
     
-    init(currentStreak: [Date]) {
-        self.currentStreak = currentStreak
+    init(completedDays: [Date]) {
+        self.completedDays = completedDays
     }
 }
