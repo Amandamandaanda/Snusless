@@ -17,7 +17,7 @@ class User {
     var portionsPerDosa: Int
     var startDate: Date
     
-    init(name: String, completedDays: [Date], numberOfDosor: Int, pricePerDosa: Double, portionsPerDosa: Int, startDate: Date) {
+    init(name: String, completedDays: [Date] = [], numberOfDosor: Int, pricePerDosa: Double, portionsPerDosa: Int, startDate: Date) {
         self.name = name
         self.completedDays = completedDays
         self.numberOfDosor = numberOfDosor
