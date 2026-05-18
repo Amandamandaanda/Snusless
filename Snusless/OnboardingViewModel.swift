@@ -19,10 +19,9 @@ class OnboardingViewModel {
     
     var userState: UserState = .notCreated
     
-    
+    // Added prints for testing and save user is working!
     func saveUser(context: ModelContext) {
         guard validation() else {
-            errorMessage = "Vänligen fyll i alla fält"
             return
         }
         let user = User(name: name.trimmingCharacters(in: .whitespaces), completedDays: [], numberOfDosor: numberOfDosor, pricePerDosa: pricePerDosa, portionsPerDosa: portionsPerDosa, startDate: startDate)
@@ -31,9 +30,11 @@ class OnboardingViewModel {
         
         do {
             try context.save()
+            print("User Saved")
             errorMessage = ""
             userState = .userCreated
         } catch {
+            print("User could not be saved")
             errorMessage = "Användaren kunde inte sparas: \(error.localizedDescription)"
             userState = .notCreated
         }
