@@ -7,6 +7,12 @@
 import Foundation
 
 extension Streak {
+    
+    var isCompletedToday: Bool {
+        completedDays.contains{Calendar.current.isDateInToday($0)
+        }
+    }
+    
     var currentStreak: Int {
         let calendar = Calendar.current
         

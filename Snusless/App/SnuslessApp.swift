@@ -12,8 +12,9 @@ import SwiftData
 struct SnuslessApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
         }
+        .modelContainer(for: Streak.self)
         .modelContainer(for: User.self)
     }
 }
