@@ -47,13 +47,8 @@ struct HomeView: View {
                         }
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 40)
-                        .background(
-                            LinearGradient(
-                                colors: [.green.opacity(0.8), .green],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
-                        )
+                        .background(.green)
+                        
                         .clipShape(RoundedRectangle(cornerRadius: 28))
                         .padding(.horizontal)
                         Button {
