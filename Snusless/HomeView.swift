@@ -20,38 +20,67 @@ struct HomeView: View {
     var body: some View {
         NavigationStack{
             ZStack {
-                VStack(spacing: 16){
+                Color(.systemGray6)
+                    .ignoresSafeArea()
+                
+                VStack(spacing: 24){
+                    
                     Text("Snusless")
                         .font(.largeTitle)
                         .padding(.top)
                     
                     if let error = viewModel.errorMessage {
-                        
                         Text(error)
                         .foregroundStyle(.red)
                         .font(.caption)
                     }
                     
                     if let streak = streaks.first{
-                        Text("Du har varit \(streak.currentStreak) dagar snusfri")
-                            .font(.title)
-                        
+                        VStack(spacing: 20) {
+                            Text("\(streak.currentStreak)")
+                                .font(.system(size: 56, weight: .bold))
+                                .foregroundStyle(.white)
+                            
+                            Text("dagar snusfri")
+                                .font(.title3)
+                                .foregroundStyle(.white)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 40)
+                        .background(
+                            LinearGradient(
+                                colors: [.green.opacity(0.8), .green],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
+                        .clipShape(RoundedRectangle(cornerRadius: 28))
+                        .padding(.horizontal)
                         Button {
                             viewModel.checkToday(streak: streak, context: modelContext)
                         } label: {
                             Text(streak.isCompletedToday ? "Ångra dag" : "Jag klarade dagen!")
+                                .fontWeight(.semibold)
+                                .foregroundStyle(.white)
                                 .padding()
-                                .frame(maxWidth: .infinity)
+                                .background(.green)
                                 .clipShape(RoundedRectangle(cornerRadius: 12))
                         }
+                        .padding(.horizontal)
+                        
                     } else {
                         Button("Dag 1 börjar nu") {
                             let newStreak = Streak()
                             modelContext.insert(newStreak)
                             try? modelContext.save()
                         }
+                        .padding()
+                        .background(.green)
+                        .foregroundStyle(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 16))
+                        .padding(.horizontal)
                     }
-                    
+                    Spacer()
                 }
             }
         }
