@@ -17,8 +17,7 @@ struct ContentView: View {
             case .notCreated:
                 OnboardingNameView()
             case .userCreated:
-                // Change to HomeView, just put this to be able to compile app. 
-                OnboardingNameView()
+                HomeView()
             }
         }
         .environment(onboardingViewModel)
