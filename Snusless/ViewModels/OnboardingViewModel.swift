@@ -18,6 +18,7 @@ class OnboardingViewModel {
     var errorMessage: String = ""
     
     var userState: UserState = .notCreated
+    var onboardingState: OnboardingState = .onboardingName
     
     // Added prints for testing and save user is working!
     func saveUser(context: ModelContext) {
