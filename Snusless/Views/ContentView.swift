@@ -15,7 +15,7 @@ struct ContentView: View {
         NavigationStack {
             switch onboardingViewModel.userState {
             case .notCreated:
-                OnboardingNameView()
+                OnboardingView()
             case .userCreated:
                 HomeView()
             }
