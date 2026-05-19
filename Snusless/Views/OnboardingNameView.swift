@@ -45,7 +45,7 @@ struct OnboardingNameView: View {
                 Spacer()
                 Button {
                     Task {
-
+                        onboardingViewModel.onboardingState = .onboardingDate
                     }
                 } label: {
                     HStack {
