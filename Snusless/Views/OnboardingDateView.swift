@@ -9,9 +9,10 @@ import SwiftUI
 
 struct OnboardingDateView: View {
     
-    @Bindable var viewModel: OnboardingViewModel
+    @Environment(OnboardingViewModel.self) private var onboardingViewModel
 
     var body: some View {
+        @Bindable var onboardingVM = onboardingViewModel
         VStack(alignment: .center, spacing: 16) {
             Spacer()
 
@@ -21,7 +22,7 @@ struct OnboardingDateView: View {
                 .bold()
                 .padding()
 
-            DatePicker("Startdatum", selection: $viewModel.startDate, in: ...Date(), displayedComponents: .date)
+            DatePicker("Startdatum", selection: $onboardingVM.startDate, in: ...Date(), displayedComponents: .date)
                 .padding(.horizontal)
                 .environment(\.colorScheme, .dark)
                 .environment(\.locale, Locale(identifier: "sv_SE"))
@@ -32,18 +33,34 @@ struct OnboardingDateView: View {
                 }
                 .cornerRadius(20)
             
-            Text("Valt datum: \(viewModel.startDate.formatted(.dateTime.day().month(.wide).year().locale(Locale(identifier: "sv_SE"))))")
+            Text("Valt datum: \(onboardingViewModel.startDate.formatted(.dateTime.day().month(.wide).year().locale(Locale(identifier: "sv_SE"))))")
                 .foregroundStyle(.white)
                 .bold()
             
             Spacer()
 
             HStack {
+                Button {
+                    Task {
+                        onboardingViewModel.onboardingState = .onboardingName
+                    }
+                } label: {
+                    HStack {
+                        Image(systemName: "arrow.left")
+                            .font(.title2)
+                            .bold()
+                            .padding(.horizontal)
+                            .foregroundStyle(.white)
+                    }
+                }
+                .buttonStyle(.bordered)
+                .font(Font.title3.bold())
                 
                 Spacer()
                 Button {
                     Task {
-
+                        // Just for now until rest of onboarding is done!
+                        onboardingViewModel.onboardingState = .onboardingDone
                     }
                 } label: {
                     HStack {
@@ -64,5 +81,6 @@ struct OnboardingDateView: View {
 }
 
 #Preview {
-    OnboardingDateView(viewModel: OnboardingViewModel())
+    OnboardingDateView()
+        .environment(OnboardingViewModel())
 }
