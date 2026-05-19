@@ -40,11 +40,27 @@ struct OnboardingDateView: View {
             Spacer()
 
             HStack {
+                Button {
+                    Task {
+                        onboardingViewModel.onboardingState = .onboardingName
+                    }
+                } label: {
+                    HStack {
+                        Image(systemName: "arrow.left")
+                            .font(.title2)
+                            .bold()
+                            .padding(.horizontal)
+                            .foregroundStyle(.white)
+                    }
+                }
+                .buttonStyle(.bordered)
+                .font(Font.title3.bold())
                 
                 Spacer()
                 Button {
                     Task {
-
+                        // Just for now until rest of onboarding is done!
+                        onboardingViewModel.onboardingState = .onboardingDone
                     }
                 } label: {
                     HStack {
