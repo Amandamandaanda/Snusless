@@ -9,9 +9,11 @@ import SwiftUI
 
 struct OnboardingNameView: View {
     
-    @Bindable var viewModel: OnboardingViewModel
+    @Environment(OnboardingViewModel.self) private var onboardingViewModel
 
     var body: some View {
+        @Bindable var onboardingVM = onboardingViewModel
+        
         VStack(alignment: .center, spacing: 16) {
             Spacer()
 
@@ -27,7 +29,7 @@ struct OnboardingNameView: View {
                 .bold()
                 .padding()
 
-            TextField("Ditt namn", text: $viewModel.name)
+            TextField("Ditt namn", text: $onboardingVM.name)
                 .bold()
                 .padding()
                 .foregroundStyle(.white)
@@ -51,12 +53,12 @@ struct OnboardingNameView: View {
                             .font(.title2)
                             .bold()
                             .padding(.horizontal)
-                            .foregroundStyle(viewModel.name.isEmpty ? .gray : .white)
+                            .foregroundStyle(onboardingViewModel.name.isEmpty ? .gray : .white)
                     }
                 }
                 .buttonStyle(.bordered)
                 .font(Font.title3.bold())
-                .disabled(viewModel.name.isEmpty)
+                .disabled(onboardingViewModel.name.isEmpty)
             }
         }
         .padding()
@@ -65,5 +67,6 @@ struct OnboardingNameView: View {
 }
 
 #Preview {
-    OnboardingNameView(viewModel: OnboardingViewModel())
+    OnboardingNameView()
+        .environment(OnboardingViewModel())
 }
