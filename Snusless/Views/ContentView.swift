@@ -8,14 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var onboardingViewModel = OnboardingViewModel()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            switch onboardingViewModel.userState {
+            case .notCreated:
+                OnboardingNameView()
+            case .userCreated:
+                // Change to HomeView, just put this to be able to compile app. 
+                OnboardingNameView()
+            }
         }
-        .padding()
+        .environment(onboardingViewModel)
+        
     }
 }
 
