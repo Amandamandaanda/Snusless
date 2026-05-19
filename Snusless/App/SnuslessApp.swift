@@ -14,7 +14,6 @@ struct SnuslessApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: Streak.self)
-        .modelContainer(for: User.self)
+        .modelContainer(for: [User.self, Streak.self])
     }
 }
