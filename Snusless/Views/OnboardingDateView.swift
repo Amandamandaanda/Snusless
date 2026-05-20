@@ -49,14 +49,14 @@ struct OnboardingDateView: View {
                 } label: {
                     HStack {
                         Image(systemName: "arrow.left")
-                            .font(.title2)
+                            .font(.title3)
                             .bold()
-                            .padding(.horizontal)
-                            .foregroundStyle(.white)
+                            .foregroundColor(Color(red: 0.18, green: 0.49, blue: 0.20))
+                            .padding()
+                            .background(Color.white)
+                            .clipShape(Circle())
                     }
                 }
-                .buttonStyle(.bordered)
-                .font(Font.title3.bold())
                 
                 Spacer()
                 
@@ -67,17 +67,18 @@ struct OnboardingDateView: View {
                 } label: {
                     HStack {
                         Image(systemName: "arrow.right")
-                            .font(.title2)
+                            .font(.title3)
                             .bold()
-                            .padding(.horizontal)
-                            .foregroundStyle(.white)
+                            .foregroundColor(Color(red: 0.18, green: 0.49, blue: 0.20))
+                            .padding()
+                            .background(Color.white)
+                            .clipShape(Circle())
                     }
                 }
-                .buttonStyle(.bordered)
-                .font(Font.title3.bold())
             }
+            .padding(.bottom, 10)
         }
-        .padding()
+        .padding(.horizontal, 20)
         .background(.green)
     }
 }

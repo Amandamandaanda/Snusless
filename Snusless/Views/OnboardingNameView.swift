@@ -27,7 +27,8 @@ struct OnboardingNameView: View {
                 .font(.title3)
                 .foregroundStyle(.white)
                 .bold()
-                .padding()
+                .padding(.top)
+                .padding(.bottom)
 
             TextField("Ditt namn", text: $onboardingVM.name)
                 .bold()
@@ -56,18 +57,20 @@ struct OnboardingNameView: View {
                 } label: {
                     HStack {
                         Image(systemName: "arrow.right")
-                            .font(.title2)
+                            .font(.title3)
                             .bold()
-                            .padding(.horizontal)
-                            .foregroundStyle(!onboardingViewModel.isNameValid ? .gray : .white)
+                            .foregroundColor(Color(red: 0.18, green: 0.49, blue: 0.20))
+                            .padding()
+                            .background(onboardingViewModel.isNameValid ? Color.white : Color.white.opacity(0.4))
+                            .clipShape(Circle())
                     }
+                    
                 }
-                .buttonStyle(.bordered)
-                .font(Font.title3.bold())
                 .disabled(!onboardingViewModel.isNameValid)
             }
+            .padding(.bottom, 10)
         }
-        .padding()
+        .padding(.horizontal, 20)
         .background(.green)
     }
 }

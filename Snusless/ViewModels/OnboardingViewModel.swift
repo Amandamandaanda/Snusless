@@ -13,7 +13,8 @@ class OnboardingViewModel {
     var name: String = ""
     var numberOfDosor: Int = 0
     var pricePerDosa: Double = 0.0
-    var portionsPerDosa: Int = 0
+    var savingGoal: Int = 0
+    var portionsPerDosa: Int = 20
     var startDate: Date = Date()
     var errorMessage: String = ""
     
@@ -24,18 +25,36 @@ class OnboardingViewModel {
         name.trimmingCharacters(in: .whitespaces).count >= 2
     }
     
+    var isDosorValid: Bool {
+        numberOfDosor > 0
+    }
+    
+    var isValidPrice: Bool {
+        pricePerDosa > 0.0
+    }
+    
+    var isValidGoal: Bool {
+        savingGoal > 0
+    }
+    
+    var canProceed: Bool {
+        return isValidPrice && isValidGoal
+    }
+    
+    
     // Added prints for testing and save user is working!
     func saveUser(context: ModelContext) {
         guard validation() else {
             return
         }
-        let user = User(name: name.trimmingCharacters(in: .whitespaces), numberOfDosor: numberOfDosor, pricePerDosa: pricePerDosa, portionsPerDosa: portionsPerDosa, startDate: startDate, streak: Streak())
+        let user = User(name: name.trimmingCharacters(in: .whitespaces), numberOfDosor: numberOfDosor, pricePerDosa: pricePerDosa, portionsPerDosa: portionsPerDosa, savingsGoal: savingGoal, startDate: startDate, streak: Streak())
         
         context.insert(user)
         
         do {
             try context.save()
             print("User Saved")
+            print("name: \(user.name), dosor: \(user.numberOfDosor), price: \(user.pricePerDosa), portions: \(user.portionsPerDosa), savingsGoal: \(user.savingsGoal), startDate: \(user.startDate), streak: \(user.streak.currentStreak)")
             errorMessage = ""
             userState = .userCreated
         } catch {

@@ -6,25 +6,26 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
-    
     @State private var onboardingViewModel = OnboardingViewModel()
+    @Query private var users: [User]
     
     var body: some View {
-        NavigationStack {
-            switch onboardingViewModel.userState {
-            case .notCreated:
+        Group {
+            if users.isEmpty {
                 OnboardingView()
-            case .userCreated:
+            } else {
                 HomeView()
             }
         }
         .environment(onboardingViewModel)
-        
     }
 }
 
 #Preview {
     ContentView()
+        .environment(OnboardingViewModel())
+        .modelContainer(for: User.self, inMemory: true)
 }

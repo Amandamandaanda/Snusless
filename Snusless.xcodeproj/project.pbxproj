@@ -11,11 +11,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		01F428482FBC498800E453CD /* Models */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Models;
-			sourceTree = "<group>";
-		};
 		01F4284D2FBC4A0900E453CD /* Snusless */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Snusless;
@@ -38,7 +33,6 @@
 			isa = PBXGroup;
 			children = (
 				01F4284D2FBC4A0900E453CD /* Snusless */,
-				01F428482FBC498800E453CD /* Models */,
 				FE8F22CC2FB46EAF00495480 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -67,7 +61,6 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				01F428482FBC498800E453CD /* Models */,
 				01F4284D2FBC4A0900E453CD /* Snusless */,
 			);
 			name = Snusless;

@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct OnboardingView: View {
     @Environment(OnboardingViewModel.self) private var onboardingViewModel
+    @Environment(\.modelContext) private var modelContext
     
     var body: some View {
-        ZStack {
+        VStack {
             switch onboardingViewModel.onboardingState {
             case .onboardingName:
                 OnboardingNameView()
@@ -39,6 +41,7 @@ struct OnboardingView: View {
                 OnboardingEconomyView(
                     onNextStep: {
                         onboardingViewModel.onboardingState = .onboardingDone
+                        onboardingViewModel.saveUser(context: modelContext)
                     },
                     onPreviousStep: {
                         onboardingViewModel.onboardingState = .onboardingDosor
@@ -49,8 +52,63 @@ struct OnboardingView: View {
             case .onboardingDone:
                 HomeView()
                     .transition(.move(edge: .trailing))
+                
             }
+
+            if onboardingViewModel.onboardingState != .onboardingDone {
+                HStack {
+                    Button {
+                        
+                        onboardingViewModel.onboardingState = .onboardingName
+                    } label: {
+                        Image(systemName: isActive(.onboardingName) ? "circle.fill" : "circle")
+                    }
+                    
+                    Button {
+                            onboardingViewModel.onboardingState = .onboardingDate
+                        
+                        
+                    } label: {
+                        Image(systemName: isActive(.onboardingDate) ? "circle.fill" : "circle")
+                    }
+                    .disabled(!onboardingViewModel.isNameValid)
+                    
+                    Button {
+                        if onboardingViewModel.isNameValid {
+                            onboardingViewModel.onboardingState = .onboardingDosor
+                        }
+                      
+                    } label: {
+                        
+                        Image(systemName: isActive(.onboardingDosor) ? "circle.fill" : "circle")
+                    }
+                    .disabled(!onboardingViewModel.isNameValid)
+                    
+                    
+                    Button {
+                        onboardingViewModel.onboardingState = .onboardingEconomy
+                    } label: {
+                        Image(systemName: isActive(.onboardingEconomy) ? "circle.fill" : "circle")
+                            
+                    }
+                    .disabled(!(onboardingViewModel.numberOfDosor > 0))
+                }
+                .foregroundColor(.white)
+                .background(.green)
+                .padding()
+            }
+            
         }
+        .background(.green)
         .animation(.smooth(duration: 0.3), value: onboardingViewModel.onboardingState)
     }
+    
+    private func isActive(_ state: OnboardingState) -> Bool {
+        onboardingViewModel.onboardingState == state
+    }
+}
+
+#Preview {
+    OnboardingView()
+        .environment(OnboardingViewModel())
 }
