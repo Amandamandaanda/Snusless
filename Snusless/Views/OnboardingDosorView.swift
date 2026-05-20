@@ -17,9 +17,11 @@ struct OnboardingDosorView: View {
     var onPreviousStep: () -> Void
     
     
+    
     var body: some View {
         @Bindable var onboardingVM = onboardingViewModel
         
+
         ZStack {
             Color(.green)
                 .ignoresSafeArea()
@@ -70,6 +72,9 @@ struct OnboardingDosorView: View {
                     Slider(value: $portionCount, in: 0...100, step: 1)
                         .accentColor(.white)
                         .padding(.horizontal, 40)
+                        .onChange(of: portionCount) {_, newValue in
+                            onboardingViewModel.portionsPerDosa = Int(newValue)
+                        }
                     
                     HStack {
                         Text("0").font(.caption).foregroundColor(.white.opacity(0.6))

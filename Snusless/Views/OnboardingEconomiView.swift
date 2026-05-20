@@ -74,20 +74,30 @@ struct OnboardingEconomyView: View {
                 
                 HStack {
                     Button(action: onPreviousStep) {
-                        Image(systemName: "arrow.left").font(.title2).foregroundColor(.white)
+                        Image(systemName: "arrow.left")
+                            .font(.title3)
+                            .bold()
+                            .foregroundColor(Color(red: 0.18, green: 0.49, blue: 0.20))
+                            .padding()
+                            .background(Color.white)
+                            .clipShape(Circle())
                     }
                     Spacer()
                     
                     Button(action: saveAndProceed) {
                         Image(systemName: "arrow.right")
-                            .font(.title2)
-                            .foregroundColor(onboardingViewModel.canProceed ? .white : .white.opacity(0.3))
+                            .font(.title3)
+                            .bold()
+                            .foregroundColor(Color(red: 0.18, green: 0.49, blue: 0.20))
+                            .padding()
+                            .background(onboardingViewModel.isValidPrice ? Color.white : Color.white.opacity(0.4))
+                            .clipShape(Circle())
                     }
                     .disabled(!onboardingViewModel.canProceed)
                 }
-                .padding(.horizontal, 30)
-                .padding(.bottom, 20)
+                .padding(.bottom, 10)
             }
+            .padding(.horizontal, 20)
         }
     }
     
