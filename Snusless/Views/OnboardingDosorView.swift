@@ -12,15 +12,10 @@ struct OnboardingDosorView: View {
     @Environment(OnboardingViewModel.self) private var onboardingViewModel
 
     @State private var portionCount: Double = 20.0
-    @State private var dosorInput: String = ""
     
     var onNextStep: () -> Void
     var onPreviousStep: () -> Void
     
-    private var isValidDosor: Bool {
-        guard let dosor = Int(dosorInput) else { return false }
-        return dosor > 0
-    }
     
     var body: some View {
         @Bindable var onboardingVM = onboardingViewModel
@@ -30,13 +25,13 @@ struct OnboardingDosorView: View {
                 .ignoresSafeArea()
             
             VStack(spacing: 30) {
-                HStack {
-                    Text("Onboarding 3/5")
-                        .font(.subheadline)
-                        .foregroundColor(.white.opacity(0.7))
-                    Spacer()
-                }
-                .padding(.horizontal)
+//                HStack {
+//                    Text("Onboarding 3/5")
+//                        .font(.subheadline)
+//                        .foregroundColor(.white.opacity(0.7))
+//                    Spacer()
+//                }
+//                .padding(.horizontal)
                 
                 Spacer()
                 
@@ -47,7 +42,7 @@ struct OnboardingDosorView: View {
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                     
-                    TextField("Antal", text: $dosorInput)
+                    TextField("Antal", value: $onboardingVM.numberOfDosor, format: .number)
                         .keyboardType(.numberPad)
                         .multilineTextAlignment(.center)
                         .padding(.vertical, 10)
@@ -67,7 +62,7 @@ struct OnboardingDosorView: View {
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                     
-                    Text("\(Int(portionCount))")
+                    Text("\(Int(onboardingViewModel.portionsPerDosa))")
                         .font(.title3)
                         .bold()
                         .foregroundColor(.white)
@@ -82,6 +77,11 @@ struct OnboardingDosorView: View {
                         Text("100").font(.caption).foregroundColor(.white.opacity(0.6))
                     }
                     .padding(.horizontal, 40)
+                }
+                
+                if !onboardingViewModel.errorMessage.isEmpty {
+                    Text(onboardingViewModel.errorMessage)
+                        .foregroundColor(.red)
                 }
                 
                 Spacer()
@@ -99,20 +99,8 @@ struct OnboardingDosorView: View {
                     
                     Spacer()
                     
-                    HStack(spacing: 6) {
-                        Circle().fill(Color.white.opacity(0.5)).frame(width: 6, height: 6)
-                        Circle().fill(Color.white.opacity(0.5)).frame(width: 6, height: 6)
-                        Circle().fill(Color.white).frame(width: 8, height: 8)
-                        Circle().fill(Color.white.opacity(0.5)).frame(width: 6, height: 6)
-                        Circle().fill(Color.white.opacity(0.5)).frame(width: 6, height: 6)
-                    }
                     
-                    Spacer()
                     
-                    Text("3/5")
-                        .font(.subheadline)
-                        .foregroundColor(.white.opacity(0.8))
-                        .padding(.trailing, 10)
                     
                     Button(action: saveAndProceed) {
                         Image(systemName: "arrow.right")
@@ -120,10 +108,10 @@ struct OnboardingDosorView: View {
                             .bold()
                             .foregroundColor(Color(red: 0.18, green: 0.49, blue: 0.20))
                             .padding()
-                            .background(isValidDosor ? Color.white : Color.white.opacity(0.4))
+                            .background(onboardingViewModel.isDosorValid ? Color.white : Color.white.opacity(0.4))
                             .clipShape(Circle())
                     }
-                    .disabled(!isValidDosor)
+                    .disabled(!onboardingViewModel.isDosorValid)
                 }
                 .padding(.horizontal, 20)
                 .padding(.bottom, 10)
@@ -132,9 +120,9 @@ struct OnboardingDosorView: View {
     }
     
     private func saveAndProceed() {
-        if let dosor = Int(dosorInput) {
-            onboardingViewModel.numberOfDosor = dosor
-            onNextStep()
-        }
+        onboardingViewModel.portionsPerDosa = Int(portionCount) 
+            if onboardingViewModel.errorMessage.isEmpty {
+                onNextStep()
+            }
     }
 }

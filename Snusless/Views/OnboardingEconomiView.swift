@@ -10,26 +10,8 @@ import SwiftUI
 struct OnboardingEconomyView: View {
     @Environment(OnboardingViewModel.self) private var onboardingViewModel
     
-    
-    @State private var priceInput: String = ""
-    @State private var savingsGoalInput: String = ""
-    
     var onNextStep: () -> Void
     var onPreviousStep: () -> Void
-    
-    private var isValidPrice: Bool {
-        guard let price = Double(priceInput.replacingOccurrences(of: ",", with: ".")) else { return false }
-        return price > 0
-    }
-    
-    private var isValidGoal: Bool {
-        guard let goal = Double(savingsGoalInput.replacingOccurrences(of: ",", with: ".")) else { return false }
-        return goal > 0
-    }
-    
-    private var canProceed: Bool {
-        return isValidPrice && isValidGoal
-    }
     
     var body: some View {
         @Bindable var onboardingVM = onboardingViewModel
@@ -48,7 +30,7 @@ struct OnboardingEconomyView: View {
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                     
-                    TextField("kr", text: $priceInput)
+                    TextField("kr", value: $onboardingVM.pricePerDosa, format: .number)
                         .keyboardType(.decimalPad)
                         .multilineTextAlignment(.center)
                         .padding()
@@ -65,7 +47,7 @@ struct OnboardingEconomyView: View {
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                     
-                    TextField("kr", text: $savingsGoalInput)
+                    TextField("kr", value: $onboardingVM.savingGoal, format: .number)
                         .keyboardType(.decimalPad)
                         .multilineTextAlignment(.center)
                         .padding()
@@ -75,8 +57,14 @@ struct OnboardingEconomyView: View {
                         .frame(width: 140)
                 }
                 
-                if (!priceInput.isEmpty && !isValidPrice) || (!savingsGoalInput.isEmpty && !isValidGoal) {
-                    Text("Vänligen fyll i ett giltigt pris för sparmål.")
+                if !onboardingViewModel.errorMessage.isEmpty {
+                    Text(onboardingViewModel.errorMessage)
+                        .foregroundColor(.red)
+                }
+                
+                if (!onboardingViewModel.isValidPrice && onboardingViewModel.pricePerDosa > 0) ||
+                   (!onboardingViewModel.isValidGoal && onboardingViewModel.savingGoal > 0) {
+                    Text("Vänligen fyll i ett giltigt pris och sparmål.")
                         .font(.subheadline)
                         .bold()
                         .foregroundColor(.white)
@@ -89,14 +77,13 @@ struct OnboardingEconomyView: View {
                         Image(systemName: "arrow.left").font(.title2).foregroundColor(.white)
                     }
                     Spacer()
-                    Text("•••••  4/5").font(.caption).foregroundColor(.white.opacity(0.7))
-                    Spacer()
+                    
                     Button(action: saveAndProceed) {
                         Image(systemName: "arrow.right")
                             .font(.title2)
-                            .foregroundColor(canProceed ? .white : .white.opacity(0.3))
+                            .foregroundColor(onboardingViewModel.canProceed ? .white : .white.opacity(0.3))
                     }
-                    .disabled(!canProceed)
+                    .disabled(!onboardingViewModel.canProceed)
                 }
                 .padding(.horizontal, 30)
                 .padding(.bottom, 20)
@@ -105,9 +92,10 @@ struct OnboardingEconomyView: View {
     }
     
     private func saveAndProceed() {
-        if let validatedPrice = Double(priceInput.replacingOccurrences(of: ",", with: ".")) {
-            onboardingViewModel.pricePerDosa = validatedPrice
-            onNextStep()
+        if onboardingViewModel.isValidPrice {
+            if onboardingViewModel.errorMessage.isEmpty {
+                onNextStep()
+            }
         }
     }
 }
