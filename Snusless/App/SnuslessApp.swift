@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct SnuslessApp: App {
@@ -13,5 +14,6 @@ struct SnuslessApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: [User.self, Streak.self])
     }
 }
