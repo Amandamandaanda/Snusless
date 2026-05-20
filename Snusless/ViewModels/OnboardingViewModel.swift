@@ -14,7 +14,7 @@ class OnboardingViewModel {
     var numberOfDosor: Int = 0
     var pricePerDosa: Double = 0.0
     var savingGoal: Int = 0
-    var portionsPerDosa: Int = 0
+    var portionsPerDosa: Int = 20
     var startDate: Date = Date()
     var errorMessage: String = ""
     
