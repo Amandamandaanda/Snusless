@@ -3,6 +3,7 @@
 //  Snusless
 //
 //  Created by Jonathan Strid on 2026-05-19.
+//  Updated for integration.
 //
 
 import SwiftUI
@@ -57,10 +58,10 @@ struct OnboardingDateView: View {
                 .font(Font.title3.bold())
                 
                 Spacer()
+                
                 Button {
                     Task {
-                        // Just for now until rest of onboarding is done!
-                        onboardingViewModel.onboardingState = .onboardingDone
+                        onboardingViewModel.onboardingState = .onboardingDosor
                     }
                 } label: {
                     HStack {

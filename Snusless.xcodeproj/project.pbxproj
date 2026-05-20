@@ -11,7 +11,12 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		FE8F22CD2FB46EAF00495480 /* Snusless */ = {
+		01F428482FBC498800E453CD /* Models */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		01F4284D2FBC4A0900E453CD /* Snusless */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Snusless;
 			sourceTree = "<group>";
@@ -32,7 +37,8 @@
 		FE8F22C22FB46EAF00495480 = {
 			isa = PBXGroup;
 			children = (
-				FE8F22CD2FB46EAF00495480 /* Snusless */,
+				01F4284D2FBC4A0900E453CD /* Snusless */,
+				01F428482FBC498800E453CD /* Models */,
 				FE8F22CC2FB46EAF00495480 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -61,7 +67,8 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				FE8F22CD2FB46EAF00495480 /* Snusless */,
+				01F428482FBC498800E453CD /* Models */,
+				01F4284D2FBC4A0900E453CD /* Snusless */,
 			);
 			name = Snusless;
 			packageProductDependencies = (
@@ -78,7 +85,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2630;
-				LastUpgradeCheck = 2630;
+				LastUpgradeCheck = 2640;
 				TargetAttributes = {
 					FE8F22CA2FB46EAF00495480 = {
 						CreatedOnToolsVersion = 26.3;
@@ -183,6 +190,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -239,6 +247,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
