@@ -20,6 +20,10 @@ class OnboardingViewModel {
     var userState: UserState = .notCreated
     var onboardingState: OnboardingState = .onboardingName
     
+    var isNameValid: Bool {
+        name.trimmingCharacters(in: .whitespaces).count >= 2
+    }
+    
     // Added prints for testing and save user is working!
     func saveUser(context: ModelContext) {
         guard validation() else {

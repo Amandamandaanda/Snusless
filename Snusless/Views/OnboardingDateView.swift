@@ -23,6 +23,7 @@ struct OnboardingDateView: View {
                 .padding()
 
             DatePicker("Startdatum", selection: $onboardingVM.startDate, in: ...Date(), displayedComponents: .date)
+//                .frame(height: 380)
                 .padding(.horizontal)
                 .environment(\.colorScheme, .dark)
                 .environment(\.locale, Locale(identifier: "sv_SE"))
