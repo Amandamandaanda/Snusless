@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct OnboardingEconomyView: View {
-    @Bindable var viewModel: OnboardingViewModel
+    @Environment(OnboardingViewModel.self) private var onboardingViewModel
+    
     
     @State private var priceInput: String = ""
     @State private var savingsGoalInput: String = ""
@@ -31,6 +32,8 @@ struct OnboardingEconomyView: View {
     }
     
     var body: some View {
+        @Bindable var onboardingVM = onboardingViewModel
+        
         ZStack {
             Color(.systemGreen)
                 .ignoresSafeArea()
@@ -73,7 +76,7 @@ struct OnboardingEconomyView: View {
                 }
                 
                 if (!priceInput.isEmpty && !isValidPrice) || (!savingsGoalInput.isEmpty && !isValidGoal) {
-                    Text("Vänligen fyll i ett giltigt pris ve sparmål.")
+                    Text("Vänligen fyll i ett giltigt pris för sparmål.")
                         .font(.subheadline)
                         .bold()
                         .foregroundColor(.white)
@@ -103,7 +106,7 @@ struct OnboardingEconomyView: View {
     
     private func saveAndProceed() {
         if let validatedPrice = Double(priceInput.replacingOccurrences(of: ",", with: ".")) {
-            viewModel.pricePerDosa = validatedPrice
+            onboardingViewModel.pricePerDosa = validatedPrice
             onNextStep()
         }
     }

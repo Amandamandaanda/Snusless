@@ -14,6 +14,7 @@ struct OnboardingDateView: View {
 
     var body: some View {
         @Bindable var onboardingVM = onboardingViewModel
+        
         VStack(alignment: .center, spacing: 16) {
             Spacer()
 
@@ -24,7 +25,6 @@ struct OnboardingDateView: View {
                 .padding()
 
             DatePicker("Startdatum", selection: $onboardingVM.startDate, in: ...Date(), displayedComponents: .date)
-//                .frame(height: 380)
                 .padding(.horizontal)
                 .environment(\.colorScheme, .dark)
                 .environment(\.locale, Locale(identifier: "sv_SE"))

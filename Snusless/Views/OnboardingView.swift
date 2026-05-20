@@ -24,7 +24,6 @@ struct OnboardingView: View {
             case .onboardingDosor:
                 @Bindable var onboardingVM = onboardingViewModel
                 OnboardingDosorView(
-                    viewModel: onboardingVM,
                     onNextStep: {
                         onboardingViewModel.onboardingState = .onboardingEconomy
                     },
@@ -38,7 +37,6 @@ struct OnboardingView: View {
             case .onboardingEconomy:
                 @Bindable var onboardingVM = onboardingViewModel
                 OnboardingEconomyView(
-                    viewModel: onboardingVM,
                     onNextStep: {
                         onboardingViewModel.onboardingState = .onboardingDone
                     },

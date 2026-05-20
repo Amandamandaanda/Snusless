@@ -41,7 +41,7 @@ struct OnboardingNameView: View {
                 .onChange(of: onboardingVM.name) { _, newValue in
                     let filtered = newValue.filter { $0.isLetter || $0.isWhitespace }
 
-                    let limited = String(filtered.prefix(25))
+                    let limited = String(filtered.prefix(20))
                         onboardingVM.name = limited
                 }
             
