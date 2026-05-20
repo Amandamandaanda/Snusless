@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct OnboardingDosorView: View {
-    @Bindable var viewModel: OnboardingViewModel
-    
+    @Environment(OnboardingViewModel.self) private var onboardingViewModel
+
     @State private var portionCount: Double = 20.0
     @State private var dosorInput: String = ""
     
@@ -23,8 +23,10 @@ struct OnboardingDosorView: View {
     }
     
     var body: some View {
+        @Bindable var onboardingVM = onboardingViewModel
+        
         ZStack {
-            Color(red: 0.18, green: 0.49, blue: 0.20)
+            Color(.green)
                 .ignoresSafeArea()
             
             VStack(spacing: 30) {
@@ -131,7 +133,7 @@ struct OnboardingDosorView: View {
     
     private func saveAndProceed() {
         if let dosor = Int(dosorInput) {
-            viewModel.numberOfDosor = dosor
+            onboardingViewModel.numberOfDosor = dosor
             onNextStep()
         }
     }

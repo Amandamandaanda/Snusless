@@ -14,6 +14,7 @@ struct OnboardingDateView: View {
 
     var body: some View {
         @Bindable var onboardingVM = onboardingViewModel
+        
         VStack(alignment: .center, spacing: 16) {
             Spacer()
 

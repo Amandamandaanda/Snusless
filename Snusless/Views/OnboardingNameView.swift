@@ -38,7 +38,13 @@ struct OnboardingNameView: View {
                     Color(.gray.opacity(0.5))
                 }
                 .cornerRadius(20)
+                .onChange(of: onboardingVM.name) { _, newValue in
+                    let filtered = newValue.filter { $0.isLetter || $0.isWhitespace }
 
+                    let limited = String(filtered.prefix(20))
+                        onboardingVM.name = limited
+                }
+            
             Spacer()
 
             HStack {
@@ -53,12 +59,12 @@ struct OnboardingNameView: View {
                             .font(.title2)
                             .bold()
                             .padding(.horizontal)
-                            .foregroundStyle(onboardingViewModel.name.isEmpty ? .gray : .white)
+                            .foregroundStyle(!onboardingViewModel.isNameValid ? .gray : .white)
                     }
                 }
                 .buttonStyle(.bordered)
                 .font(Font.title3.bold())
-                .disabled(onboardingViewModel.name.isEmpty)
+                .disabled(!onboardingViewModel.isNameValid)
             }
         }
         .padding()
