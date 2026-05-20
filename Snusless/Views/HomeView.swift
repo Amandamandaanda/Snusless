@@ -24,7 +24,6 @@ struct HomeView: View {
                     .ignoresSafeArea()
                 
                 VStack(spacing: 24){
-                    
                     Text("Snusless")
                         .font(.largeTitle)
                         .padding(.top)
