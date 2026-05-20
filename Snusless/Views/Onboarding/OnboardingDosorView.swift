@@ -5,84 +5,134 @@
 //  Created by Pinar Bildirici on 2026-05-19.
 //
 
+
 import SwiftUI
 
 struct OnboardingDosorView: View {
     @Bindable var viewModel: OnboardingViewModel
     
+    @State private var portionCount: Double = 20.0
+    @State private var dosorInput: String = ""
+    
     var onNextStep: () -> Void
     var onPreviousStep: () -> Void
     
+    private var isValidDosor: Bool {
+        guard let dosor = Int(dosorInput) else { return false }
+        return dosor > 0
+    }
+    
     var body: some View {
         ZStack {
-            Color(.systemGreen)
+            Color(red: 0.18, green: 0.49, blue: 0.20)
                 .ignoresSafeArea()
             
-            VStack(spacing: 40) {
+            VStack(spacing: 30) {
+                HStack {
+                    Text("Onboarding 3/5")
+                        .font(.subheadline)
+                        .foregroundColor(.white.opacity(0.7))
+                    Spacer()
+                }
+                .padding(.horizontal)
+                
                 Spacer()
                 
-                VStack(spacing: 16) {
+                VStack(spacing: 15) {
                     Text("Hur många snusdosor\nanvänder du per dag?")
-                        .font(.title)
+                        .font(.title2)
                         .bold()
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                     
-                    // Stepper för att öka/minska dosor på ett säkert sätt
-                    HStack(spacing: 20) {
-                        Button(action: { if viewModel.numberOfDosor > 0 { viewModel.numberOfDosor -= 1 } }) {
-                            Image(systemName: "minus.circle.fill")
-                                .font(.largeTitle)
-                                .foregroundColor(.white)
-                        }
-                        
-                        Text("\(viewModel.numberOfDosor)")
-                            .font(.system(size: 48, weight: .bold))
-                            .foregroundColor(.white)
-                            .frame(minWidth: 60)
-                        
-                        Button(action: { viewModel.numberOfDosor += 1 }) {
-                            Image(systemName: "plus.circle.fill")
-                                .font(.largeTitle)
-                                .foregroundColor(.white)
-                        }
-                    }
-                    .padding()
-                    .background(Color.white.opacity(0.2))
-                    .cornerRadius(15)
+                    TextField("Antal", text: $dosorInput)
+                        .keyboardType(.numberPad)
+                        .multilineTextAlignment(.center)
+                        .padding(.vertical, 10)
+                        .padding(.horizontal, 20)
+                        .background(Color.white)
+                        .foregroundColor(.black)
+                        .cornerRadius(10)
+                        .frame(width: 120)
                 }
                 
-                if viewModel.numberOfDosor == 0 {
-                    Text("Antalet dosor måste vara större än 0 för att gå vidare.")
-                        .font(.subheadline)
-                        .foregroundColor(.white)
+                Spacer().frame(height: 20)
+                
+                VStack(spacing: 15) {
+                    Text("Hur många portioner\när det i en snusdosa?")
+                        .font(.title2)
                         .bold()
+                        .foregroundColor(.white)
+                        .multilineTextAlignment(.center)
+                    
+                    Text("\(Int(portionCount))")
+                        .font(.title3)
+                        .bold()
+                        .foregroundColor(.white)
+                    
+                    Slider(value: $portionCount, in: 0...100, step: 1)
+                        .accentColor(.white)
+                        .padding(.horizontal, 40)
+                    
+                    HStack {
+                        Text("0").font(.caption).foregroundColor(.white.opacity(0.6))
+                        Spacer()
+                        Text("100").font(.caption).foregroundColor(.white.opacity(0.6))
+                    }
+                    .padding(.horizontal, 40)
                 }
                 
                 Spacer()
                 
-                // Navigation pilar som Figma vi har //
                 HStack {
                     Button(action: onPreviousStep) {
                         Image(systemName: "arrow.left")
-                            .font(.title2)
-                            .foregroundColor(.white)
+                            .font(.title3)
+                            .bold()
+                            .foregroundColor(Color(red: 0.18, green: 0.49, blue: 0.20))
+                            .padding()
+                            .background(Color.white)
+                            .clipShape(Circle())
                     }
+                    
                     Spacer()
-                    Text("•••••  3/5")
-                        .font(.caption)
-                        .foregroundColor(.white.opacity(0.7))
+                    
+                    HStack(spacing: 6) {
+                        Circle().fill(Color.white.opacity(0.5)).frame(width: 6, height: 6)
+                        Circle().fill(Color.white.opacity(0.5)).frame(width: 6, height: 6)
+                        Circle().fill(Color.white).frame(width: 8, height: 8)
+                        Circle().fill(Color.white.opacity(0.5)).frame(width: 6, height: 6)
+                        Circle().fill(Color.white.opacity(0.5)).frame(width: 6, height: 6)
+                    }
+                    
                     Spacer()
-                    Button(action: onNextStep) {
+                    
+                    Text("3/5")
+                        .font(.subheadline)
+                        .foregroundColor(.white.opacity(0.8))
+                        .padding(.trailing, 10)
+                    
+                    Button(action: saveAndProceed) {
                         Image(systemName: "arrow.right")
-                            .font(.title2)
-                            .foregroundColor(viewModel.numberOfDosor > 0 ? .white : .white.opacity(0.3))
+                            .font(.title3)
+                            .bold()
+                            .foregroundColor(Color(red: 0.18, green: 0.49, blue: 0.20))
+                            .padding()
+                            .background(isValidDosor ? Color.white : Color.white.opacity(0.4))
+                            .clipShape(Circle())
                     }
-                    .disabled(viewModel.numberOfDosor == 0)
+                    .disabled(!isValidDosor)
                 }
-                .padding(.horizontal, 30)
-                .padding(.bottom, 20)
+                .padding(.horizontal, 20)
+                .padding(.bottom, 10)
             }
+        }
+    }
+    
+    private func saveAndProceed() {
+        if let dosor = Int(dosorInput) {
+            viewModel.numberOfDosor = dosor
+            onNextStep()
         }
     }
 }

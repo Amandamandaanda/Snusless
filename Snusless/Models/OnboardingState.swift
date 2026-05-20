@@ -10,5 +10,10 @@ import Foundation
 enum OnboardingState {
     case onboardingName
     case onboardingDate
+    case onboardingDosor    
+    case onboardingEconomy
     case onboardingDone
 }
+
+    
+
