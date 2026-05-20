@@ -11,18 +11,19 @@ import SwiftData
 @Model
 class User {
     var name: String
-    var completedDays: [Date] = []
     var numberOfDosor: Int
     var pricePerDosa: Double
     var portionsPerDosa: Int
     var startDate: Date
+    var streak: Streak
     
-    init(name: String, completedDays: [Date] = [], numberOfDosor: Int, pricePerDosa: Double, portionsPerDosa: Int, startDate: Date) {
+    init(name: String, numberOfDosor: Int, pricePerDosa: Double, portionsPerDosa: Int, startDate: Date,  streak: Streak = Streak()) {
         self.name = name
-        self.completedDays = completedDays
         self.numberOfDosor = numberOfDosor
         self.pricePerDosa = pricePerDosa
         self.startDate = startDate
         self.portionsPerDosa = portionsPerDosa
+        self.streak = streak
+   
     }
 }
