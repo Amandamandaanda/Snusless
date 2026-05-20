@@ -13,18 +13,18 @@ class HomeViewModel{
     
     var errorMessage: String?
     
-    func checkToday(streak: Streak, context: ModelContext) {
+    func checkToday(user: User, context: ModelContext) {
         
         errorMessage = nil
         
         let today = Calendar.current.startOfDay(for: Date())
         
-        if let index = streak.completedDays.firstIndex(where: {
+        if let index = user.streak.completedDays.firstIndex(where: {
             Calendar.current.isDateInToday($0)
         }) {
-            streak.completedDays.remove(at: index)
+            user.streak.completedDays.remove(at: index)
         } else {
-            streak.completedDays.append(today)
+            user.streak.completedDays.append(today)
         }
         
         do {
