@@ -10,7 +10,7 @@ import SwiftData
 
 struct HomeView: View {
     
-    @Query private var streaks: [Streak]
+    @Query private var users: [User]
     
     @Environment(\.modelContext)
     private var modelContext
@@ -35,9 +35,9 @@ struct HomeView: View {
                         .font(.caption)
                     }
                     
-                    if let streak = streaks.first{
+                    if let user = users.first{
                         VStack(spacing: 20) {
-                            Text("\(streak.currentStreak)")
+                            Text("\(user.streak.currentStreak)")
                                 .font(.system(size: 56, weight: .bold))
                                 .foregroundStyle(.white)
                             
@@ -52,9 +52,9 @@ struct HomeView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 28))
                         .padding(.horizontal)
                         Button {
-                            viewModel.checkToday(streak: streak, context: modelContext)
+                            viewModel.checkToday(streak: user.streak, context: modelContext)
                         } label: {
-                            Text(streak.isCompletedToday ? "Ångra dag" : "Jag klarade dagen!")
+                            Text(user.streak.isCompletedToday ? "Ångra dag" : "Jag klarade dagen!")
                                 .fontWeight(.semibold)
                                 .foregroundStyle(.white)
                                 .padding()
@@ -62,18 +62,8 @@ struct HomeView: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 12))
                         }
                         .padding(.horizontal)
-                        
                     } else {
-                        Button("Dag 1 börjar nu") {
-                            let newStreak = Streak()
-                            modelContext.insert(newStreak)
-                            try? modelContext.save()
-                        }
-                        .padding()
-                        .background(.green)
-                        .foregroundStyle(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 16))
-                        .padding(.horizontal)
+                        Text("Finns ingen användare än")
                     }
                     Spacer()
                 }
@@ -84,5 +74,5 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
-        .modelContainer(for: Streak.self, inMemory: true)
+        .modelContainer(for: [User.self, Streak.self], inMemory: true)
 }

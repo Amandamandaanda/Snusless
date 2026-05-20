@@ -25,7 +25,7 @@ class OnboardingViewModel {
         guard validation() else {
             return
         }
-        let user = User(name: name.trimmingCharacters(in: .whitespaces), completedDays: [], numberOfDosor: numberOfDosor, pricePerDosa: pricePerDosa, portionsPerDosa: portionsPerDosa, startDate: startDate)
+        let user = User(name: name.trimmingCharacters(in: .whitespaces), numberOfDosor: numberOfDosor, pricePerDosa: pricePerDosa, portionsPerDosa: portionsPerDosa, startDate: startDate, streak: Streak())
         
         context.insert(user)
         
