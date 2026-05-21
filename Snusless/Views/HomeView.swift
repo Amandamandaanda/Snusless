@@ -51,7 +51,7 @@ struct HomeView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 28))
                         .padding(.horizontal)
                         Button {
-                            viewModel.checkToday(streak: user.streak, context: modelContext)
+                            viewModel.checkToday(user: user, context: modelContext)
                         } label: {
                             Text(user.streak.isCompletedToday ? "Ångra dag" : "Jag klarade dagen!")
                                 .fontWeight(.semibold)
