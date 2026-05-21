@@ -12,6 +12,7 @@ struct OnboardingSummaryView: View {
     @Environment(OnboardingViewModel.self) private var onboardingViewModel
     
     var saveUser: () -> Void
+    var onPreviousStep: () -> Void
     
     var body: some View {
         ZStack {
@@ -67,6 +68,31 @@ struct OnboardingSummaryView: View {
                 
                 Spacer()
                 
+                HStack {
+                    
+                    Button {
+                        Task {
+                            onPreviousStep()
+                        }
+                    } label: {
+                        HStack {
+                            Image(systemName: "arrow.left")
+                                .font(.title3)
+                                .bold()
+                                .foregroundColor(Color(red: 0.18, green: 0.49, blue: 0.20))
+                                .padding()
+                                .background(Color.white)
+                                .clipShape(Circle())
+                        }
+                        
+                    }
+
+                    
+                    Spacer()
+                }
+                .padding(.bottom, 10)
+                .padding(.horizontal, 20)
+                
             }
         }
     }
@@ -80,11 +106,18 @@ struct OnboardingSummaryView: View {
         formatter.locale = Locale(identifier: "sv_SE")
         return formatter.string(from: date)
     }
+    
+    private func saveAndProceed() {
+            if onboardingViewModel.errorMessage.isEmpty {
+                saveUser()
+            }
+        
+    }
 }
 
 
 
 #Preview {
-    OnboardingSummaryView()
+    OnboardingSummaryView(saveUser: {}, onPreviousStep: {})
         .environment(OnboardingViewModel())
 }
