@@ -22,7 +22,7 @@ struct OnboardingView: View {
                     isGoingForward = true
                     onboardingViewModel.onboardingState = .onboardingDate
                 })
-                    .transition(.asymmetric(insertion: .move(edge: isGoingForward ? .trailing : .leading), removal: .move(edge: isGoingForward ? .leading : .trailing)))
+                .transition(.asymmetric(insertion: .move(edge: isGoingForward ? .trailing : .leading).combined(with: .opacity), removal: .move(edge: isGoingForward ? .leading : .trailing).combined(with: .opacity)))
             case .onboardingDate:
                 OnboardingDateView(onNextStep: {
                     isGoingForward = true
@@ -32,7 +32,7 @@ struct OnboardingView: View {
                     isGoingForward = false
                     onboardingViewModel.onboardingState = .onboardingName
                 })
-                .transition(.asymmetric(insertion: .move(edge: isGoingForward ? .trailing : .leading), removal: .move(edge: isGoingForward ? .leading : .trailing)))
+                .transition(.asymmetric(insertion: .move(edge: isGoingForward ? .trailing : .leading).combined(with: .opacity), removal: .move(edge: isGoingForward ? .leading : .trailing).combined(with: .opacity)))
                     
            
             case .onboardingDosor:
@@ -47,7 +47,7 @@ struct OnboardingView: View {
                         onboardingViewModel.onboardingState = .onboardingDate
                     }
                 )
-                .transition(.asymmetric(insertion: .move(edge: isGoingForward ? .trailing : .leading), removal: .move(edge: isGoingForward ? .leading : .trailing)))
+                .transition(.asymmetric(insertion: .move(edge: isGoingForward ? .trailing : .leading).combined(with: .opacity), removal: .move(edge: isGoingForward ? .leading : .trailing).combined(with: .opacity)))
                 
        
             case .onboardingEconomy:
@@ -57,7 +57,7 @@ struct OnboardingView: View {
 
                         isGoingForward = true
                         onboardingViewModel.onboardingState = .onboardingSummary
-//                        onboardingViewModel.saveUser(context: modelContext)
+
 
                     },
                     onPreviousStep: {
@@ -65,16 +65,23 @@ struct OnboardingView: View {
                         onboardingViewModel.onboardingState = .onboardingDosor
                     }
                 )
-                .transition(.asymmetric(insertion: .move(edge: isGoingForward ? .trailing : .leading), removal: .move(edge: isGoingForward ? .leading : .trailing)))
+                .transition(.asymmetric(insertion: .move(edge: isGoingForward ? .trailing : .leading).combined(with: .opacity), removal: .move(edge: isGoingForward ? .leading : .trailing).combined(with: .opacity)))
                 
             case .onboardingSummary:
                 @Bindable var onboardingVM = onboardingViewModel
-                OnboardingSummaryView()
-                    .transition(.move(edge: .trailing))
+                OnboardingSummaryView(saveUser: {
+                    onboardingViewModel.saveUser(context: modelContext)
+                    
+                }, onPreviousStep: {
+                    isGoingForward = false
+                    onboardingViewModel.onboardingState = .onboardingEconomy
+                })
+                .transition(.asymmetric(insertion: .move(edge: isGoingForward ? .trailing : .leading).combined(with: .opacity), removal: .move(edge: isGoingForward ? .leading : .trailing).combined(with: .opacity)))
+                 
                 
             case .onboardingDone:
                 HomeView()
-                    .transition(.move(edge: .trailing))
+                    .transition(.scale)
                 
             }
 
@@ -122,6 +129,18 @@ struct OnboardingView: View {
                             
                     }
                     .disabled(!(onboardingViewModel.numberOfDosor > 0))
+                    
+                    
+                    Button {
+                        isGoingForward = onboardingViewModel.onboardingState.rawValue >
+                        OnboardingState.onboardingSummary.rawValue
+                        
+                        onboardingViewModel.onboardingState = .onboardingSummary
+                    } label: {
+                        Image(systemName: isActive(.onboardingSummary) ? "circle.fill" : "circle")
+                            
+                    }
+                    .disabled(!(onboardingViewModel.savingGoal > 0))
                 }
                 .foregroundColor(.white)
                 .background(.green)

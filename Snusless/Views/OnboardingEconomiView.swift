@@ -84,7 +84,7 @@ struct OnboardingEconomyView: View {
                     }
                     Spacer()
                     
-                    Button(action: saveAndProceed) {
+                    Button(action: onNextStep) {
                         Image(systemName: "arrow.right")
                             .font(.title3)
                             .bold()
@@ -101,13 +101,7 @@ struct OnboardingEconomyView: View {
         }
     }
     
-    private func saveAndProceed() {
-        if onboardingViewModel.isValidPrice {
-            if onboardingViewModel.errorMessage.isEmpty {
-                onNextStep()
-            }
-        }
-    }
+  
 }
 
 

@@ -10,7 +10,9 @@ import SwiftData
 
 struct OnboardingSummaryView: View {
     @Environment(OnboardingViewModel.self) private var onboardingViewModel
-    @Environment(\.modelContext) private var modelContext
+    
+    var saveUser: () -> Void
+    var onPreviousStep: () -> Void
     
     var body: some View {
         ZStack {
@@ -51,7 +53,7 @@ struct OnboardingSummaryView: View {
                 }
                 
                 Button {
-                    onboardingViewModel.saveUser(context: modelContext)
+                    saveUser()
                 } label: {
                     Text("Skapa användare")
                         .font(.headline)
@@ -66,30 +68,36 @@ struct OnboardingSummaryView: View {
                 
                 Spacer()
                 
+                HStack {
+                    
+                    Button {
+                        Task {
+                            onPreviousStep()
+                        }
+                    } label: {
+                        HStack {
+                            Image(systemName: "arrow.left")
+                                .font(.title3)
+                                .bold()
+                                .foregroundColor(Color(red: 0.18, green: 0.49, blue: 0.20))
+                                .padding()
+                                .background(Color.white)
+                                .clipShape(Circle())
+                        }
+                        
+                    }
+
+                    
+                    Spacer()
+                }
+                .padding(.bottom, 10)
+                .padding(.horizontal, 20)
+                
             }
         }
     }
     
-    private func isActive(_ state: OnboardingState) -> Bool {
-        onboardingViewModel.onboardingState == state
-    }
     
-    private func canNavigateTo(_ state: OnboardingState) -> Bool {
-        switch state {
-        case .onboardingName:
-            return true
-        case .onboardingDate:
-            return onboardingViewModel.isNameValid
-        case .onboardingDosor:
-            return onboardingViewModel.isNameValid
-        case .onboardingEconomy:
-            return onboardingViewModel.isDosorValid
-        case .onboardingSummary:
-            return true
-        case .onboardingDone:
-            return false
-        }
-    }
     
     private func formatDate(_ date: Date) -> String {
         let formatter = DateFormatter()
@@ -98,27 +106,18 @@ struct OnboardingSummaryView: View {
         formatter.locale = Locale(identifier: "sv_SE")
         return formatter.string(from: date)
     }
-}
-
-struct SummaryRow: View {
-    let title: String
-    let value: String
     
-    var body: some View {
-        HStack {
-            Text(title)
-                .font(.body)
-                .foregroundColor(.white.opacity(0.9))
-            Spacer()
-            Text(value)
-                .font(.body)
-                .bold()
-                .foregroundColor(.white)
-        }
+    private func saveAndProceed() {
+            if onboardingViewModel.errorMessage.isEmpty {
+                saveUser()
+            }
+        
     }
 }
 
+
+
 #Preview {
-    OnboardingSummaryView()
+    OnboardingSummaryView(saveUser: {}, onPreviousStep: {})
         .environment(OnboardingViewModel())
 }

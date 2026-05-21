@@ -1,0 +1,30 @@
+//
+//  SummaryRow.swift
+//  Snusless
+//
+//  Created by Aurelie Vaudan APP25 on 2026-05-21.
+//
+
+import SwiftUI
+
+struct SummaryRow: View {
+    let title: String
+    let value: String
+    
+    var body: some View {
+        HStack {
+            Text(title)
+                .font(.body)
+                .foregroundColor(.white.opacity(0.9))
+            Spacer()
+            Text(value)
+                .font(.body)
+                .bold()
+                .foregroundColor(.white)
+        }
+    }
+}
+
+#Preview {
+    SummaryRow(title: "", value: "")
+}
