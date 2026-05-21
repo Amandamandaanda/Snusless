@@ -18,7 +18,6 @@ class OnboardingViewModel {
     var startDate: Date = Date()
     var errorMessage: String = ""
     
-    var userState: UserState = .notCreated
     var onboardingState: OnboardingState = .onboardingName
     
     var isNameValid: Bool {
@@ -56,12 +55,10 @@ class OnboardingViewModel {
             print("User Saved")
             print("name: \(user.name), dosor: \(user.numberOfDosor), price: \(user.pricePerDosa), portions: \(user.portionsPerDosa), savingsGoal: \(user.savingsGoal), startDate: \(user.startDate), streak: \(user.streak.currentStreak)")
             errorMessage = ""
-            userState = .userCreated
             onboardingState = .onboardingDone
         } catch {
             print("User could not be saved")
             errorMessage = "Användaren kunde inte sparas: \(error.localizedDescription)"
-            userState = .notCreated
         }
         
     }
