@@ -10,6 +10,8 @@ import SwiftUI
 struct OnboardingNameView: View {
     
     @Environment(OnboardingViewModel.self) private var onboardingViewModel
+    
+    var onNextStep: () -> Void
 
     var body: some View {
         @Bindable var onboardingVM = onboardingViewModel
@@ -52,7 +54,7 @@ struct OnboardingNameView: View {
                 Spacer()
                 Button {
                     Task {
-                        onboardingViewModel.onboardingState = .onboardingDate
+                        onNextStep()
                     }
                 } label: {
                     HStack {
@@ -76,6 +78,6 @@ struct OnboardingNameView: View {
 }
 
 #Preview {
-    OnboardingNameView()
+    OnboardingNameView(onNextStep: {})
         .environment(OnboardingViewModel())
 }
