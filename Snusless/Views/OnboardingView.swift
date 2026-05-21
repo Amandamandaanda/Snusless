@@ -12,42 +12,58 @@ struct OnboardingView: View {
     @Environment(OnboardingViewModel.self) private var onboardingViewModel
     @Environment(\.modelContext) private var modelContext
     
+    @State private var isGoingForward: Bool = false
+    
     var body: some View {
         VStack {
             switch onboardingViewModel.onboardingState {
             case .onboardingName:
-                OnboardingNameView()
-                    .transition(.move(edge: .leading))
+                OnboardingNameView(onNextStep: {
+                    isGoingForward = true
+                    onboardingViewModel.onboardingState = .onboardingDate
+                })
+                    .transition(.asymmetric(insertion: .move(edge: isGoingForward ? .trailing : .leading), removal: .move(edge: isGoingForward ? .leading : .trailing)))
             case .onboardingDate:
-                OnboardingDateView()
-                    .transition(.move(edge: .trailing))
+                OnboardingDateView(onNextStep: {
+                    isGoingForward = true
+                    onboardingViewModel.onboardingState = .onboardingDosor
+                    
+                }, onPreviousStep: {
+                    isGoingForward = false
+                    onboardingViewModel.onboardingState = .onboardingName
+                })
+                .transition(.asymmetric(insertion: .move(edge: isGoingForward ? .trailing : .leading), removal: .move(edge: isGoingForward ? .leading : .trailing)))
                     
            
             case .onboardingDosor:
                 @Bindable var onboardingVM = onboardingViewModel
                 OnboardingDosorView(
                     onNextStep: {
+                        isGoingForward = true
                         onboardingViewModel.onboardingState = .onboardingEconomy
                     },
                     onPreviousStep: {
+                        isGoingForward = false
                         onboardingViewModel.onboardingState = .onboardingDate
                     }
                 )
-                .transition(.move(edge: .trailing))
+                .transition(.asymmetric(insertion: .move(edge: isGoingForward ? .trailing : .leading), removal: .move(edge: isGoingForward ? .leading : .trailing)))
                 
        
             case .onboardingEconomy:
                 @Bindable var onboardingVM = onboardingViewModel
                 OnboardingEconomyView(
                     onNextStep: {
+                        isGoingForward = true
                         onboardingViewModel.onboardingState = .onboardingDone
                         onboardingViewModel.saveUser(context: modelContext)
                     },
                     onPreviousStep: {
+                        isGoingForward = false
                         onboardingViewModel.onboardingState = .onboardingDosor
                     }
                 )
-                .transition(.move(edge: .trailing))
+                .transition(.asymmetric(insertion: .move(edge: isGoingForward ? .trailing : .leading), removal: .move(edge: isGoingForward ? .leading : .trailing)))
                 
             case .onboardingDone:
                 HomeView()
@@ -58,13 +74,16 @@ struct OnboardingView: View {
             if onboardingViewModel.onboardingState != .onboardingDone {
                 HStack {
                     Button {
-                        
+                        isGoingForward = onboardingViewModel.onboardingState.rawValue > OnboardingState.onboardingName.rawValue
+
                         onboardingViewModel.onboardingState = .onboardingName
                     } label: {
                         Image(systemName: isActive(.onboardingName) ? "circle.fill" : "circle")
                     }
                     
                     Button {
+                        isGoingForward = onboardingViewModel.onboardingState.rawValue > OnboardingState.onboardingDate.rawValue
+                        
                             onboardingViewModel.onboardingState = .onboardingDate
                         
                         
@@ -75,6 +94,8 @@ struct OnboardingView: View {
                     
                     Button {
                         if onboardingViewModel.isNameValid {
+                            isGoingForward = onboardingViewModel.onboardingState.rawValue >
+                            OnboardingState.onboardingDosor.rawValue
                             onboardingViewModel.onboardingState = .onboardingDosor
                         }
                       
@@ -86,6 +107,8 @@ struct OnboardingView: View {
                     
                     
                     Button {
+                        isGoingForward = onboardingViewModel.onboardingState.rawValue >
+                        OnboardingState.onboardingEconomy.rawValue
                         onboardingViewModel.onboardingState = .onboardingEconomy
                     } label: {
                         Image(systemName: isActive(.onboardingEconomy) ? "circle.fill" : "circle")
@@ -106,6 +129,7 @@ struct OnboardingView: View {
     private func isActive(_ state: OnboardingState) -> Bool {
         onboardingViewModel.onboardingState == state
     }
+    
 }
 
 #Preview {

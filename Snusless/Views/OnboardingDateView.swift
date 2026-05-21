@@ -11,6 +11,9 @@ import SwiftUI
 struct OnboardingDateView: View {
     
     @Environment(OnboardingViewModel.self) private var onboardingViewModel
+    
+    var onNextStep: () -> Void
+    var onPreviousStep: () -> Void
 
     var body: some View {
         @Bindable var onboardingVM = onboardingViewModel
@@ -44,7 +47,7 @@ struct OnboardingDateView: View {
             HStack {
                 Button {
                     Task {
-                        onboardingViewModel.onboardingState = .onboardingName
+                        onPreviousStep()
                     }
                 } label: {
                     HStack {
@@ -62,7 +65,7 @@ struct OnboardingDateView: View {
                 
                 Button {
                     Task {
-                        onboardingViewModel.onboardingState = .onboardingDosor
+                        onNextStep()
                     }
                 } label: {
                     HStack {
@@ -84,6 +87,6 @@ struct OnboardingDateView: View {
 }
 
 #Preview {
-    OnboardingDateView()
+    OnboardingDateView(onNextStep: {}, onPreviousStep: {})
         .environment(OnboardingViewModel())
 }
