@@ -32,13 +32,13 @@ struct OnboardingSummaryView: View {
                     
                     SummaryRow(title: "Startdatum", value: formatDate(onboardingViewModel.startDate))
                     
-                    SummaryRow(title: "Dosor per dag", value: "\(onboardingViewModel.numberOfDosor)")
+                    SummaryRow(title: "Dosor per dag", value: "\((onboardingViewModel.numberOfDosor ?? 0))")
                     
                     SummaryRow(title: "Portioner per dosa", value: "\(onboardingViewModel.portionsPerDosa)")
                     
-                    SummaryRow(title: "Pris per dosa", value: String(format: "%.2f kr", onboardingViewModel.pricePerDosa))
+                    SummaryRow(title: "Pris per dosa", value: String(format: "%.2f kr", (onboardingViewModel.pricePerDosa ?? 0)))
                     
-                    SummaryRow(title: "Sparmål", value: "\(onboardingViewModel.savingGoal) kr")
+                    SummaryRow(title: "Sparmål", value: "\((onboardingViewModel.savingGoal ?? 0)) kr")
                 }
                 .padding()
                 .background(Color.white.opacity(0.2))

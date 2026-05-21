@@ -11,9 +11,9 @@ import SwiftData
 @Observable
 class OnboardingViewModel {
     var name: String = ""
-    var numberOfDosor: Int = 0
-    var pricePerDosa: Double = 0.0
-    var savingGoal: Int = 0
+    var numberOfDosor: Int? = nil
+    var pricePerDosa: Double? = nil
+    var savingGoal: Int? = nil
     var portionsPerDosa: Int = 20
     var startDate: Date = Date()
     var errorMessage: String = ""
@@ -25,15 +25,15 @@ class OnboardingViewModel {
     }
     
     var isDosorValid: Bool {
-        numberOfDosor > 0
+        (numberOfDosor ?? 0) > 0
     }
     
     var isValidPrice: Bool {
-        pricePerDosa > 0.0
+        (pricePerDosa ?? 0) > 0.0
     }
     
     var isValidGoal: Bool {
-        savingGoal > 0
+        (savingGoal ?? 0) > 0
     }
     
     var canProceed: Bool {
@@ -49,7 +49,7 @@ class OnboardingViewModel {
         
         let streak = Streak.startingStreak(from: startDate)
         
-        let user = User(name: name.trimmingCharacters(in: .whitespaces), numberOfDosor: numberOfDosor, pricePerDosa: pricePerDosa, portionsPerDosa: portionsPerDosa, savingsGoal: savingGoal, startDate: startDate, streak: streak)
+        let user = User(name: name.trimmingCharacters(in: .whitespaces), numberOfDosor: numberOfDosor ?? 0, pricePerDosa: pricePerDosa ?? 0, portionsPerDosa: portionsPerDosa, savingsGoal: savingGoal ?? 0, startDate: startDate, streak: streak)
         
         context.insert(user)
         
@@ -72,12 +72,12 @@ class OnboardingViewModel {
             return false
         }
         
-        guard numberOfDosor > 0 else {
+        guard (numberOfDosor ?? 0) > 0 else {
             errorMessage = "Antalet dosor får inte vara noll"
             return false
         }
         
-        guard pricePerDosa > 0.0  else {
+        guard (pricePerDosa ?? 0) > 0.0  else {
             errorMessage = "Vänligen fyll i priset för din snusdosa. Priset får inte vara noll"
             return false
         }

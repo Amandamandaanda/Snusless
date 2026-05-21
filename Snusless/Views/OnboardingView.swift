@@ -128,7 +128,7 @@ struct OnboardingView: View {
                         Image(systemName: isActive(.onboardingEconomy) ? "circle.fill" : "circle")
                             
                     }
-                    .disabled(!(onboardingViewModel.numberOfDosor > 0))
+                    .disabled(!((onboardingViewModel.numberOfDosor ?? 0) > 0))
                     
                     
                     Button {
@@ -140,7 +140,7 @@ struct OnboardingView: View {
                         Image(systemName: isActive(.onboardingSummary) ? "circle.fill" : "circle")
                             
                     }
-                    .disabled(!(onboardingViewModel.savingGoal > 0))
+                    .disabled(!((onboardingViewModel.savingGoal ?? 0) > 0))
                 }
                 .foregroundColor(.white)
                 .background(.green)
