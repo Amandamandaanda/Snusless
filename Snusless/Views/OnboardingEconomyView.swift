@@ -90,7 +90,7 @@ struct OnboardingEconomyView: View {
                             .bold()
                             .foregroundColor(Color(red: 0.18, green: 0.49, blue: 0.20))
                             .padding()
-                            .background(onboardingViewModel.isValidPrice ? Color.white : Color.white.opacity(0.4))
+                            .background(onboardingViewModel.canProceed ? Color.white : Color.white.opacity(0.4))
                             .clipShape(Circle())
                     }
                     .disabled(!onboardingViewModel.canProceed)
@@ -103,6 +103,12 @@ struct OnboardingEconomyView: View {
     
   
 }
+
+#Preview {
+    OnboardingEconomyView(onNextStep: {}, onPreviousStep: {})
+        .environment(OnboardingViewModel())
+}
+
 
 
 
