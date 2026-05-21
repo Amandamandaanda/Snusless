@@ -20,13 +20,14 @@ struct HomeView: View {
     var body: some View {
         NavigationStack{
             ZStack {
-                Color(.systemGray6)
+                Color.green
                     .ignoresSafeArea()
                 
                 VStack(spacing: 24){
                     Text("Snusless")
                         .font(.largeTitle)
                         .padding(.top)
+                        .foregroundStyle(.white)
                     
                     if let error = viewModel.errorMessage {
                         Text(error)
@@ -44,28 +45,33 @@ struct HomeView: View {
                             Text("dagar snusfri")
                                 .font(.title3)
                                 .foregroundStyle(.white)
+                                .padding()
+                    
+                                .cornerRadius(15)
+                                .padding(.horizontal, 20)
                             
                             Text("Du har sparat \(Int(user.calculateSavings(forDays: user.streak.currentStreak))) kr")
                                 .font(.title3)
                                 .foregroundStyle(.white)
                         }
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 40)
-                        .background(.green)
+                        .padding()
+                        .background(Color.white.opacity(0.2))
+                        .cornerRadius(15)
+                        .padding(.horizontal, 20)
                         
-                        .clipShape(RoundedRectangle(cornerRadius: 28))
-                        .padding(.horizontal)
                         Button {
                             viewModel.checkToday(user: user, context: modelContext)
                         } label: {
                             Text(user.streak.isCompletedToday ? "Ångra dag" : "Jag klarade dagen!")
-                                .fontWeight(.semibold)
-                                .foregroundStyle(.white)
+                                .font(.headline)
+                                .bold()
+                                .foregroundColor(Color(red: 0.18, green: 0.49, blue: 0.20))
+                                
                                 .padding()
-                                .background(.green)
+                                .background(Color.white)
                                 .clipShape(RoundedRectangle(cornerRadius: 12))
                         }
-                        .padding(.horizontal)
+                        .padding(.horizontal, 20)
                     } else {
                         Text("Finns ingen användare än")
                     }
