@@ -62,8 +62,8 @@ struct OnboardingEconomyView: View {
                         .foregroundColor(.red)
                 }
                 
-                if (!onboardingViewModel.isValidPrice && onboardingViewModel.pricePerDosa > 0) ||
-                   (!onboardingViewModel.isValidGoal && onboardingViewModel.savingGoal > 0) {
+                if (!onboardingViewModel.isValidPrice && (onboardingViewModel.pricePerDosa ?? 0) > 0) ||
+                   (!onboardingViewModel.isValidGoal && (onboardingViewModel.savingGoal ?? 0) > 0) {
                     Text("Vänligen fyll i ett giltigt pris och sparmål.")
                         .font(.subheadline)
                         .bold()
