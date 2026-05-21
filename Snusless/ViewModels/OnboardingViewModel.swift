@@ -11,7 +11,7 @@ import SwiftData
 @Observable
 class OnboardingViewModel {
     var name: String = ""
-    var numberOfDosor: Int = 0
+    var numberOfDosor: Int = 1
     var pricePerDosa: Double = 0.0
     var savingGoal: Int = 0
     var portionsPerDosa: Int = 20
