@@ -10,7 +10,8 @@ import SwiftData
 
 struct OnboardingSummaryView: View {
     @Environment(OnboardingViewModel.self) private var onboardingViewModel
-    @Environment(\.modelContext) private var modelContext
+    
+    var saveUser: () -> Void
     
     var body: some View {
         ZStack {
@@ -51,7 +52,7 @@ struct OnboardingSummaryView: View {
                 }
                 
                 Button {
-                    onboardingViewModel.saveUser(context: modelContext)
+                    saveUser()
                 } label: {
                     Text("Skapa användare")
                         .font(.headline)
@@ -70,26 +71,7 @@ struct OnboardingSummaryView: View {
         }
     }
     
-    private func isActive(_ state: OnboardingState) -> Bool {
-        onboardingViewModel.onboardingState == state
-    }
     
-    private func canNavigateTo(_ state: OnboardingState) -> Bool {
-        switch state {
-        case .onboardingName:
-            return true
-        case .onboardingDate:
-            return onboardingViewModel.isNameValid
-        case .onboardingDosor:
-            return onboardingViewModel.isNameValid
-        case .onboardingEconomy:
-            return onboardingViewModel.isDosorValid
-        case .onboardingSummary:
-            return true
-        case .onboardingDone:
-            return false
-        }
-    }
     
     private func formatDate(_ date: Date) -> String {
         let formatter = DateFormatter()
@@ -100,23 +82,7 @@ struct OnboardingSummaryView: View {
     }
 }
 
-struct SummaryRow: View {
-    let title: String
-    let value: String
-    
-    var body: some View {
-        HStack {
-            Text(title)
-                .font(.body)
-                .foregroundColor(.white.opacity(0.9))
-            Spacer()
-            Text(value)
-                .font(.body)
-                .bold()
-                .foregroundColor(.white)
-        }
-    }
-}
+
 
 #Preview {
     OnboardingSummaryView()
