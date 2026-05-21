@@ -84,13 +84,13 @@ struct OnboardingEconomyView: View {
                     }
                     Spacer()
                     
-                    Button(action: saveAndProceed) {
+                    Button(action: onNextStep) {
                         Image(systemName: "arrow.right")
                             .font(.title3)
                             .bold()
                             .foregroundColor(Color(red: 0.18, green: 0.49, blue: 0.20))
                             .padding()
-                            .background(onboardingViewModel.isValidPrice ? Color.white : Color.white.opacity(0.4))
+                            .background(onboardingViewModel.canProceed ? Color.white : Color.white.opacity(0.4))
                             .clipShape(Circle())
                     }
                     .disabled(!onboardingViewModel.canProceed)
@@ -101,14 +101,14 @@ struct OnboardingEconomyView: View {
         }
     }
     
-    private func saveAndProceed() {
-        if onboardingViewModel.isValidPrice {
-            if onboardingViewModel.errorMessage.isEmpty {
-                onNextStep()
-            }
-        }
-    }
+  
 }
+
+#Preview {
+    OnboardingEconomyView(onNextStep: {}, onPreviousStep: {})
+        .environment(OnboardingViewModel())
+}
+
 
 
 

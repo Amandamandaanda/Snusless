@@ -27,14 +27,6 @@ struct OnboardingDosorView: View {
                 .ignoresSafeArea()
             
             VStack(spacing: 30) {
-//                HStack {
-//                    Text("Onboarding 3/5")
-//                        .font(.subheadline)
-//                        .foregroundColor(.white.opacity(0.7))
-//                    Spacer()
-//                }
-//                .padding(.horizontal)
-                
                 Spacer()
                 
                 VStack(spacing: 15) {
@@ -131,3 +123,9 @@ struct OnboardingDosorView: View {
             }
     }
 }
+
+#Preview {
+    OnboardingDosorView(onNextStep: {}, onPreviousStep: {})
+        .environment(OnboardingViewModel())
+}
+

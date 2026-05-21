@@ -11,14 +11,13 @@ import SwiftData
 @Observable
 class OnboardingViewModel {
     var name: String = ""
-    var numberOfDosor: Int = 0
+    var numberOfDosor: Int = 1
     var pricePerDosa: Double = 0.0
     var savingGoal: Int = 0
     var portionsPerDosa: Int = 20
     var startDate: Date = Date()
     var errorMessage: String = ""
     
-    var userState: UserState = .notCreated
     var onboardingState: OnboardingState = .onboardingName
     
     var isNameValid: Bool {
@@ -59,12 +58,10 @@ class OnboardingViewModel {
             print("User Saved")
             print("name: \(user.name), dosor: \(user.numberOfDosor), price: \(user.pricePerDosa), portions: \(user.portionsPerDosa), savingsGoal: \(user.savingsGoal), startDate: \(user.startDate)")
             errorMessage = ""
-            userState = .userCreated
             onboardingState = .onboardingDone
         } catch {
             print("User could not be saved")
             errorMessage = "Användaren kunde inte sparas: \(error.localizedDescription)"
-            userState = .notCreated
         }
         
     }

@@ -12,6 +12,6 @@ enum OnboardingState: Int {
     case onboardingDate = 1
     case onboardingDosor = 2
     case onboardingEconomy = 3
-    case onboardingDone = 4
-    case onboardingSummary = 5
+    case onboardingSummary = 4
+    case onboardingDone = 5
 }
