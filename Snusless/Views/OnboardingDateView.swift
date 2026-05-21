@@ -34,7 +34,7 @@ struct OnboardingDateView: View {
                 .datePickerStyle(GraphicalDatePickerStyle())
                 .tint(.white)
                 .background {
-                    Color(.gray.opacity(0.5))
+                    Color(.white.opacity(0.3))
                 }
                 .cornerRadius(20)
             

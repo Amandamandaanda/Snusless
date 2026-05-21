@@ -38,7 +38,7 @@ struct OnboardingNameView: View {
                 .foregroundStyle(.white)
                 .tint(.white)
                 .background {
-                    Color(.gray.opacity(0.5))
+                    Color(.white.opacity(0.3))
                 }
                 .cornerRadius(20)
                 .onChange(of: onboardingVM.name) { _, newValue in

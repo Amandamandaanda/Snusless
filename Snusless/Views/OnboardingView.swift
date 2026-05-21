@@ -85,7 +85,7 @@ struct OnboardingView: View {
                 
             }
 
-            if onboardingViewModel.onboardingState != .onboardingDone && onboardingViewModel.onboardingState != .onboardingSummary {
+            if onboardingViewModel.onboardingState != .onboardingDone {
                 HStack {
                     Button {
                         isGoingForward = onboardingViewModel.onboardingState.rawValue > OnboardingState.onboardingName.rawValue
