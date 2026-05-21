@@ -35,12 +35,17 @@ struct HomeView: View {
                     }
                     
                     if let user = users.first{
+                    
                         VStack(spacing: 20) {
                             Text("\(user.streak.currentStreak)")
                                 .font(.system(size: 56, weight: .bold))
                                 .foregroundStyle(.white)
                             
                             Text("dagar snusfri")
+                                .font(.title3)
+                                .foregroundStyle(.white)
+                            
+                            Text("Du har sparat \(Int(user.calculateSavings(forDays: user.streak.currentStreak))) kr")
                                 .font(.title3)
                                 .foregroundStyle(.white)
                         }
@@ -71,7 +76,4 @@ struct HomeView: View {
     }
 }
 
-#Preview {
-    HomeView()
-        .modelContainer(for: [User.self, Streak.self], inMemory: true)
-}
+

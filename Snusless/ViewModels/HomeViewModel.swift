@@ -19,12 +19,12 @@ class HomeViewModel{
         
         let today = Calendar.current.startOfDay(for: Date())
         
-        if let index = user.streak.completedDays.firstIndex(where: {
-            Calendar.current.isDateInToday($0)
+        if let index = user.streak.checkedinDays.firstIndex(where: {
+            Calendar.current.isDateInToday($0) 
         }) {
-            user.streak.completedDays.remove(at: index)
+            user.streak.checkedinDays.remove(at: index)
         } else {
-            user.streak.completedDays.append(today)
+            user.streak.checkedinDays.append(today)
         }
         
         do {

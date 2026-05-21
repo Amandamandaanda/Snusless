@@ -47,14 +47,17 @@ class OnboardingViewModel {
         guard validation() else {
             return
         }
-        let user = User(name: name.trimmingCharacters(in: .whitespaces), numberOfDosor: numberOfDosor, pricePerDosa: pricePerDosa, portionsPerDosa: portionsPerDosa, savingsGoal: savingGoal, startDate: startDate, streak: Streak())
+        
+        let streak = Streak.startingStreak(from: startDate)
+        
+        let user = User(name: name.trimmingCharacters(in: .whitespaces), numberOfDosor: numberOfDosor, pricePerDosa: pricePerDosa, portionsPerDosa: portionsPerDosa, savingsGoal: savingGoal, startDate: startDate, streak: streak)
         
         context.insert(user)
         
         do {
             try context.save()
             print("User Saved")
-            print("name: \(user.name), dosor: \(user.numberOfDosor), price: \(user.pricePerDosa), portions: \(user.portionsPerDosa), savingsGoal: \(user.savingsGoal), startDate: \(user.startDate), streak: \(user.streak.currentStreak)")
+            print("name: \(user.name), dosor: \(user.numberOfDosor), price: \(user.pricePerDosa), portions: \(user.portionsPerDosa), savingsGoal: \(user.savingsGoal), startDate: \(user.startDate)")
             errorMessage = ""
             userState = .userCreated
             onboardingState = .onboardingDone
