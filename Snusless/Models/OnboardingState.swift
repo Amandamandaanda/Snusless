@@ -13,7 +13,5 @@ enum OnboardingState: Int {
     case onboardingDosor = 2
     case onboardingEconomy = 3
     case onboardingDone = 4
+    case onboardingSummary = 5
 }
-
-    
-

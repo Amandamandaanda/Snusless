@@ -54,9 +54,11 @@ struct OnboardingView: View {
                 @Bindable var onboardingVM = onboardingViewModel
                 OnboardingEconomyView(
                     onNextStep: {
+
                         isGoingForward = true
-                        onboardingViewModel.onboardingState = .onboardingDone
-                        onboardingViewModel.saveUser(context: modelContext)
+                        onboardingViewModel.onboardingState = .onboardingSummary
+//                        onboardingViewModel.saveUser(context: modelContext)
+
                     },
                     onPreviousStep: {
                         isGoingForward = false
@@ -65,13 +67,18 @@ struct OnboardingView: View {
                 )
                 .transition(.asymmetric(insertion: .move(edge: isGoingForward ? .trailing : .leading), removal: .move(edge: isGoingForward ? .leading : .trailing)))
                 
+            case .onboardingSummary:
+                @Bindable var onboardingVM = onboardingViewModel
+                OnboardingSummaryView()
+                    .transition(.move(edge: .trailing))
+                
             case .onboardingDone:
                 HomeView()
                     .transition(.move(edge: .trailing))
                 
             }
 
-            if onboardingViewModel.onboardingState != .onboardingDone {
+            if onboardingViewModel.onboardingState != .onboardingDone && onboardingViewModel.onboardingState != .onboardingSummary {
                 HStack {
                     Button {
                         isGoingForward = onboardingViewModel.onboardingState.rawValue > OnboardingState.onboardingName.rawValue
