@@ -9,15 +9,16 @@ import Foundation
 extension Streak {
     
     var isCompletedToday: Bool {
-        completedDays.contains{Calendar.current.isDateInToday($0)
+        checkedinDays.contains{Calendar.current.isDateInToday($0)
         }
     }
     
     var currentStreak: Int {
+        
         let calendar = Calendar.current
         
         let uniqueDays = Set(
-            completedDays.map{ calendar.startOfDay(for: $0)}
+            checkedinDays.map{ calendar.startOfDay(for: $0)}
         )
         
         let sortedDays = uniqueDays.sorted(by: >)
@@ -44,6 +45,25 @@ extension Streak {
             }else {
                 break
             }
+        }
+        return streak
+    }
+    
+    static func startingStreak(from startDate: Date) -> Streak {
+        let streak = Streak()
+        
+        let calendar = Calendar.current
+        let start = calendar.startOfDay(for: startDate)
+
+        let today = calendar.startOfDay(for: Date())
+
+        var currentDate = start
+
+        while currentDate <= today {
+
+            streak.checkedinDays.append(currentDate)
+
+            currentDate = calendar.date(byAdding: .day, value: 1, to: currentDate)!
         }
         return streak
     }
