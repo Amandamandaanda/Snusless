@@ -12,6 +12,7 @@ enum OnboardingState {
     case onboardingDate
     case onboardingDosor    
     case onboardingEconomy
+    case onboardingSummary
     case onboardingDone
 }
 

@@ -40,8 +40,7 @@ struct OnboardingView: View {
                 @Bindable var onboardingVM = onboardingViewModel
                 OnboardingEconomyView(
                     onNextStep: {
-                        onboardingViewModel.onboardingState = .onboardingDone
-                        onboardingViewModel.saveUser(context: modelContext)
+                        onboardingViewModel.onboardingState = .onboardingSummary
                     },
                     onPreviousStep: {
                         onboardingViewModel.onboardingState = .onboardingDosor
@@ -49,13 +48,17 @@ struct OnboardingView: View {
                 )
                 .transition(.move(edge: .trailing))
                 
+            case .onboardingSummary:
+                OnboardingSummaryView()
+                    .transition(.move(edge: .trailing))
+                
             case .onboardingDone:
                 HomeView()
                     .transition(.move(edge: .trailing))
                 
             }
 
-            if onboardingViewModel.onboardingState != .onboardingDone {
+            if onboardingViewModel.onboardingState != .onboardingDone && onboardingViewModel.onboardingState != .onboardingSummary {
                 HStack {
                     Button {
                         
