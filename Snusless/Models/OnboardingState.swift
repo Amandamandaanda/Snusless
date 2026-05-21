@@ -7,14 +7,11 @@
 
 import Foundation
 
-enum OnboardingState {
-    case onboardingName
-    case onboardingDate
-    case onboardingDosor    
-    case onboardingEconomy
-    case onboardingSummary
-    case onboardingDone
+enum OnboardingState: Int {
+    case onboardingName = 0
+    case onboardingDate = 1
+    case onboardingDosor = 2
+    case onboardingEconomy = 3
+    case onboardingDone = 4
+    case onboardingSummary = 5
 }
-
-    
-
