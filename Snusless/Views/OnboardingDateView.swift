@@ -82,7 +82,7 @@ struct OnboardingDateView: View {
             .padding(.bottom, 10)
         }
         .padding(.horizontal, 20)
-        .background(.green)
+        .background(.lightGreen)
     }
 }
 

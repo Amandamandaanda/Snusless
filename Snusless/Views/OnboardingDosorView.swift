@@ -23,7 +23,7 @@ struct OnboardingDosorView: View {
         
 
         ZStack {
-            Color(.green)
+            Color(.lightGreen)
                 .ignoresSafeArea()
             
             VStack(spacing: 30) {

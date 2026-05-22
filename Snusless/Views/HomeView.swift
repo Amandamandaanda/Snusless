@@ -20,8 +20,8 @@ struct HomeView: View {
     var body: some View {
         NavigationStack{
             ZStack {
-                Color.green
-                    .ignoresSafeArea()
+//                Color.green
+//                    .ignoresSafeArea()
                 
                 VStack(spacing: 24){
                     
@@ -30,8 +30,10 @@ struct HomeView: View {
                             
                             Text("Hej! 👋")
                                 .font(.custom("Roboto-Regular", size: 24))
+                                .foregroundColor(.secondary)
                             Text("\(users.first?.name ?? "Ingen användare hittad")!")
                                 .font(.custom("Roboto-Bold", size: 24))
+                                .foregroundColor(.black)
                         }
                         .padding(.top)
                         Spacer()
@@ -42,35 +44,16 @@ struct HomeView: View {
                     
                     if let error = viewModel.errorMessage {
                         Text(error)
-                        .foregroundStyle(.red)
-                        .font(.caption)
+                            .foregroundStyle(.red)
+                            .font(.caption)
                     }
                     
+                       
+                    
                     if let user = users.first{
-                    
-                        VStack() {
-                            Text("\(user.streak.currentStreak)")
-                                .font(.custom("Afacad-Bold", size: 56))
-                                .font(.system(size: 56, weight: .bold))
-                                .foregroundStyle(.white)
-                            
-                            Text("dagar snusfri")
-                                .font(.custom("Afacad-Regular", size: 24))
-                                .foregroundStyle(.white)
-                    
-                                .cornerRadius(15)
-                                .padding(.horizontal, 20)
-                            
-                            Text("Du har sparat \(Int(user.calculateSavings(forDays: user.streak.currentStreak))) kr")
-                                .font(.custom("Afacad-Regular", size: 24))
-//                                .font(.title3)
-                                .foregroundStyle(.white)
-                        }
-                        .padding(.bottom)
-                        .frame(maxWidth: 360)
-                        .background(Color.white.opacity(0.2))
-                        .cornerRadius(15)
-                        .padding(.horizontal, 20)
+                        
+                        SavingsCard(days: user.streak.currentStreak, savedAmount: user.calculateSavings(forDays: user.streak.currentStreak))
+            
                         
                         Button {
                             viewModel.checkToday(user: user, context: modelContext)
@@ -78,17 +61,20 @@ struct HomeView: View {
                             Text(user.streak.isCompletedToday ? "Ångra dag" : "Jag klarade dagen!")
                                 .font(.custom("Roboto-Medium", size: 18))
                                 .bold()
-                                .foregroundColor(Color(red: 0.18, green: 0.49, blue: 0.20))
+                                .foregroundColor(.white)
                                 
                                 .padding()
-                                .background(Color.white)
+                                .background(LinearGradient(
+                                    colors: [
+                                        Color(red: 0.45, green: 0.75, blue: 0.55),
+                                        Color(red: 0.35, green: 0.65, blue: 0.45)
+                                    ],
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                ))
                                 .clipShape(RoundedRectangle(cornerRadius: 12))
                         }
                         .padding(.horizontal, 20)
-                    } else {
-//                        Text("Finns ingen användare än")
-//                            .font(.custom("Afacad-Regular", size: 16))
-                        
                     }
                     Spacer()
                 }
@@ -96,15 +82,16 @@ struct HomeView: View {
         }
     }
     
-    init() {
-        for familyName in UIFont.familyNames {
-            print(familyName)
-            
-            for fontName in UIFont.fontNames(forFamilyName: familyName) {
-                print("-- \(fontName)")
-            }
-        }
-    }
+    // Too see names of fonts to be able to use customs
+//    init() {
+//        for familyName in UIFont.familyNames {
+//            print(familyName)
+//            
+//            for fontName in UIFont.fontNames(forFamilyName: familyName) {
+//                print("-- \(fontName)")
+//            }
+//        }
+//    }
 }
 
 #Preview {

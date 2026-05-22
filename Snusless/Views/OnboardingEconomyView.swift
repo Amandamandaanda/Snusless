@@ -17,7 +17,7 @@ struct OnboardingEconomyView: View {
         @Bindable var onboardingVM = onboardingViewModel
         
         ZStack {
-            Color(.systemGreen)
+            Color(.lightGreen)
                 .ignoresSafeArea()
             
             VStack(spacing: 40) {

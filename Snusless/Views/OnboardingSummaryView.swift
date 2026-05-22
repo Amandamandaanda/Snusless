@@ -16,7 +16,7 @@ struct OnboardingSummaryView: View {
     
     var body: some View {
         ZStack {
-            Color(.systemGreen)
+            Color(.lightGreen)
                 .ignoresSafeArea()
             
             VStack(spacing: 30) {
