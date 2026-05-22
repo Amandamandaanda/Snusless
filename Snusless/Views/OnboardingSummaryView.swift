@@ -56,7 +56,7 @@ struct OnboardingSummaryView: View {
                 } label: {
                     Text("Skapa användare")
                         .font(.custom("Roboto-Medium", size: 18))
-                        .foregroundColor(Color(red: 0.18, green: 0.49, blue: 0.20))
+                        .foregroundColor(.darkGreen)
                         .frame(maxWidth: .infinity)
                         .padding()
                         .background(Color.white)
@@ -77,7 +77,7 @@ struct OnboardingSummaryView: View {
                             Image(systemName: "arrow.left")
                                 .font(.title3)
                                 .bold()
-                                .foregroundColor(Color(red: 0.18, green: 0.49, blue: 0.20))
+                                .foregroundColor(.darkGreen)
                                 .padding()
                                 .background(Color.white)
                                 .clipShape(Circle())

@@ -59,7 +59,7 @@ struct OnboardingNameView: View {
                         Image(systemName: "arrow.right")
                             .font(.title3)
                             .bold()
-                            .foregroundColor(Color(red: 0.18, green: 0.49, blue: 0.20))
+                            .foregroundColor(.darkGreen)
                             .padding()
                             .background(onboardingViewModel.isNameValid ? Color.white : Color.white.opacity(0.4))
                             .clipShape(Circle())
