@@ -143,12 +143,12 @@ struct OnboardingView: View {
                     .disabled(!((onboardingViewModel.savingGoal ?? 0) > 0))
                 }
                 .foregroundColor(.white)
-                .background(.green)
+                .background(.lightGreen)
                 .padding()
             }
             
         }
-        .background(.green)
+        .background(.lightGreen)
         .animation(.smooth(duration: 0.3), value: onboardingViewModel.onboardingState)
     }
     

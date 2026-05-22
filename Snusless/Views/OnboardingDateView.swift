@@ -22,7 +22,7 @@ struct OnboardingDateView: View {
             Spacer()
 
             Text("Vilket datum slutade du snusa?")
-                .font(.title3)
+                .font(.custom("Roboto-Bold", size: 22))
                 .foregroundStyle(.white)
                 .bold()
                 .padding()
@@ -40,7 +40,7 @@ struct OnboardingDateView: View {
             
             Text("Valt datum: \(onboardingViewModel.startDate.formatted(.dateTime.day().month(.wide).year().locale(Locale(identifier: "sv_SE"))))")
                 .foregroundStyle(.white)
-                .bold()
+                .font(.custom("Roboto-Bold", size: 18))
             
             Spacer()
 
@@ -54,7 +54,7 @@ struct OnboardingDateView: View {
                         Image(systemName: "arrow.left")
                             .font(.title3)
                             .bold()
-                            .foregroundColor(Color(red: 0.18, green: 0.49, blue: 0.20))
+                            .foregroundColor(.darkGreen)
                             .padding()
                             .background(Color.white)
                             .clipShape(Circle())
@@ -72,7 +72,7 @@ struct OnboardingDateView: View {
                         Image(systemName: "arrow.right")
                             .font(.title3)
                             .bold()
-                            .foregroundColor(Color(red: 0.18, green: 0.49, blue: 0.20))
+                            .foregroundColor(.darkGreen)
                             .padding()
                             .background(Color.white)
                             .clipShape(Circle())
@@ -82,7 +82,7 @@ struct OnboardingDateView: View {
             .padding(.bottom, 10)
         }
         .padding(.horizontal, 20)
-        .background(.green)
+        .background(.lightGreen)
     }
 }
 

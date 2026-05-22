@@ -14,12 +14,11 @@ struct SummaryRow: View {
     var body: some View {
         HStack {
             Text(title)
-                .font(.body)
+                .font(.custom("Roboto-Light", size: 16))
                 .foregroundColor(.white.opacity(0.9))
             Spacer()
             Text(value)
-                .font(.body)
-                .bold()
+                .font(.custom("Roboto-Bold", size: 16))
                 .foregroundColor(.white)
         }
     }

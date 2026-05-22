@@ -20,20 +20,18 @@ struct OnboardingNameView: View {
             Spacer()
 
             Text("Välkommen!")
-                .font(.title)
+                .font(.custom("Roboto-Bold", size: 26))
                 .foregroundStyle(.white)
-                .bold()
                 .padding()
 
             Text("Vänligen skriv ditt namn för att börja")
-                .font(.title3)
+                .font(.custom("Roboto-Bold", size: 18))
                 .foregroundStyle(.white)
-                .bold()
                 .padding(.top)
                 .padding(.bottom)
 
             TextField("Ditt namn", text: $onboardingVM.name)
-                .bold()
+                .font(.custom("Roboto-Medium", size: 16))
                 .padding()
                 .foregroundStyle(.white)
                 .tint(.white)
@@ -61,7 +59,7 @@ struct OnboardingNameView: View {
                         Image(systemName: "arrow.right")
                             .font(.title3)
                             .bold()
-                            .foregroundColor(Color(red: 0.18, green: 0.49, blue: 0.20))
+                            .foregroundColor(.darkGreen)
                             .padding()
                             .background(onboardingViewModel.isNameValid ? Color.white : Color.white.opacity(0.4))
                             .clipShape(Circle())
@@ -73,7 +71,7 @@ struct OnboardingNameView: View {
             .padding(.bottom, 10)
         }
         .padding(.horizontal, 20)
-        .background(.green)
+        .background(.lightGreen)
     }
 }
 

@@ -17,20 +17,20 @@ struct OnboardingEconomyView: View {
         @Bindable var onboardingVM = onboardingViewModel
         
         ZStack {
-            Color(.systemGreen)
+            Color(.lightGreen)
                 .ignoresSafeArea()
             
             VStack(spacing: 40) {
                 Spacer()
                 
                 VStack(spacing: 12) {
-                    Text("Vad kostar en\nsnusdosa?")
-                        .font(.title)
-                        .bold()
+                    Text("Vad kostar en snusdosa?")
+                        .font(.custom("Roboto-Bold", size: 22))
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                     
-                    TextField("kr", value: $onboardingVM.pricePerDosa, format: .number)
+                    TextField("", value: $onboardingVM.pricePerDosa, format: .number, prompt: Text("41kr")
+                        .font(.custom("Roboto-Light", size: 18)))
                         .keyboardType(.decimalPad)
                         .multilineTextAlignment(.center)
                         .padding()
@@ -42,12 +42,12 @@ struct OnboardingEconomyView: View {
                 
                 VStack(spacing: 12) {
                     Text("Sparmål")
-                        .font(.title)
-                        .bold()
+                        .font(.custom("Roboto-Bold", size: 22))
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                     
-                    TextField("kr", value: $onboardingVM.savingGoal, format: .number)
+                    TextField("", value: $onboardingVM.savingGoal, format: .number, prompt: Text("1000kr")
+                        .font(.custom("Roboto-Light", size: 18)))
                         .keyboardType(.decimalPad)
                         .multilineTextAlignment(.center)
                         .padding()
@@ -77,7 +77,7 @@ struct OnboardingEconomyView: View {
                         Image(systemName: "arrow.left")
                             .font(.title3)
                             .bold()
-                            .foregroundColor(Color(red: 0.18, green: 0.49, blue: 0.20))
+                            .foregroundColor(.darkGreen)
                             .padding()
                             .background(Color.white)
                             .clipShape(Circle())
@@ -88,7 +88,7 @@ struct OnboardingEconomyView: View {
                         Image(systemName: "arrow.right")
                             .font(.title3)
                             .bold()
-                            .foregroundColor(Color(red: 0.18, green: 0.49, blue: 0.20))
+                            .foregroundColor(.darkGreen)
                             .padding()
                             .background(onboardingViewModel.canProceed ? Color.white : Color.white.opacity(0.4))
                             .clipShape(Circle())
