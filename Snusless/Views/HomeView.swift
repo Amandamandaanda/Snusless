@@ -64,14 +64,7 @@ struct HomeView: View {
                                 .foregroundColor(.white)
                                 
                                 .padding()
-                                .background(LinearGradient(
-                                    colors: [
-                                        Color(red: 0.45, green: 0.75, blue: 0.55),
-                                        Color(red: 0.35, green: 0.65, blue: 0.45)
-                                    ],
-                                    startPoint: .topLeading,
-                                    endPoint: .bottomTrailing
-                                ))
+                                .background(user.streak.isCompletedToday ? .errorRed : .darkGreen)
                                 .clipShape(RoundedRectangle(cornerRadius: 12))
                         }
                         .padding(.horizontal, 20)
