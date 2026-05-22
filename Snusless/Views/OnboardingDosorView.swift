@@ -31,12 +31,12 @@ struct OnboardingDosorView: View {
                 
                 VStack(spacing: 15) {
                     Text("Hur många snusdosor\nanvänder du per dag?")
-                        .font(.title2)
-                        .bold()
+                        .font(.custom("Roboto-Bold", size: 22))
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                     
-                    TextField("Antal", value: $onboardingVM.numberOfDosor, format: .number)
+                    TextField("", value: $onboardingVM.numberOfDosor, format: .number, prompt: Text("Antal")
+                        .font(.custom("Roboto-Light", size: 18)))
                         .keyboardType(.numberPad)
                         .multilineTextAlignment(.center)
                         .padding(.vertical, 10)
@@ -51,13 +51,12 @@ struct OnboardingDosorView: View {
                 
                 VStack(spacing: 15) {
                     Text("Hur många portioner\när det i en snusdosa?")
-                        .font(.title2)
-                        .bold()
+                        .font(.custom("Roboto-Bold", size: 22))
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                     
                     Text("\(Int(onboardingViewModel.portionsPerDosa))")
-                        .font(.title3)
+                        .font(.custom("Roboto-Light", size: 20))
                         .bold()
                         .foregroundColor(.white)
                     
@@ -69,10 +68,12 @@ struct OnboardingDosorView: View {
                         }
                     
                     HStack {
-                        Text("0").font(.caption).foregroundColor(.white.opacity(0.6))
+                        Text("0")
                         Spacer()
-                        Text("100").font(.caption).foregroundColor(.white.opacity(0.6))
+                        Text("100")
                     }
+                    .foregroundColor(.white.opacity(0.6))
+                    .font(.custom("Roboto-Light", size: 14))
                     .padding(.horizontal, 40)
                 }
                 

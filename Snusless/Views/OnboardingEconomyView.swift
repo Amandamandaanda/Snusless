@@ -24,13 +24,13 @@ struct OnboardingEconomyView: View {
                 Spacer()
                 
                 VStack(spacing: 12) {
-                    Text("Vad kostar en\nsnusdosa?")
-                        .font(.title)
-                        .bold()
+                    Text("Vad kostar en snusdosa?")
+                        .font(.custom("Roboto-Bold", size: 22))
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                     
-                    TextField("kr", value: $onboardingVM.pricePerDosa, format: .number)
+                    TextField("", value: $onboardingVM.pricePerDosa, format: .number, prompt: Text("41kr")
+                        .font(.custom("Roboto-Light", size: 18)))
                         .keyboardType(.decimalPad)
                         .multilineTextAlignment(.center)
                         .padding()
@@ -42,12 +42,12 @@ struct OnboardingEconomyView: View {
                 
                 VStack(spacing: 12) {
                     Text("Sparmål")
-                        .font(.title)
-                        .bold()
+                        .font(.custom("Roboto-Bold", size: 22))
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                     
-                    TextField("kr", value: $onboardingVM.savingGoal, format: .number)
+                    TextField("", value: $onboardingVM.savingGoal, format: .number, prompt: Text("1000kr")
+                        .font(.custom("Roboto-Light", size: 18)))
                         .keyboardType(.decimalPad)
                         .multilineTextAlignment(.center)
                         .padding()

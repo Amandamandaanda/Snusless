@@ -24,10 +24,21 @@ struct HomeView: View {
                     .ignoresSafeArea()
                 
                 VStack(spacing: 24){
-                    Text("Snusless")
-                        .font(.largeTitle)
+                    
+                    HStack {
+                        VStack(alignment: .leading) {
+                            
+                            Text("Hej! 👋")
+                                .font(.custom("Roboto-Regular", size: 24))
+                            Text("\(users.first?.name ?? "Ingen användare hittad")!")
+                                .font(.custom("Roboto-Bold", size: 24))
+                        }
                         .padding(.top)
-                        .foregroundStyle(.white)
+                        Spacer()
+                        
+                    }
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 30)
                     
                     if let error = viewModel.errorMessage {
                         Text(error)
@@ -37,24 +48,26 @@ struct HomeView: View {
                     
                     if let user = users.first{
                     
-                        VStack(spacing: 20) {
+                        VStack() {
                             Text("\(user.streak.currentStreak)")
+                                .font(.custom("Afacad-Bold", size: 56))
                                 .font(.system(size: 56, weight: .bold))
                                 .foregroundStyle(.white)
                             
                             Text("dagar snusfri")
-                                .font(.title3)
+                                .font(.custom("Afacad-Regular", size: 24))
                                 .foregroundStyle(.white)
-                                .padding()
                     
                                 .cornerRadius(15)
                                 .padding(.horizontal, 20)
                             
                             Text("Du har sparat \(Int(user.calculateSavings(forDays: user.streak.currentStreak))) kr")
-                                .font(.title3)
+                                .font(.custom("Afacad-Regular", size: 24))
+//                                .font(.title3)
                                 .foregroundStyle(.white)
                         }
-                        .padding()
+                        .padding(.bottom)
+                        .frame(maxWidth: 360)
                         .background(Color.white.opacity(0.2))
                         .cornerRadius(15)
                         .padding(.horizontal, 20)
@@ -63,7 +76,7 @@ struct HomeView: View {
                             viewModel.checkToday(user: user, context: modelContext)
                         } label: {
                             Text(user.streak.isCompletedToday ? "Ångra dag" : "Jag klarade dagen!")
-                                .font(.headline)
+                                .font(.custom("Roboto-Medium", size: 18))
                                 .bold()
                                 .foregroundColor(Color(red: 0.18, green: 0.49, blue: 0.20))
                                 
@@ -73,13 +86,30 @@ struct HomeView: View {
                         }
                         .padding(.horizontal, 20)
                     } else {
-                        Text("Finns ingen användare än")
+//                        Text("Finns ingen användare än")
+//                            .font(.custom("Afacad-Regular", size: 16))
+                        
                     }
                     Spacer()
                 }
             }
         }
     }
+    
+    init() {
+        for familyName in UIFont.familyNames {
+            print(familyName)
+            
+            for fontName in UIFont.fontNames(forFamilyName: familyName) {
+                print("-- \(fontName)")
+            }
+        }
+    }
+}
+
+#Preview {
+    HomeView()
+        .modelContainer(for: User.self, inMemory: true)
 }
 
 

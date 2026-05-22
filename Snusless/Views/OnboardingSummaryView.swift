@@ -23,20 +23,19 @@ struct OnboardingSummaryView: View {
                 Spacer()
                 
                 Text("Sammanfattning")
-                    .font(.largeTitle)
-                    .bold()
+                    .font(.custom("Roboto-Bold", size: 26))
                     .foregroundColor(.white)
                 
                 VStack(alignment: .leading, spacing: 20) {
-                    SummaryRow(title: "Namn", value: onboardingViewModel.name)
+                    SummaryRow(title: "Namn:", value: onboardingViewModel.name)
                     
-                    SummaryRow(title: "Startdatum", value: formatDate(onboardingViewModel.startDate))
+                    SummaryRow(title: "Startdatum:", value: formatDate(onboardingViewModel.startDate))
                     
-                    SummaryRow(title: "Dosor per dag", value: "\((onboardingViewModel.numberOfDosor ?? 0))")
+                    SummaryRow(title: "Dosor per dag:", value: "\((onboardingViewModel.numberOfDosor ?? 0))")
                     
-                    SummaryRow(title: "Portioner per dosa", value: "\(onboardingViewModel.portionsPerDosa)")
+                    SummaryRow(title: "Portioner per dosa:", value: "\(onboardingViewModel.portionsPerDosa)")
                     
-                    SummaryRow(title: "Pris per dosa", value: String(format: "%.2f kr", (onboardingViewModel.pricePerDosa ?? 0)))
+                    SummaryRow(title: "Pris per dosa:", value: String(format: "%.2f kr", (onboardingViewModel.pricePerDosa ?? 0)))
                     
                     SummaryRow(title: "Sparmål", value: "\((onboardingViewModel.savingGoal ?? 0)) kr")
                 }
@@ -56,8 +55,7 @@ struct OnboardingSummaryView: View {
                     saveUser()
                 } label: {
                     Text("Skapa användare")
-                        .font(.headline)
-                        .bold()
+                        .font(.custom("Roboto-Medium", size: 18))
                         .foregroundColor(Color(red: 0.18, green: 0.49, blue: 0.20))
                         .frame(maxWidth: .infinity)
                         .padding()

@@ -22,7 +22,7 @@ struct OnboardingDateView: View {
             Spacer()
 
             Text("Vilket datum slutade du snusa?")
-                .font(.title3)
+                .font(.custom("Roboto-Bold", size: 22))
                 .foregroundStyle(.white)
                 .bold()
                 .padding()
@@ -40,7 +40,7 @@ struct OnboardingDateView: View {
             
             Text("Valt datum: \(onboardingViewModel.startDate.formatted(.dateTime.day().month(.wide).year().locale(Locale(identifier: "sv_SE"))))")
                 .foregroundStyle(.white)
-                .bold()
+                .font(.custom("Roboto-Bold", size: 18))
             
             Spacer()
 
