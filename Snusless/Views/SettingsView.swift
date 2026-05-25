@@ -9,6 +9,9 @@ import SwiftUI
 import SwiftData
 
 struct SettingsView: View {
+    
+    @State private var viewModel = SettingsViewModel()
+    
     var body: some View {
       
     }
