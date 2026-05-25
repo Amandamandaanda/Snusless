@@ -125,8 +125,14 @@ struct OnboardingDosorView: View {
     }
 }
 
-#Preview {
+#Preview("Swedish") {
     OnboardingDosorView(onNextStep: {}, onPreviousStep: {})
         .environment(OnboardingViewModel())
+}
+
+#Preview("English") {
+    OnboardingDosorView(onNextStep: {}, onPreviousStep: {})
+        .environment(OnboardingViewModel())
+        .environment(\.locale, Locale(identifier: "ENG"))
 }
 
