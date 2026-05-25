@@ -25,5 +25,6 @@ struct SummaryRow: View {
 }
 
 #Preview {
-    SummaryRow(title: "", value: "")
+    SummaryRow(title: "Namn", value: "Berit")
+        .background(.green)
 }
