@@ -104,9 +104,16 @@ struct OnboardingEconomyView: View {
   
 }
 
-#Preview {
+#Preview("Swedish") {
     OnboardingEconomyView(onNextStep: {}, onPreviousStep: {})
         .environment(OnboardingViewModel())
+}
+
+#Preview("English") {
+    OnboardingEconomyView(onNextStep: {}, onPreviousStep: {})
+        .environment(OnboardingViewModel())
+        .environment(\.locale, Locale(identifier: "ENG"))
+    
 }
 
 

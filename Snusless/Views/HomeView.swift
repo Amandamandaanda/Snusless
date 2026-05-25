@@ -31,7 +31,8 @@ struct HomeView: View {
                             Text("Hej! 👋")
                                 .font(.custom("Roboto-Regular", size: 24))
                                 .foregroundColor(.secondary)
-                            Text("\(users.first?.name ?? "Ingen användare hittad")!")
+                            
+                            Text("\(users.first?.name ?? String(localized: "Ingen användare hittad"))!")
                                 .font(.custom("Roboto-Bold", size: 24))
                                 .foregroundColor(.black)
                         }
@@ -58,7 +59,7 @@ struct HomeView: View {
                         Button {
                             viewModel.checkToday(user: user, context: modelContext)
                         } label: {
-                            Text(user.streak.isCompletedToday ? "Ångra dag" : "Jag klarade dagen!")
+                            Text(user.streak.isCompletedToday ? LocalizedStringKey("Ångra dag") : LocalizedStringKey("Jag klarade dagen!"))
                                 .font(.custom("Roboto-Medium", size: 18))
                                 .bold()
                                 .foregroundColor(.white)
@@ -87,9 +88,15 @@ struct HomeView: View {
 //    }
 }
 
-#Preview {
+#Preview("Swedish") {
     HomeView()
         .modelContainer(for: User.self, inMemory: true)
+}
+
+#Preview("English") {
+    HomeView()
+        .modelContainer(for: User.self, inMemory: true)
+        .environment(\.locale, Locale(identifier: "ENG"))
 }
 
 
