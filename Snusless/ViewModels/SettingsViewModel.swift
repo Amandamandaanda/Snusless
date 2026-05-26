@@ -16,6 +16,7 @@ class SettingsViewModel {
     func deleteData(users: [User], context: ModelContext) {
         
         errorMessage = nil
+        print("All users deleted")
         
         for user in users {
             context.delete(user)
