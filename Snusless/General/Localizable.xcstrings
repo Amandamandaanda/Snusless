@@ -24,6 +24,9 @@
         }
       }
     },
+    "%lld%%" : {
+
+    },
     "0" : {
       "localizations" : {
         "en" : {
@@ -146,17 +149,6 @@
         }
       }
     },
-    "Hello, World!" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hello, World!"
-          }
-        }
-      }
-    },
     "Hem" : {
       "localizations" : {
         "en" : {
@@ -220,6 +212,9 @@
           }
         }
       }
+    },
+    "Mål: %lld kr" : {
+
     },
     "Namn:" : {
       "localizations" : {
