@@ -38,7 +38,7 @@ struct OnboardingDateView: View {
                 }
                 .cornerRadius(20)
             
-            Text("Valt datum: \(onboardingViewModel.startDate.formatted(.dateTime.day().month(.wide).year().locale(Locale(identifier: "sv_SE"))))")
+            Text("Valt datum: \(onboardingViewModel.startDate.formattedLong())")
                 .foregroundStyle(.white)
                 .font(.custom("Roboto-Bold", size: 18))
             
