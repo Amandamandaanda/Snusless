@@ -8,16 +8,18 @@
 import SwiftUI
 import SwiftData
 
-struct ContentView: View {
+struct RootNavigation: View {
     @State private var onboardingViewModel = OnboardingViewModel()
     @Query private var users: [User]
+    
+    @Binding var selectedTab: TabSelection
     
     var body: some View {
         Group {
             if users.isEmpty {
-                OnboardingView()
+                OnboardingNavigation()
             } else {
-                HomeView()
+                TabNavigation(selectedTab: $selectedTab)
             }
         }
         .environment(onboardingViewModel)
@@ -25,7 +27,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    RootNavigation( selectedTab: .constant(.home))
         .environment(OnboardingViewModel())
         .modelContainer(for: User.self, inMemory: true)
 }

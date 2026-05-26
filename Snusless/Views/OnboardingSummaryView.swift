@@ -27,17 +27,18 @@ struct OnboardingSummaryView: View {
                     .foregroundColor(.white)
                 
                 VStack(alignment: .leading, spacing: 20) {
-                    SummaryRow(title: "Namn:", value: onboardingViewModel.name)
+                    SummaryRow(title:
+                                String(localized: "Namn:"), value: onboardingViewModel.name)
                     
-                    SummaryRow(title: "Startdatum:", value: formatDate(onboardingViewModel.startDate))
+                    SummaryRow(title: String(localized: "Startdatum:"), value: formatDate(onboardingViewModel.startDate))
                     
-                    SummaryRow(title: "Dosor per dag:", value: "\((onboardingViewModel.numberOfDosor ?? 0))")
+                    SummaryRow(title: String(localized: "Dosor per dag:"), value: "\((onboardingViewModel.numberOfDosor ?? 0))")
                     
-                    SummaryRow(title: "Portioner per dosa:", value: "\(onboardingViewModel.portionsPerDosa)")
+                    SummaryRow(title: String(localized: "Portioner per dosa:" ), value: "\(onboardingViewModel.portionsPerDosa)")
                     
-                    SummaryRow(title: "Pris per dosa:", value: String(format: "%.2f kr", (onboardingViewModel.pricePerDosa ?? 0)))
+                    SummaryRow(title: String(localized: "Pris per dosa:"), value: String(format: "%.2f kr", (onboardingViewModel.pricePerDosa ?? 0)))
                     
-                    SummaryRow(title: "Sparmål", value: "\((onboardingViewModel.savingGoal ?? 0)) kr")
+                    SummaryRow(title: String(localized: "Sparmål"), value: "\((onboardingViewModel.savingGoal ?? 0)) kr")
                 }
                 .padding()
                 .background(Color.white.opacity(0.2))
@@ -115,7 +116,15 @@ struct OnboardingSummaryView: View {
 
 
 
-#Preview {
+#Preview("Swedish") {
     OnboardingSummaryView(saveUser: {}, onPreviousStep: {})
         .environment(OnboardingViewModel())
+
+}
+
+#Preview("English") {
+    OnboardingSummaryView(saveUser: {}, onPreviousStep: {})
+        .environment(OnboardingViewModel())
+        .environment(\.locale, Locale(identifier: "ENG"))
+
 }

@@ -75,7 +75,15 @@ struct OnboardingNameView: View {
     }
 }
 
-#Preview {
+#Preview("Swedish") {
     OnboardingNameView(onNextStep: {})
         .environment(OnboardingViewModel())
 }
+
+#Preview("English") {
+    OnboardingNameView(onNextStep: {})
+        .environment(OnboardingViewModel())
+        .environment(\.locale, Locale(identifier: "ENG"))
+
+}
+
