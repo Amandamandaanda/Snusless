@@ -2,7 +2,7 @@
 //  DateExtension.swift
 //  Snusless
 //
-//  Created by Amanda Tana on 2026-05-26.
+//  Created by Jonathan Strid on 2026-05-26.
 //
 
 import Foundation
@@ -16,8 +16,10 @@ extension Date {
         formatter.locale = locale
         return formatter.string(from: self)
     }
-    
+
     func formattedLong(locale: Locale = .current) -> String {
-        return self.formatted(.dateTime.day().month(.wide).year().locale(locale))
+        return self.formatted(
+            .dateTime.day().month(.wide).year().locale(locale)
+        )
     }
 }
