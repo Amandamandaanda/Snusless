@@ -134,6 +134,26 @@
         }
       }
     },
+    "Hello, World!" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hello, World!"
+          }
+        }
+      }
+    },
+    "Hem" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Home"
+          }
+        }
+      }
+    },
     "Hur många portioner\när det i en snusdosa?" : {
       "localizations" : {
         "en" : {
@@ -214,6 +234,16 @@
         }
       }
     },
+    "Profil" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profile"
+          }
+        }
+      }
+    },
     "Sammanfattning" : {
       "localizations" : {
         "en" : {
@@ -230,6 +260,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Create user"
+          }
+        }
+      }
+    },
+    "Snusless" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Snusless"
           }
         }
       }
@@ -270,6 +310,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "without snus"
+          }
+        }
+      }
+    },
+    "Utvecklad av: Grupp 2" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Developed by: Group 2"
           }
         }
       }
