@@ -15,7 +15,7 @@ struct ProfileView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 NavigationLink {
-                     SettingsView()
+                    SettingsView()
                 } label: {
                     Image(systemName: "gear")
                 }

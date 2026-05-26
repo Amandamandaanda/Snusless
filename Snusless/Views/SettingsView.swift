@@ -12,7 +12,6 @@ struct SettingsView: View {
     @Query private var users: [User]
     
     @Environment(\.modelContext) private var modelContext: ModelContext
-    
     @State private var viewModel = SettingsViewModel()
     @State private var isPresentingDeleteAlert: Bool = false
     
@@ -43,6 +42,7 @@ struct SettingsView: View {
                 .alert("Är du säker?", isPresented: $isPresentingDeleteAlert) {
                     Button("Radera", role: .destructive) {
                         viewModel.deleteData(users: users, context: modelContext)
+
                     }
                     Button("Avbryt", role: .cancel) {
                         
