@@ -9,15 +9,15 @@
 import SwiftUI
 
 struct OnboardingDateView: View {
-    
+
     @Environment(OnboardingViewModel.self) private var onboardingViewModel
-    
+
     var onNextStep: () -> Void
     var onPreviousStep: () -> Void
 
     var body: some View {
         @Bindable var onboardingVM = onboardingViewModel
-        
+
         VStack(alignment: .center, spacing: 16) {
             Spacer()
 
@@ -27,21 +27,26 @@ struct OnboardingDateView: View {
                 .bold()
                 .padding()
 
-            DatePicker("Startdatum", selection: $onboardingVM.startDate, in: ...Date(), displayedComponents: .date)
-                .padding(.horizontal)
-                .environment(\.colorScheme, .dark)
-                .environment(\.locale, Locale(identifier: "sv_SE"))
-                .datePickerStyle(GraphicalDatePickerStyle())
-                .tint(.white)
-                .background {
-                    Color(.white.opacity(0.3))
-                }
-                .cornerRadius(20)
-            
-            Text("Valt datum: \(onboardingViewModel.startDate.formatted(.dateTime.day().month(.wide).year().locale(Locale(identifier: "sv_SE"))))")
+            DatePicker(
+                "Startdatum",
+                selection: $onboardingVM.startDate,
+                in: ...Date(),
+                displayedComponents: .date
+            )
+            .padding(.horizontal)
+            .environment(\.colorScheme, .dark)
+            .environment(\.locale, .current)
+            .datePickerStyle(GraphicalDatePickerStyle())
+            .tint(.white)
+            .background {
+                Color(.white.opacity(0.3))
+            }
+            .cornerRadius(20)
+
+            Text("Valt datum: \(onboardingViewModel.startDate.formattedLong())")
                 .foregroundStyle(.white)
                 .font(.custom("Roboto-Bold", size: 18))
-            
+
             Spacer()
 
             HStack {
@@ -60,9 +65,9 @@ struct OnboardingDateView: View {
                             .clipShape(Circle())
                     }
                 }
-                
+
                 Spacer()
-                
+
                 Button {
                     Task {
                         onNextStep()

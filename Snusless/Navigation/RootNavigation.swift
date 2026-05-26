@@ -26,8 +26,15 @@ struct RootNavigation: View {
     }
 }
 
-#Preview {
+#Preview("Swedish") {
     RootNavigation( selectedTab: .constant(.home))
         .environment(OnboardingViewModel())
+        .modelContainer(for: User.self, inMemory: true)
+}
+
+#Preview("English") {
+    RootNavigation( selectedTab: .constant(.home))
+        .environment(OnboardingViewModel())
+        .environment(\.locale, Locale(identifier: "ENG"))
         .modelContainer(for: User.self, inMemory: true)
 }
