@@ -20,8 +20,6 @@ struct HomeView: View {
     var body: some View {
         NavigationStack{
             ZStack {
-//                Color.green
-//                    .ignoresSafeArea()
                 
                 VStack(spacing: 24){
                     
@@ -48,12 +46,14 @@ struct HomeView: View {
                             .foregroundStyle(.red)
                             .font(.caption)
                     }
-                    
-                       
-                    
+                                    
                     if let user = users.first{
-                        
-                        SavingsCard(days: user.streak.currentStreak, savedAmount: user.calculateSavings(forDays: user.streak.currentStreak))
+                         
+                        SavingsCard(
+                            days: user.streak.currentStreak,
+                            savedAmount: user.calculateSavings(forDays: user.streak.currentStreak),
+                            savingsGoal: user.savingsGoal
+                        )
             
                         
                         Button {
