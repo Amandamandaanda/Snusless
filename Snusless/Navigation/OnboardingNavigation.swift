@@ -73,6 +73,7 @@ struct OnboardingNavigation: View {
                 @Bindable var onboardingVM = onboardingViewModel
                 OnboardingSummaryView(saveUser: {
                     onboardingViewModel.saveUser(context: modelContext)
+                    selectedTab = .home
                     
                 }, onPreviousStep: {
                     isGoingForward = false
