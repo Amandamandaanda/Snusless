@@ -11,6 +11,9 @@ import SwiftData
 struct LaunchView: View {
     @State private var isLoading = true
     
+    @State private var selectedTab: TabSelection = .home
+    
+    
     var body: some View {
         if isLoading {
             ZStack {
@@ -53,7 +56,7 @@ struct LaunchView: View {
             }
             
         } else {
-            ContentView()
+            RootNavigation( selectedTab: $selectedTab)
         }
     }
 }

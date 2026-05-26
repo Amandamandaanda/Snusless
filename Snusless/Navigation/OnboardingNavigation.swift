@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct OnboardingView: View {
+struct OnboardingNavigation: View {
     @Environment(OnboardingViewModel.self) private var onboardingViewModel
     @Environment(\.modelContext) private var modelContext
     
@@ -159,6 +159,6 @@ struct OnboardingView: View {
 }
 
 #Preview {
-    OnboardingView()
+    OnboardingNavigation()
         .environment(OnboardingViewModel())
 }
