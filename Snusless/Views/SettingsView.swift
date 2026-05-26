@@ -12,11 +12,11 @@ struct SettingsView: View {
     @Query private var users: [User]
     
     @Environment(\.modelContext) private var modelContext: ModelContext
+    @Environment(\.dismiss) private var dismiss
     @State private var viewModel = SettingsViewModel()
     @State private var isPresentingDeleteAlert: Bool = false
     
     var body: some View {
-        NavigationStack {
             VStack(spacing: 24) {
                 Button {
                     isPresentingDeleteAlert = true
@@ -50,11 +50,16 @@ struct SettingsView: View {
                 } message: {
                     Text("All data kommer att raderas.")
                 }
-            
+                .onChange(of: users.isEmpty) { _, isEmpty in
+                    if isEmpty {
+                        dismiss()
+                    }
+                    
+                }
             }
         }
       
-    }
+    
 
 
 

@@ -17,7 +17,7 @@ struct RootNavigation: View {
     var body: some View {
         Group {
             if users.isEmpty {
-                OnboardingNavigation()
+                OnboardingNavigation(selectedTab: $selectedTab)
             } else {
                 TabNavigation(selectedTab: $selectedTab)
             }
