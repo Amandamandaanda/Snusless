@@ -47,9 +47,9 @@ class OnboardingViewModel {
             return
         }
         
-        let streak = Streak.startingStreak(from: startDate)
+        let user = User(name: name.trimmingCharacters(in: .whitespaces), numberOfDosor: numberOfDosor ?? 0, pricePerDosa: pricePerDosa ?? 0, portionsPerDosa: portionsPerDosa, savingsGoal: savingGoal ?? 0, startDate: startDate, streak: Streak())
         
-        let user = User(name: name.trimmingCharacters(in: .whitespaces), numberOfDosor: numberOfDosor ?? 0, pricePerDosa: pricePerDosa ?? 0, portionsPerDosa: portionsPerDosa, savingsGoal: savingGoal ?? 0, startDate: startDate, streak: streak)
+        user.streak = Streak.startingStreak(for: user)
         
         context.insert(user)
         
