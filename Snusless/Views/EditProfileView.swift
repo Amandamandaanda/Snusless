@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct ProfileView: View {
+struct EditProfileView: View {
     @Environment(OnboardingViewModel.self) private var onboardingViewModel
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
@@ -143,7 +143,7 @@ struct ProfileView: View {
 
 #Preview {
     NavigationStack {
-        ProfileView()
+        EditProfileView()
             .environment(OnboardingViewModel())
     }
 }

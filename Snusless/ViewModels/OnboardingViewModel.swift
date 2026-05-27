@@ -90,16 +90,22 @@ class OnboardingViewModel {
         }
         
        
-        func updateUser(context: ModelContext, updatedName: String, updatedDosor: Int, updatedPrice: Double) {
+    func updateUser(context: ModelContext, updatedName: String, updatedDosor: Int, updatedPrice: Double) {
             do {
                 let descriptor = FetchDescriptor<User>()
                 if let existingUser = try context.fetch(descriptor).first {
+                    // 1. SwiftData Modelini Güncelle
                     existingUser.name = updatedName.trimmingCharacters(in: .whitespaces)
                     existingUser.numberOfDosor = updatedDosor
                     existingUser.pricePerDosa = updatedPrice
                     
+                    // 2. ViewModel'in kendi durumunu (State) senkronize et
+                    self.name = updatedName.trimmingCharacters(in: .whitespaces)
+                    self.numberOfDosor = updatedDosor
+                    self.pricePerDosa = updatedPrice
+                    
                     try context.save()
-                    print("Användardata har uppdaterats i SwiftData")
+                    print("Användardata har uppdaterats i SwiftData och ViewModel")
                 }
             } catch {
                 print("Misslyckades med att uppdatera användaren: \(error.localizedDescription)")

@@ -19,7 +19,7 @@ struct TabNavigation: View {
                         HomeView()
                             .transition(.move(edge: .leading))
                     case .profile:
-                        ProfileView()
+                        EditProfileView()
                             .transition(.move(edge: .leading))
                     }
                 }
