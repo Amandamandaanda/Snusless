@@ -20,7 +20,7 @@ struct TabNavigation: View {
                             .transition(.move(edge: .leading))
                     case .profile:
                         ProfileView()
-                            .transition(.move(edge: .leading))
+                            .transition(.move(edge: .trailing))
                     }
                 }
                 .frame(maxHeight: .infinity)
