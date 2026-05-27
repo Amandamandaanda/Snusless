@@ -6,8 +6,16 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ProfileView: View {
+    @Environment(OnboardingViewModel.self) private var onboardingViewModel
+        @Environment(\.modelContext) private var modelContext
+        @Environment(\.dismiss) private var dismiss
+        
+        @State private var editName: String = ""
+        @State private var editDosor: Int = 0
+        @State private var editPrice: Double = 0.0
     var body: some View {
         VStack {
             
@@ -28,6 +36,7 @@ struct ProfileView: View {
 #Preview {
     NavigationStack {
         ProfileView()
+            .environment(OnboardingViewModel())
 
     }
     
