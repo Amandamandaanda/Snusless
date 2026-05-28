@@ -32,7 +32,7 @@ struct OnboardingTextFieldModifier: ViewModifier {
     
 }
 
-struct EditProfileViewModifier: ViewModifier {
+struct EditProfileTextFieldModifier: ViewModifier {
     var keyboardType: UIKeyboardType = .decimalPad
 
     func body(content: Content) -> some View {

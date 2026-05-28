@@ -25,7 +25,7 @@ struct EditProfileView: View {
                 .font(.custom("Roboto-Medium", size: 16))
 
             TextField("\(editProfileViewModel.originalName)", text: $editVM.editName)
-                .modifier(EditProfileViewModifier(keyboardType: .default))
+                .modifier(EditProfileTextFieldModifier(keyboardType: .default))
                 
 
             Text("Startdatum")
@@ -53,25 +53,25 @@ struct EditProfileView: View {
                 .font(.custom("Roboto-Medium", size: 16))
 
             TextField("\(editProfileViewModel.editDosor) dosor", value: $editVM.editDosor, format: .number)
-                .modifier(EditProfileViewModifier())
+                .modifier(EditProfileTextFieldModifier())
 
             Text("Portioner per snusdosa")
                 .font(.custom("Roboto-Medium", size: 16))
 
             TextField("\(editProfileViewModel.editPortioner) st", value: $editVM.editPortioner, format: .number)
-                .modifier(EditProfileViewModifier(keyboardType: .numberPad))
+                .modifier(EditProfileTextFieldModifier(keyboardType: .numberPad))
 
             Text("Pris per snusdosa (kr)")
                 .font(.custom("Roboto-Medium", size: 16))
 
             TextField("\(String(format: "%.2f", editProfileViewModel.editPrice)) kr", value: $editVM.editPrice, format: .number)
-                .modifier(EditProfileViewModifier())
+                .modifier(EditProfileTextFieldModifier())
 
             Text("Sparmål (kr)")
                 .font(.custom("Roboto-Medium", size: 16))
 
             TextField("\(editProfileViewModel.editSavingsGoal) kr", value: $editVM.editSavingsGoal, format: .number)
-                .modifier(EditProfileViewModifier())
+                .modifier(EditProfileTextFieldModifier())
 
             Spacer()
 
