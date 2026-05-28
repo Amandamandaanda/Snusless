@@ -15,21 +15,16 @@ struct EditProfileView: View {
     
     @State private var editProfileViewModel = EditProfileViewModel()
 
-    @State private var editName: String = ""
-    @State private var originalName: String = ""
-    @State private var editStartDate: Date = Date()
-    @State private var editDosor: Int = 0
-    @State private var editPrice: Double = 0.0
-    @State private var editPortioner: Int = 0
-    @State private var editSavingsGoal: Int = 0
+   
 
     var body: some View {
+        @Bindable var editVM = editProfileViewModel
         VStack(alignment: .leading, spacing: 4) {
 
             Text("Namn")
                 .font(.custom("Roboto-Medium", size: 16))
 
-            TextField("\(originalName)", text: $editName)
+            TextField("\(editProfileViewModel.originalName)", text: $editVM.editName)
                 .padding()
                 .font(.custom("Roboto-Light", size: 18))
                 .background(.lightGreen.opacity(0.1))
@@ -44,7 +39,7 @@ struct EditProfileView: View {
 
             DatePicker(
                 "",
-                selection: $editStartDate,
+                selection: $editVM.editStartDate,
                 in: ...Date(),
                 displayedComponents: .date
             )
@@ -63,7 +58,7 @@ struct EditProfileView: View {
             Text("Antal snusdosor per dag")
                 .font(.custom("Roboto-Medium", size: 16))
 
-            TextField("\(editDosor) dosor", value: $editDosor, format: .number)
+            TextField("\(editProfileViewModel.editDosor) dosor", value: $editVM.editDosor, format: .number)
                 .keyboardType(.numberPad)
                 .font(.custom("Roboto-Light", size: 18))
                 .padding()
@@ -77,7 +72,7 @@ struct EditProfileView: View {
             Text("Portioner per snusdosa")
                 .font(.custom("Roboto-Medium", size: 16))
 
-            TextField("\(editPortioner) st", value: $editPortioner, format: .number)
+            TextField("\(editProfileViewModel.editPortioner) st", value: $editVM.editPortioner, format: .number)
                 .keyboardType(.numberPad)
                 .font(.custom("Roboto-Light", size: 18))
                 .padding()
@@ -91,7 +86,7 @@ struct EditProfileView: View {
             Text("Pris per snusdosa (kr)")
                 .font(.custom("Roboto-Medium", size: 16))
 
-            TextField("\(String(format: "%.2f", editPrice)) kr", value: $editPrice, format: .number)
+            TextField("\(String(format: "%.2f", editProfileViewModel.editPrice)) kr", value: $editVM.editPrice, format: .number)
                 .keyboardType(.decimalPad)
                 .font(.custom("Roboto-Light", size: 18))
                 .padding()
@@ -105,7 +100,7 @@ struct EditProfileView: View {
             Text("Sparmål (kr)")
                 .font(.custom("Roboto-Medium", size: 16))
 
-            TextField("\(editSavingsGoal) kr", value: $editSavingsGoal, format: .number)
+            TextField("\(editProfileViewModel.editSavingsGoal) kr", value: $editVM.editSavingsGoal, format: .number)
                 .keyboardType(.decimalPad)
                 .font(.custom("Roboto-Light", size: 18))
                 .padding()
@@ -121,12 +116,12 @@ struct EditProfileView: View {
             Button(action: {
                 editProfileViewModel.updateUser(
                     context: modelContext,
-                    updatedName: editName,
-                    updatedDate: editStartDate,
-                    updatedDosor: editDosor,
-                    updatedPortions: editPortioner,
-                    updatedPrice: editPrice,
-                    updatedSavingsGoal: editSavingsGoal
+                    updatedName: editProfileViewModel.editName,
+                    updatedDate: editProfileViewModel.editStartDate,
+                    updatedDosor: editProfileViewModel.editDosor,
+                    updatedPortions: editProfileViewModel.editPortioner,
+                    updatedPrice: editProfileViewModel.editPrice,
+                    updatedSavingsGoal: editProfileViewModel.editSavingsGoal
                 )
 
                 dismiss()
@@ -148,13 +143,13 @@ struct EditProfileView: View {
                 
             
                 modelContext.fetch(descriptor).first {
-                originalName = existingUser.name
-                editName = existingUser.name
-                editStartDate = existingUser.startDate
-                editDosor = existingUser.numberOfDosor
-                editPortioner = existingUser.portionsPerDosa
-                editPrice = existingUser.pricePerDosa
-                editSavingsGoal = existingUser.savingsGoal
+                editProfileViewModel.originalName = existingUser.name
+                editProfileViewModel.editName = existingUser.name
+                editProfileViewModel.editStartDate = existingUser.startDate
+                editProfileViewModel.editDosor = existingUser.numberOfDosor
+                editProfileViewModel.editPortioner = existingUser.portionsPerDosa
+                editProfileViewModel.editPrice = existingUser.pricePerDosa
+                editProfileViewModel.editSavingsGoal = existingUser.savingsGoal
             }        }
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
