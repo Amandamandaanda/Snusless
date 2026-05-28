@@ -49,11 +49,11 @@ extension Streak {
         return streak
     }
     
-    static func startingStreak(from startDate: Date) -> Streak {
+    static func startingStreak(for user: User) -> Streak {
         let streak = Streak()
         
         let calendar = Calendar.current
-        let start = calendar.startOfDay(for: startDate)
+        let start = calendar.startOfDay(for: user.startDate)
 
         let today = calendar.startOfDay(for: Date())
 
@@ -68,3 +68,5 @@ extension Streak {
         return streak
     }
 }
+
+
