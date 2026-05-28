@@ -23,9 +23,6 @@ struct TabNavigation: View {
 
             }
         }
-      
-        
-        
     }
 }
 
