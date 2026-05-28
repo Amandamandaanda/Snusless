@@ -12,6 +12,8 @@ struct EditProfileView: View {
     @Environment(OnboardingViewModel.self) private var onboardingViewModel
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
+    
+    @State private var editProfileViewModel = EditProfileViewModel()
 
     @State private var editName: String = ""
     @State private var originalName: String = ""
@@ -117,7 +119,7 @@ struct EditProfileView: View {
             Spacer()
 
             Button(action: {
-                onboardingViewModel.updateUser(
+                editProfileViewModel.updateUser(
                     context: modelContext,
                     updatedName: editName,
                     updatedDate: editStartDate,
