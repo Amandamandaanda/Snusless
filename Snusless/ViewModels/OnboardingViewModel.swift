@@ -67,24 +67,48 @@ class OnboardingViewModel {
     }
     
     func validation() -> Bool {
-        guard !name.trimmingCharacters(in: .whitespaces).isEmpty else {
-            errorMessage = "Vänligen fyll i ditt namn"
-            return false
+            guard !name.trimmingCharacters(in: .whitespaces).isEmpty else {
+                errorMessage = "Vänligen fyll i ditt namn"
+                return false
+            }
+            
+            guard (numberOfDosor ?? 0) > 0 else {
+                errorMessage = "Antalet dosor får inte vara noll"
+                return false
+            }
+            
+            guard (pricePerDosa ?? 0) > 0.0  else {
+                errorMessage = "Vänligen fyll i priset för din snusdosa. Priset får inte vara noll"
+                return false
+            }
+            
+            guard portionsPerDosa > 0 else {
+                errorMessage = "Vänligen fyll i hur många portioner din dosa innehåller."
+                return false
+            }
+            return true
         }
         
-        guard (numberOfDosor ?? 0) > 0 else {
-            errorMessage = "Antalet dosor får inte vara noll"
-            return false
+       
+    func updateUser(context: ModelContext, updatedName: String, updatedDosor: Int, updatedPrice: Double) {
+            do {
+                let descriptor = FetchDescriptor<User>()
+                if let existingUser = try context.fetch(descriptor).first {
+                    // 1. SwiftData Modelini Güncelle
+                    existingUser.name = updatedName.trimmingCharacters(in: .whitespaces)
+                    existingUser.numberOfDosor = updatedDosor
+                    existingUser.pricePerDosa = updatedPrice
+                    
+                    // 2. ViewModel'in kendi durumunu (State) senkronize et
+                    self.name = updatedName.trimmingCharacters(in: .whitespaces)
+                    self.numberOfDosor = updatedDosor
+                    self.pricePerDosa = updatedPrice
+                    
+                    try context.save()
+                    print("Användardata har uppdaterats i SwiftData och ViewModel")
+                }
+            } catch {
+                print("Misslyckades med att uppdatera användaren: \(error.localizedDescription)")
+            }
         }
-        
-        guard (pricePerDosa ?? 0) > 0.0  else {
-            errorMessage = "Vänligen fyll i priset för din snusdosa. Priset får inte vara noll"
-            return false
-        }
-        guard portionsPerDosa > 0 else {
-            errorMessage = "Vänligen fyll i hur många portioner din dosa innehåller."
-            return false
-        }
-        return true
     }
-}
