@@ -8,18 +8,21 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @Binding var isPresented: Bool
+
     var body: some View {
         VStack {
-            
+
         }
         .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                NavigationLink {
-                    SettingsView()
+            ToolbarItem(placement: .cancellationAction) {
+                Button {
+                    isPresented = false
                 } label: {
-                    Image(systemName: "gear")
+                    Text("Avbryt")
+                        .bold()
+                        .foregroundStyle(.errorRed)
                 }
-         
             }
         }
     }
@@ -27,8 +30,7 @@ struct ProfileView: View {
 
 #Preview {
     NavigationStack {
-        ProfileView()
+        ProfileView(isPresented: .constant(true))
 
     }
-    
 }
