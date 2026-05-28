@@ -1,5 +1,5 @@
 //
-//  ProfileView.swift
+//  EditProfileView.swift
 //  Snusless
 //
 //  Created by Aurelie Vaudan APP25 on 2026-05-26.
@@ -14,12 +14,13 @@ struct EditProfileView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.presentationMode) var presentationMode
     
-    
     @State private var editName: String = ""
     @State private var editDosor: Int = 0
     @State private var editPrice: Double = 0.0
+    @State private var editPortioner: Int = 24
+    @State private var editStartDate: Date = Date()
+    
     var body: some View {
-        
         VStack(spacing: 20) {
             Text("Ändra profil")
                 .font(.custom("Roboto-Bold", size: 24))
@@ -43,7 +44,6 @@ struct EditProfileView: View {
                     }
                     .padding(.horizontal, 20)
                     
-                    
                     VStack(alignment: .leading, spacing: 8) {
                         Text("Antal snusdosor per dag")
                             .font(.custom("Roboto-Bold", size: 16))
@@ -59,8 +59,8 @@ struct EditProfileView: View {
                     }
                     .padding(.horizontal, 20)
                     
-                    
-                    VStack(alignment: .leading, spacing: 8)  {                      Text("Pris per snusdosa (kr)")
+                    VStack(alignment: .leading, spacing: 8)  {
+                        Text("Pris per snusdosa (kr)")
                             .font(.custom("Roboto-Bold", size: 16))
                             .foregroundColor(.white)
                         
@@ -73,15 +73,30 @@ struct EditProfileView: View {
                             .cornerRadius(10)
                     }
                     .padding(.horizontal, 20)
+                    
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Startdatum")
+                            .font(.custom("Roboto-Bold", size: 16))
+                            .foregroundColor(.white)
+                        
+                        DatePicker("", selection: $editStartDate, displayedComponents: .date)
+                            .datePickerStyle(.compact)
+                            .labelsHidden()
+                            .padding()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .background(Color.white)
+                            .cornerRadius(10)
+                    }
+                    .padding(.horizontal, 20)
+                    
                 }
                 .padding(.vertical, 10)
             }
             
             Spacer()
+            
             HStack(spacing: 20) {
-                
                 Button(action: {
-                
                     presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("Avbryt")
@@ -93,7 +108,6 @@ struct EditProfileView: View {
                         .cornerRadius(10)
                 }
                 
-                // Update knappen//
                 Button(action: {
                     onboardingViewModel.updateUser(
                         context: modelContext,
@@ -101,7 +115,6 @@ struct EditProfileView: View {
                         updatedDosor: editDosor,
                         updatedPrice: editPrice
                     )
-                    
                     presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("Uppdatera")
@@ -118,7 +131,6 @@ struct EditProfileView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(.lightGreen))
-        
         .onAppear {
             let descriptor = FetchDescriptor<User>()
             if let existingUser = try? modelContext.fetch(descriptor).first {
@@ -127,7 +139,6 @@ struct EditProfileView: View {
                 editPrice = existingUser.pricePerDosa
             }
         }
-        
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 NavigationLink {
@@ -139,7 +150,6 @@ struct EditProfileView: View {
         }
     }
 }
-
 
 #Preview {
     NavigationStack {

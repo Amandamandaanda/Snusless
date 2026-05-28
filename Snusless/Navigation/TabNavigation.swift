@@ -1,10 +1,3 @@
-//
-//  TabNavigation.swift
-//  Snusless
-//
-//  Created by Aurelie Vaudan APP25 on 2026-05-26.
-//
-
 import SwiftUI
 
 struct TabNavigation: View {
@@ -19,7 +12,9 @@ struct TabNavigation: View {
                         HomeView()
                             .transition(.move(edge: .leading))
                     case .profile:
-                        EditProfileView()
+//                        NewProfileView()
+//                            .transition(.move(edge: .trailing))
+                        HomeView()
                             .transition(.move(edge: .leading))
                     }
                 }
