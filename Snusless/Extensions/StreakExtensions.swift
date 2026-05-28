@@ -42,7 +42,7 @@ extension Streak {
             if day == expected {
                 streak += 1
                 expected = calendar.date(byAdding: .day, value: -1, to: expected)!
-            }else {
+            } else {
                 break
             }
         }
@@ -50,7 +50,9 @@ extension Streak {
     }
     
     static func startingStreak(for user: User) -> Streak {
-        let streak = Streak()
+        let streak = user.streak
+        
+        streak.checkedinDays.removeAll()
         
         let calendar = Calendar.current
         let start = calendar.startOfDay(for: user.startDate)

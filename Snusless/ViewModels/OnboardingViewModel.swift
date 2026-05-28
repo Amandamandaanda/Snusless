@@ -41,7 +41,7 @@ class OnboardingViewModel {
     }
     
     
-    // Added prints for testing and save user is working!
+    // Added prints for testing and save user is working
     func saveUser(context: ModelContext) {
         guard validation() else {
             return
@@ -90,22 +90,30 @@ class OnboardingViewModel {
         }
         
        
-    func updateUser(context: ModelContext, updatedName: String, updatedDosor: Int, updatedPrice: Double) {
+    func updateUser(context: ModelContext, updatedName: String, updatedDate: Date, updatedDosor: Int, updatedPortions: Int, updatedPrice: Double, updatedSavingsGoal: Int) {
             do {
                 let descriptor = FetchDescriptor<User>()
                 if let existingUser = try context.fetch(descriptor).first {
-                    // 1. SwiftData Modelini Güncelle
+                    // Update the SwiftData model
                     existingUser.name = updatedName.trimmingCharacters(in: .whitespaces)
+                    existingUser.startDate = updatedDate
                     existingUser.numberOfDosor = updatedDosor
+                    existingUser.portionsPerDosa = updatedPortions
                     existingUser.pricePerDosa = updatedPrice
+                    existingUser.savingsGoal = updatedSavingsGoal
+
+                    existingUser.streak = Streak.startingStreak(for: existingUser)
                     
-                    // 2. ViewModel'in kendi durumunu (State) senkronize et
+                    // Synchronize the ViewModel's internal state
                     self.name = updatedName.trimmingCharacters(in: .whitespaces)
+                    self.startDate = updatedDate
                     self.numberOfDosor = updatedDosor
+                    self.portionsPerDosa = updatedPortions
                     self.pricePerDosa = updatedPrice
+                    self.savingGoal = updatedSavingsGoal
                     
                     try context.save()
-                    print("Användardata har uppdaterats i SwiftData och ViewModel")
+                    print("Användardata har uppdaterats i SwiftData och ViewModel:\n\(updatedName)\n\(updatedDate.formattedMedium())\n\(updatedDosor)\n\(updatedPortions)\n\(updatedPrice)\n\(updatedSavingsGoal)")
                 }
             } catch {
                 print("Misslyckades med att uppdatera användaren: \(error.localizedDescription)")
