@@ -77,12 +77,7 @@ struct OnboardingSummaryView: View {
                     saveUser()
                 } label: {
                     Text("Skapa användare")
-                        .font(.custom("Roboto-Medium", size: 18))
-                        .foregroundColor(.darkGreen)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.white)
-                        .cornerRadius(15)
+                        .modifier(ButtonModifier())
                 }
                 .padding(.horizontal, 20)
 

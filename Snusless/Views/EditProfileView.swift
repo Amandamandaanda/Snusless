@@ -25,14 +25,8 @@ struct EditProfileView: View {
                 .font(.custom("Roboto-Medium", size: 16))
 
             TextField("\(editProfileViewModel.originalName)", text: $editVM.editName)
-                .padding()
-                .font(.custom("Roboto-Light", size: 18))
-                .background(.lightGreen.opacity(0.1))
-                .overlay(RoundedRectangle(cornerRadius: 10)
-                    .stroke(.darkGreen, lineWidth: 2))
-                .foregroundColor(.black)
-                .cornerRadius(10)
-                .padding(.bottom, 16)
+                .modifier(EditProfileViewModifier(keyboardType: .default))
+                
 
             Text("Startdatum")
                 .font(.custom("Roboto-Medium", size: 16))
@@ -59,57 +53,25 @@ struct EditProfileView: View {
                 .font(.custom("Roboto-Medium", size: 16))
 
             TextField("\(editProfileViewModel.editDosor) dosor", value: $editVM.editDosor, format: .number)
-                .keyboardType(.numberPad)
-                .font(.custom("Roboto-Light", size: 18))
-                .padding()
-                .background(.lightGreen.opacity(0.1))
-                .overlay(RoundedRectangle(cornerRadius: 10)
-                    .stroke(.darkGreen, lineWidth: 2))
-                .foregroundColor(.black)
-                .cornerRadius(10)
-                .padding(.bottom, 16)
+                .modifier(EditProfileViewModifier())
 
             Text("Portioner per snusdosa")
                 .font(.custom("Roboto-Medium", size: 16))
 
             TextField("\(editProfileViewModel.editPortioner) st", value: $editVM.editPortioner, format: .number)
-                .keyboardType(.numberPad)
-                .font(.custom("Roboto-Light", size: 18))
-                .padding()
-                .background(.lightGreen.opacity(0.1))
-                .foregroundColor(.black)
-                .overlay(RoundedRectangle(cornerRadius: 10)
-                    .stroke(.darkGreen, lineWidth: 2))
-                .cornerRadius(10)
-                .padding(.bottom, 16)
+                .modifier(EditProfileViewModifier(keyboardType: .numberPad))
 
             Text("Pris per snusdosa (kr)")
                 .font(.custom("Roboto-Medium", size: 16))
 
             TextField("\(String(format: "%.2f", editProfileViewModel.editPrice)) kr", value: $editVM.editPrice, format: .number)
-                .keyboardType(.decimalPad)
-                .font(.custom("Roboto-Light", size: 18))
-                .padding()
-                .background(.lightGreen.opacity(0.1))
-                .foregroundColor(.black)
-                .overlay(RoundedRectangle(cornerRadius: 10)
-                    .stroke(.darkGreen, lineWidth: 2))
-                .cornerRadius(10)
-                .padding(.bottom, 16)
+                .modifier(EditProfileViewModifier())
 
             Text("Sparmål (kr)")
                 .font(.custom("Roboto-Medium", size: 16))
 
             TextField("\(editProfileViewModel.editSavingsGoal) kr", value: $editVM.editSavingsGoal, format: .number)
-                .keyboardType(.decimalPad)
-                .font(.custom("Roboto-Light", size: 18))
-                .padding()
-                .background(.lightGreen.opacity(0.1))
-                .overlay(RoundedRectangle(cornerRadius: 10)
-                    .stroke(.darkGreen, lineWidth: 2))
-                .foregroundColor(.black)
-                .cornerRadius(10)
-                .padding(.bottom, 16)
+                .modifier(EditProfileViewModifier())
 
             Spacer()
 
@@ -127,12 +89,7 @@ struct EditProfileView: View {
                 dismiss()
             }) {
                 Text("Spara")
-                    .font(.custom("Roboto-Bold", size: 18))
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(.darkGreen)
-                    .cornerRadius(10)
+                    .modifier(ButtonModifier(foregroundColor: .white, backgroundColor: .darkGreen))
             }
             Spacer()
         }
@@ -140,8 +97,6 @@ struct EditProfileView: View {
         .onAppear {
             let descriptor = FetchDescriptor<User>()
             if let existingUser = try?
-                
-            
                 modelContext.fetch(descriptor).first {
                 editProfileViewModel.originalName = existingUser.name
                 editProfileViewModel.editName = existingUser.name

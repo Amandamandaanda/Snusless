@@ -35,16 +35,8 @@ struct OnboardingDosorView: View {
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                     
-                    TextField("", value: $onboardingVM.numberOfDosor, format: .number, prompt: Text("Antal")
-                        .font(.custom("Roboto-Light", size: 18)))
-                        .keyboardType(.numberPad)
-                        .multilineTextAlignment(.center)
-                        .padding(.vertical, 10)
-                        .padding(.horizontal, 20)
-                        .background(Color.white)
-                        .foregroundColor(.black)
-                        .cornerRadius(10)
-                        .frame(width: 120)
+                    TextField("", value: $onboardingVM.numberOfDosor, format: .number, prompt: Text("Antal"))
+                        .modifier(OnboardingTextFieldModifier())
                 }
                 
                 Spacer().frame(height: 20)

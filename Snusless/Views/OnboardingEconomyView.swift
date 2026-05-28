@@ -29,15 +29,8 @@ struct OnboardingEconomyView: View {
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                     
-                    TextField("", value: $onboardingVM.pricePerDosa, format: .number, prompt: Text("41kr")
-                        .font(.custom("Roboto-Light", size: 18)))
-                        .keyboardType(.decimalPad)
-                        .multilineTextAlignment(.center)
-                        .padding()
-                        .background(Color.white)
-                        .foregroundColor(.black)
-                        .cornerRadius(8)
-                        .frame(width: 140)
+                    TextField("", value: $onboardingVM.pricePerDosa, format: .number, prompt: Text("41kr"))
+                        .modifier(OnboardingTextFieldModifier())
                 }
                 
                 VStack(spacing: 12) {
@@ -46,15 +39,9 @@ struct OnboardingEconomyView: View {
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                     
-                    TextField("", value: $onboardingVM.savingGoal, format: .number, prompt: Text("1000kr")
-                        .font(.custom("Roboto-Light", size: 18)))
-                        .keyboardType(.decimalPad)
-                        .multilineTextAlignment(.center)
-                        .padding()
-                        .background(Color.white)
-                        .foregroundColor(.black)
-                        .cornerRadius(8)
-                        .frame(width: 140)
+                    TextField("", value: $onboardingVM.savingGoal, format: .number, prompt: Text("1000kr"))
+                        .modifier(OnboardingTextFieldModifier())
+                        
                 }
                 
                 if !onboardingViewModel.errorMessage.isEmpty {
