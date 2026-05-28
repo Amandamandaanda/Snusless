@@ -41,7 +41,7 @@ struct OnboardingEconomyView: View {
                 }
                 
                 VStack(spacing: 12) {
-                    Text("Sparmål")
+                    Text("Sparmål:")
                         .font(.custom("Roboto-Bold", size: 22))
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)

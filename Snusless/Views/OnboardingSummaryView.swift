@@ -57,7 +57,7 @@ struct OnboardingSummaryView: View {
                     )
 
                     SummaryRow(
-                        title: String(localized: "Sparmål"),
+                        title: String(localized: "Sparmål:"),
                         value: "\((onboardingViewModel.savingGoal ?? 0)) kr"
                     )
                 }
