@@ -91,32 +91,32 @@
         }
       }
     },
-    "0" : {
+    "10" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "0"
+            "value" : "10"
           }
         }
       }
     },
-    "41kr" : {
+    "30" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "41kr"
+            "value" : "30"
           }
         }
       }
     },
-    "100" : {
+    "40kr" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "100"
+            "value" : "40kr"
           }
         }
       }

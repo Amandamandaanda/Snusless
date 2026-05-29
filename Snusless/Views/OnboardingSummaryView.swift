@@ -64,7 +64,6 @@ struct OnboardingSummaryView: View {
                 .padding()
                 .background(Color.white.opacity(0.2))
                 .cornerRadius(15)
-                .padding(.horizontal, 20)
 
                 if !onboardingViewModel.errorMessage.isEmpty {
                     Text(onboardingViewModel.errorMessage)
@@ -79,34 +78,23 @@ struct OnboardingSummaryView: View {
                     Text("Skapa användare")
                         .modifier(ButtonModifier())
                 }
-                .padding(.horizontal, 20)
 
                 Spacer()
 
                 HStack {
-
                     Button {
                         Task {
                             onPreviousStep()
                         }
                     } label: {
-                        HStack {
-                            Image(systemName: "arrow.left")
-                                .font(.title3)
-                                .bold()
-                                .foregroundColor(.darkGreen)
-                                .padding()
-                                .background(Color.white)
-                                .clipShape(Circle())
-                        }
+                        Image(systemName: "arrow.left")
+                            .modifier(ArrowButtonModifier())
                     }
 
                     Spacer()
                 }
-                .padding(.bottom, 10)
-                .padding(.horizontal, 20)
-
             }
+            .padding(20)
         }
     }
 
@@ -121,12 +109,10 @@ struct OnboardingSummaryView: View {
 #Preview("Swedish") {
     OnboardingSummaryView(saveUser: {}, onPreviousStep: {})
         .environment(OnboardingViewModel())
-
 }
 
 #Preview("English") {
     OnboardingSummaryView(saveUser: {}, onPreviousStep: {})
         .environment(OnboardingViewModel())
         .environment(\.locale, Locale(identifier: "ENG"))
-
 }
