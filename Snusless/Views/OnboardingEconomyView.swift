@@ -9,86 +9,101 @@ import SwiftUI
 
 struct OnboardingEconomyView: View {
     @Environment(OnboardingViewModel.self) private var onboardingViewModel
-    
+
     var onNextStep: () -> Void
     var onPreviousStep: () -> Void
-    
+
     var body: some View {
         @Bindable var onboardingVM = onboardingViewModel
-        
+
         ZStack {
             Color(.lightGreen)
                 .ignoresSafeArea()
-            
+
             VStack(spacing: 40) {
                 Spacer()
-                
+
                 VStack(spacing: 12) {
                     Text("Vad kostar en snusdosa?")
                         .font(.custom("Roboto-Bold", size: 22))
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
-                    
-                    TextField("", value: $onboardingVM.pricePerDosa, format: .number, prompt: Text("41kr"))
-                        .modifier(OnboardingTextFieldModifier())
+
+                    TextField(
+                        "",
+                        value: $onboardingVM.pricePerDosa,
+                        format: .number,
+                        prompt: Text("40kr")
+                    )
+                    .modifier(OnboardingTextFieldModifier())
                 }
-                
+
                 VStack(spacing: 12) {
                     Text("Sparmål:")
                         .font(.custom("Roboto-Bold", size: 22))
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
-                    
-                    TextField("", value: $onboardingVM.savingGoal, format: .number, prompt: Text("1000kr"))
-                        .modifier(OnboardingTextFieldModifier())
-                        
+
+                    TextField(
+                        "",
+                        value: $onboardingVM.savingGoal,
+                        format: .number,
+                        prompt: Text("1000kr")
+                    )
+                    .modifier(OnboardingTextFieldModifier())
                 }
-                
+
                 if !onboardingViewModel.errorMessage.isEmpty {
                     Text(onboardingViewModel.errorMessage)
                         .foregroundColor(.red)
                 }
-                
-                if (!onboardingViewModel.isValidPrice && (onboardingViewModel.pricePerDosa ?? 0) > 0) ||
-                   (!onboardingViewModel.isValidGoal && (onboardingViewModel.savingGoal ?? 0) > 0) {
+
+                if (!onboardingViewModel.isValidPrice
+                    && (onboardingViewModel.pricePerDosa ?? 0) > 0)
+                    || (!onboardingViewModel.isValidGoal
+                        && (onboardingViewModel.savingGoal ?? 0) > 0)
+                {
                     Text("Vänligen fyll i ett giltigt pris och sparmål.")
                         .font(.subheadline)
                         .bold()
                         .foregroundColor(.white)
                 }
-                
+
                 Spacer()
-                
+
                 HStack {
-                    Button(action: onPreviousStep) {
+                    Button {
+                        Task {
+                            onPreviousStep()
+                        }
+                    } label: {
                         Image(systemName: "arrow.left")
-                            .font(.title3)
-                            .bold()
-                            .foregroundColor(.darkGreen)
-                            .padding()
-                            .background(Color.white)
-                            .clipShape(Circle())
+                            .modifier(ArrowButtonModifier())
                     }
+
                     Spacer()
-                    
-                    Button(action: onNextStep) {
+
+                    Button {
+                        Task {
+                            onNextStep()
+                        }
+                    } label: {
                         Image(systemName: "arrow.right")
-                            .font(.title3)
-                            .bold()
-                            .foregroundColor(.darkGreen)
-                            .padding()
-                            .background(onboardingViewModel.canProceed ? Color.white : Color.white.opacity(0.4))
-                            .clipShape(Circle())
+                            .modifier(
+                                ArrowButtonModifier(
+                                    backgroundColor: onboardingViewModel
+                                        .canProceed
+                                        ? Color.white : Color.white.opacity(0.4)
+                                )
+                            )
                     }
                     .disabled(!onboardingViewModel.canProceed)
                 }
-                .padding(.bottom, 10)
             }
-            .padding(.horizontal, 20)
+            .padding(20)
         }
     }
-    
-  
+
 }
 
 #Preview("Swedish") {
@@ -100,11 +115,5 @@ struct OnboardingEconomyView: View {
     OnboardingEconomyView(onNextStep: {}, onPreviousStep: {})
         .environment(OnboardingViewModel())
         .environment(\.locale, Locale(identifier: "ENG"))
-    
+
 }
-
-
-
-
-
-

@@ -68,6 +68,7 @@ struct EditProfileView: View {
                 .modifier(EditProfileTextFieldModifier())
 
             Text("Sparmål (kr)")
+                .keyboardType(.numberPad)
                 .font(.custom("Roboto-Medium", size: 16))
 
             TextField("\(editProfileViewModel.editSavingsGoal) kr", value: $editVM.editSavingsGoal, format: .number)
