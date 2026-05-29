@@ -37,7 +37,6 @@ struct OnboardingDosorView: View {
                         format: .number,
                         prompt: Text("Antal")
                     )
-                    .keyboardType(.numberPad)
                     .modifier(OnboardingTextFieldModifier())
                 }
 

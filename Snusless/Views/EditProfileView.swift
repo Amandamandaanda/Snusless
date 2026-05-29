@@ -53,21 +53,18 @@ struct EditProfileView: View {
                 .font(.custom("Roboto-Medium", size: 16))
 
             TextField("\(editProfileViewModel.editDosor) dosor", value: $editVM.editDosor, format: .number)
-                .keyboardType(.numberPad)
                 .modifier(EditProfileTextFieldModifier())
 
             Text("Portioner per snusdosa")
                 .font(.custom("Roboto-Medium", size: 16))
 
             TextField("\(editProfileViewModel.editPortioner) st", value: $editVM.editPortioner, format: .number)
-                .keyboardType(.numberPad)
                 .modifier(EditProfileTextFieldModifier(keyboardType: .numberPad))
 
             Text("Pris per snusdosa (kr)")
                 .font(.custom("Roboto-Medium", size: 16))
 
             TextField("\(String(format: "%.2f", editProfileViewModel.editPrice)) kr", value: $editVM.editPrice, format: .number)
-                .keyboardType(.numberPad)
                 .modifier(EditProfileTextFieldModifier())
 
             Text("Sparmål (kr)")

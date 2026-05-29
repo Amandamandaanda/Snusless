@@ -35,7 +35,6 @@ struct OnboardingEconomyView: View {
                         format: .number,
                         prompt: Text("40kr")
                     )
-                    .keyboardType(.numberPad)
                     .modifier(OnboardingTextFieldModifier())
                 }
 
@@ -51,7 +50,6 @@ struct OnboardingEconomyView: View {
                         format: .number,
                         prompt: Text("1000kr")
                     )
-                    .keyboardType(.numberPad)
                     .modifier(OnboardingTextFieldModifier())
                 }
 
