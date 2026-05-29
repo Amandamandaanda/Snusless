@@ -23,7 +23,6 @@ struct SavingsCard: View {
             RoundedRectangle(cornerRadius: 20)
                 .fill(.lightGreen)
 
-            GeometryReader { geometry in
                 Circle()
                     .stroke(
                         .white.opacity(0.2),
@@ -31,7 +30,6 @@ struct SavingsCard: View {
                     )
                     .frame(width: 180, height: 180)
                     .position(x: 75, y: 142)
-            }
 
             HStack {
 
