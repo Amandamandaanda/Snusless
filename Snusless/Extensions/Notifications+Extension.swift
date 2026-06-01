@@ -25,7 +25,24 @@ extension SettingsView {
         let request = UNNotificationRequest(identifier: "dailyCheckInReminder", content: content, trigger: trigger)
         
         UNUserNotificationCenter.current().add(request)
-        
-        
+    }
+    
+    func requestNotificationPermission(date: Date) {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {granted, error in
+            if let error = error {
+                print("Error sending notification: \(error.localizedDescription)")
+                return
+            }
+            if granted {
+                print("Notification permission granted")
+                sendNotification(date: date)
+            } else {
+                print("Notification permission denied")
+            }
+        }
+    }
+    
+    func cancelNotificationPermission() {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["dailyCheckInReminder"])
     }
 }
