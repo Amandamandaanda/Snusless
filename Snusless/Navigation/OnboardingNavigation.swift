@@ -99,7 +99,7 @@ struct OnboardingNavigation: View {
 
                         onboardingViewModel.onboardingState = .onboardingName
                     } label: {
-                        Image(systemName: isActive(.onboardingName) ? "circle.fill" : "circle")
+                        Image(systemName: onboardingViewModel.isActive(.onboardingName) ? "circle.fill" : "circle")
                     }
                     
                     Button {
@@ -109,7 +109,7 @@ struct OnboardingNavigation: View {
                         
                         
                     } label: {
-                        Image(systemName: isActive(.onboardingDate) ? "circle.fill" : "circle")
+                        Image(systemName: onboardingViewModel.isActive(.onboardingDate) ? "circle.fill" : "circle")
                     }
                     .disabled(!onboardingViewModel.isNameValid)
                     
@@ -122,7 +122,7 @@ struct OnboardingNavigation: View {
                       
                     } label: {
                         
-                        Image(systemName: isActive(.onboardingDosor) ? "circle.fill" : "circle")
+                        Image(systemName: onboardingViewModel.isActive(.onboardingDosor) ? "circle.fill" : "circle")
                     }
                     .disabled(!onboardingViewModel.isNameValid)
                     
@@ -132,7 +132,7 @@ struct OnboardingNavigation: View {
                         OnboardingState.onboardingEconomy.rawValue
                         onboardingViewModel.onboardingState = .onboardingEconomy
                     } label: {
-                        Image(systemName: isActive(.onboardingEconomy) ? "circle.fill" : "circle")
+                        Image(systemName: onboardingViewModel.isActive(.onboardingEconomy) ? "circle.fill" : "circle")
                             
                     }
                     .disabled(!((onboardingViewModel.numberOfDosor ?? 0) > 0))
@@ -144,7 +144,7 @@ struct OnboardingNavigation: View {
                         
                         onboardingViewModel.onboardingState = .onboardingSummary
                     } label: {
-                        Image(systemName: isActive(.onboardingSummary) ? "circle.fill" : "circle")
+                        Image(systemName: onboardingViewModel.isActive(.onboardingSummary) ? "circle.fill" : "circle")
                             
                     }
                     .disabled(!((onboardingViewModel.savingGoal ?? 0) > 0))

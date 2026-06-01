@@ -40,6 +40,10 @@ class OnboardingViewModel {
         return isValidPrice && isValidGoal
     }
     
+    func isActive(_ state: OnboardingState) -> Bool {
+        onboardingState == state
+    }
+    
     
     // Added prints for testing and save user is working
     func saveUser(context: ModelContext) {
