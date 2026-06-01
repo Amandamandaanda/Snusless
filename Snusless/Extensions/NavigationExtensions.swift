@@ -8,10 +8,6 @@
 import SwiftUI
 
 extension OnboardingNavigation {
-    func isActive(_ state: OnboardingState) -> Bool {
-        onboardingViewModel.onboardingState == state
-    }
-    
     func slideTransition(isGoingForward: Bool) -> AnyTransition {
         .asymmetric(insertion: .move(edge: isGoingForward ? .trailing : .leading).combined(with: .opacity), removal: .move(edge: isGoingForward ? .leading : .trailing).combined(with: .opacity))
     }
