@@ -51,6 +51,16 @@
         }
       }
     },
+    "%lld dagar" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld days"
+          }
+        }
+      }
+    },
     "%lld dosor" : {
       "localizations" : {
         "en" : {
@@ -149,16 +159,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Edit Profile"
-          }
-        }
-      }
-    },
-    "Ångra dag" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Regret day"
           }
         }
       }
@@ -314,7 +314,17 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "I made it through the day!"
+            "value" : "I made the day!"
+          }
+        }
+      }
+    },
+    "Jag tog en snus" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I took a snus"
           }
         }
       }
@@ -325,6 +335,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "kr"
+          }
+        }
+      }
+    },
+    "Längsta streak" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Longest streak"
           }
         }
       }
