@@ -32,7 +32,7 @@ struct PortionsCard: View {
     }
 }
 
-// Preview kısmı (dosyanın en altında)
+
 #Preview {
     PortionsCard(dosor: 1.5, portionsPerDosa: 20)
 }

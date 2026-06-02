@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct OnboardingNavigation: View {
-    @Environment(OnboardingViewModel.self) private var onboardingViewModel
+    @Environment(OnboardingViewModel.self) var onboardingViewModel
     @Environment(\.modelContext) private var modelContext
     
     @Binding var selectedTab: TabSelection
@@ -24,7 +24,8 @@ struct OnboardingNavigation: View {
                     isGoingForward = true
                     onboardingViewModel.onboardingState = .onboardingDate
                 })
-                .transition(.asymmetric(insertion: .move(edge: isGoingForward ? .trailing : .leading).combined(with: .opacity), removal: .move(edge: isGoingForward ? .leading : .trailing).combined(with: .opacity)))
+                .transition(slideTransition(isGoingForward: isGoingForward))
+
             case .onboardingDate:
                 OnboardingDateView(onNextStep: {
                     isGoingForward = true
@@ -34,7 +35,7 @@ struct OnboardingNavigation: View {
                     isGoingForward = false
                     onboardingViewModel.onboardingState = .onboardingName
                 })
-                .transition(.asymmetric(insertion: .move(edge: isGoingForward ? .trailing : .leading).combined(with: .opacity), removal: .move(edge: isGoingForward ? .leading : .trailing).combined(with: .opacity)))
+                .transition(slideTransition(isGoingForward: isGoingForward))
                     
            
             case .onboardingDosor:
@@ -49,7 +50,8 @@ struct OnboardingNavigation: View {
                         onboardingViewModel.onboardingState = .onboardingDate
                     }
                 )
-                .transition(.asymmetric(insertion: .move(edge: isGoingForward ? .trailing : .leading).combined(with: .opacity), removal: .move(edge: isGoingForward ? .leading : .trailing).combined(with: .opacity)))
+                .transition(slideTransition(isGoingForward: isGoingForward))
+
                 
        
             case .onboardingEconomy:
@@ -67,7 +69,8 @@ struct OnboardingNavigation: View {
                         onboardingViewModel.onboardingState = .onboardingDosor
                     }
                 )
-                .transition(.asymmetric(insertion: .move(edge: isGoingForward ? .trailing : .leading).combined(with: .opacity), removal: .move(edge: isGoingForward ? .leading : .trailing).combined(with: .opacity)))
+                .transition(slideTransition(isGoingForward: isGoingForward))
+
                 
             case .onboardingSummary:
                 @Bindable var onboardingVM = onboardingViewModel
@@ -79,7 +82,8 @@ struct OnboardingNavigation: View {
                     isGoingForward = false
                     onboardingViewModel.onboardingState = .onboardingEconomy
                 })
-                .transition(.asymmetric(insertion: .move(edge: isGoingForward ? .trailing : .leading).combined(with: .opacity), removal: .move(edge: isGoingForward ? .leading : .trailing).combined(with: .opacity)))
+                .transition(slideTransition(isGoingForward: isGoingForward))
+
                  
                 
             case .onboardingDone:
@@ -95,7 +99,7 @@ struct OnboardingNavigation: View {
 
                         onboardingViewModel.onboardingState = .onboardingName
                     } label: {
-                        Image(systemName: isActive(.onboardingName) ? "circle.fill" : "circle")
+                        Image(systemName: onboardingViewModel.isActive(.onboardingName) ? "circle.fill" : "circle")
                     }
                     
                     Button {
@@ -105,7 +109,7 @@ struct OnboardingNavigation: View {
                         
                         
                     } label: {
-                        Image(systemName: isActive(.onboardingDate) ? "circle.fill" : "circle")
+                        Image(systemName: onboardingViewModel.isActive(.onboardingDate) ? "circle.fill" : "circle")
                     }
                     .disabled(!onboardingViewModel.isNameValid)
                     
@@ -118,7 +122,7 @@ struct OnboardingNavigation: View {
                       
                     } label: {
                         
-                        Image(systemName: isActive(.onboardingDosor) ? "circle.fill" : "circle")
+                        Image(systemName: onboardingViewModel.isActive(.onboardingDosor) ? "circle.fill" : "circle")
                     }
                     .disabled(!onboardingViewModel.isNameValid)
                     
@@ -128,7 +132,7 @@ struct OnboardingNavigation: View {
                         OnboardingState.onboardingEconomy.rawValue
                         onboardingViewModel.onboardingState = .onboardingEconomy
                     } label: {
-                        Image(systemName: isActive(.onboardingEconomy) ? "circle.fill" : "circle")
+                        Image(systemName: onboardingViewModel.isActive(.onboardingEconomy) ? "circle.fill" : "circle")
                             
                     }
                     .disabled(!((onboardingViewModel.numberOfDosor ?? 0) > 0))
@@ -140,7 +144,7 @@ struct OnboardingNavigation: View {
                         
                         onboardingViewModel.onboardingState = .onboardingSummary
                     } label: {
-                        Image(systemName: isActive(.onboardingSummary) ? "circle.fill" : "circle")
+                        Image(systemName: onboardingViewModel.isActive(.onboardingSummary) ? "circle.fill" : "circle")
                             
                     }
                     .disabled(!((onboardingViewModel.savingGoal ?? 0) > 0))
@@ -153,10 +157,6 @@ struct OnboardingNavigation: View {
         }
         .background(.lightGreen)
         .animation(.smooth(duration: 0.3), value: onboardingViewModel.onboardingState)
-    }
-    
-    private func isActive(_ state: OnboardingState) -> Bool {
-        onboardingViewModel.onboardingState == state
     }
     
 }

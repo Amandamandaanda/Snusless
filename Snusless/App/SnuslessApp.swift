@@ -13,6 +13,7 @@ struct SnuslessApp: App {
     var body: some Scene {
         WindowGroup {
             LaunchView()
+                .preferredColorScheme(.light)
         }
         .modelContainer(for: [User.self, Streak.self])
     }

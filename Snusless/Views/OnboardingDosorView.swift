@@ -12,25 +12,24 @@ struct OnboardingDosorView: View {
 
     @State private var portionCount: Double = 20.0
     @State private var dosorCount: Double = 1.0
-    
+
     var onNextStep: () -> Void
     var onPreviousStep: () -> Void
-    
+
     var body: some View {
         ZStack {
             Color(.lightGreen)
                 .ignoresSafeArea()
-            
+
             VStack(spacing: 30) {
                 Spacer()
-                
-                //Slider//
+
                 VStack(spacing: 15) {
                     Text("Hur många snusdosor\nanvänder du per dag?")
                         .font(.custom("Roboto-Bold", size: 22))
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
-                    
+
                     Text("\(dosorCount, format: .number.precision(.fractionLength(1)))")
                         .font(.custom("Roboto-Light", size: 20))
                         .bold()
@@ -43,72 +42,70 @@ struct OnboardingDosorView: View {
                             onboardingViewModel.numberOfDosor = newValue
                         }
                 }
-                
+
                 Spacer().frame(height: 20)
-                
-                
+
                 VStack(spacing: 15) {
                     Text("Hur många portioner\när det i en snusdosa?")
                         .font(.custom("Roboto-Bold", size: 22))
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
-                    
+
                     Text("\(Int(onboardingViewModel.portionsPerDosa))")
                         .font(.custom("Roboto-Light", size: 20))
                         .bold()
                         .foregroundColor(.white)
-                    
-                    Slider(value: $portionCount, in: 0...100, step: 1)
+
+                    Slider(value: $portionCount, in: 10...30, step: 1)
                         .accentColor(.white)
                         .padding(.horizontal, 40)
                         .onChange(of: portionCount) { _, newValue in
                             onboardingViewModel.portionsPerDosa = Int(newValue)
                         }
-                    
+
                     HStack {
-                        Text("0")
+                        Text("10")
                         Spacer()
-                        Text("100")
+                        Text("30")
                     }
                     .foregroundColor(.white.opacity(0.6))
                     .font(.custom("Roboto-Light", size: 14))
                     .padding(.horizontal, 40)
                 }
-                
+
                 if !onboardingViewModel.errorMessage.isEmpty {
                     Text(onboardingViewModel.errorMessage)
                         .foregroundColor(.red)
                 }
-                
+
                 Spacer()
-                
+
                 HStack {
-                    Button(action: onPreviousStep) {
+                    Button {
+                        Task {
+                            onPreviousStep()
+                        }
+                    } label: {
                         Image(systemName: "arrow.left")
-                            .font(.title3)
-                            .bold()
-                            .foregroundColor(.darkGreen)
-                            .padding()
-                            .background(Color.white)
-                            .clipShape(Circle())
+                            .modifier(ArrowButtonModifier())
                     }
-                    
+
                     Spacer()
-                    
+
                     Button(action: saveAndProceed) {
                         Image(systemName: "arrow.right")
-                            .font(.title3)
-                            .bold()
-                            .foregroundColor(.darkGreen)
-                            .padding()
-                            .background(onboardingViewModel.isDosorValid ? Color.white : Color.white.opacity(0.4))
-                            .clipShape(Circle())
+                            .modifier(
+                                ArrowButtonModifier(
+                                    backgroundColor: onboardingViewModel
+                                        .isDosorValid
+                                        ? Color.white : Color.white.opacity(0.4)
+                                )
+                            )
                     }
                     .disabled(!onboardingViewModel.isDosorValid)
                 }
-                .padding(.horizontal, 20)
-                .padding(.bottom, 10)
             }
+            .padding(20)
         }
         .onAppear {
             
@@ -116,7 +113,7 @@ struct OnboardingDosorView: View {
             onboardingViewModel.portionsPerDosa = Int(portionCount)
         }
     }
-    
+
     private func saveAndProceed() {
         onboardingViewModel.portionsPerDosa = Int(portionCount)
         onboardingViewModel.numberOfDosor = dosorCount

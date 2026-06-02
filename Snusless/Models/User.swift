@@ -17,8 +17,11 @@ class User {
     var savingsGoal: Int
     var startDate: Date
     var streak: Streak
+    var longestStreak: Int
+    var totalSaved: Double
+    var dayOfLostStreak: Date?
     
-    init(name: String, numberOfDosor: Double, pricePerDosa: Double, portionsPerDosa: Int, savingsGoal: Int, startDate: Date,  streak: Streak = Streak()) {
+    init(name: String, numberOfDosor: Double, pricePerDosa: Double, portionsPerDosa: Int, savingsGoal: Int, startDate: Date, streak: Streak = Streak(), longestStreak: Int = 0, totalSaved: Double = 0, dayOfLostStreak: Date? = nil) {
         self.name = name
         self.numberOfDosor = numberOfDosor
         self.pricePerDosa = pricePerDosa
@@ -26,6 +29,8 @@ class User {
         self.portionsPerDosa = portionsPerDosa
         self.savingsGoal = savingsGoal
         self.streak = streak
-   
+        self.longestStreak = longestStreak
+        self.totalSaved = totalSaved
+        self.dayOfLostStreak = dayOfLostStreak
     }
 }

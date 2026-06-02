@@ -12,37 +12,26 @@ struct EditProfileView: View {
     @Environment(OnboardingViewModel.self) private var onboardingViewModel
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
-
-    @State private var editName: String = ""
-    @State private var originalName: String = ""
-    @State private var editStartDate: Date = Date()
-    @State private var editDosor: Double = 0.0
-    @State private var editPrice: Double = 0.0
-    @State private var editPortioner: Int = 0
-    @State private var editSavingsGoal: Int = 0
+    
+    @State private var editProfileViewModel = EditProfileViewModel()
 
     var body: some View {
+        @Bindable var editVM = editProfileViewModel
         VStack(alignment: .leading, spacing: 4) {
 
             Text("Namn")
                 .font(.custom("Roboto-Medium", size: 16))
 
-            TextField("\(originalName)", text: $editName)
-                .padding()
-                .font(.custom("Roboto-Light", size: 18))
-                .background(.lightGreen.opacity(0.1))
-                .overlay(RoundedRectangle(cornerRadius: 10)
-                    .stroke(.darkGreen, lineWidth: 2))
-                .foregroundColor(.black)
-                .cornerRadius(10)
-                .padding(.bottom, 16)
+            TextField("\(editProfileViewModel.originalName)", text: $editVM.editName)
+                .modifier(EditProfileTextFieldModifier(keyboardType: .default))
+                
 
             Text("Startdatum")
                 .font(.custom("Roboto-Medium", size: 16))
 
             DatePicker(
                 "",
-                selection: $editStartDate,
+                selection: $editVM.editStartDate,
                 in: ...Date(),
                 displayedComponents: .date
             )
@@ -61,84 +50,48 @@ struct EditProfileView: View {
             Text("Antal snusdosor per dag")
                 .font(.custom("Roboto-Medium", size: 16))
             
-            Slider(value: $editDosor, in: 0...10, step: 0.5)
+            Slider(value: $editVM.editDosor, in: 0...10, step: 0.5)
                 .accentColor(.darkGreen)
 
-            TextField("Antal dosor", value: $editDosor, format: .number.precision(.fractionLength(1)))
-                .keyboardType(.decimalPad)
-                .font(.custom("Roboto-Light", size: 18))
-                .padding()
-                .background(.lightGreen.opacity(0.1))
-                .overlay(RoundedRectangle(cornerRadius: 10)
-                    .stroke(.darkGreen, lineWidth: 2))
-                .foregroundColor(.black)
-                .cornerRadius(10)
-                .padding(.bottom, 16)
+            TextField("\(editProfileViewModel.editDosor, format: .number.precision(.fractionLength(1))) dosor", value: $editVM.editDosor, format: .number)
+                .modifier(EditProfileTextFieldModifier())
             
             Text("Portioner per snusdosa")
                 .font(.custom("Roboto-Medium", size: 16))
 
-            TextField("\(editPortioner) st", value: $editPortioner, format: .number)
-                .keyboardType(.numberPad)
-                .font(.custom("Roboto-Light", size: 18))
-                .padding()
-                .background(.lightGreen.opacity(0.1))
-                .foregroundColor(.black)
-                .overlay(RoundedRectangle(cornerRadius: 10)
-                    .stroke(.darkGreen, lineWidth: 2))
-                .cornerRadius(10)
-                .padding(.bottom, 16)
+            TextField("\(editProfileViewModel.editPortioner) st", value: $editVM.editPortioner, format: .number)
+                .modifier(EditProfileTextFieldModifier(keyboardType: .numberPad))
 
             Text("Pris per snusdosa (kr)")
                 .font(.custom("Roboto-Medium", size: 16))
 
-            TextField("\(String(format: "%.2f", editPrice)) kr", value: $editPrice, format: .number)
-                .keyboardType(.decimalPad)
-                .font(.custom("Roboto-Light", size: 18))
-                .padding()
-                .background(.lightGreen.opacity(0.1))
-                .foregroundColor(.black)
-                .overlay(RoundedRectangle(cornerRadius: 10)
-                    .stroke(.darkGreen, lineWidth: 2))
-                .cornerRadius(10)
-                .padding(.bottom, 16)
+            TextField("\(String(format: "%.2f", editProfileViewModel.editPrice)) kr", value: $editVM.editPrice, format: .number)
+                .modifier(EditProfileTextFieldModifier())
 
             Text("Sparmål (kr)")
+                .keyboardType(.numberPad)
                 .font(.custom("Roboto-Medium", size: 16))
 
-            TextField("\(editSavingsGoal) kr", value: $editSavingsGoal, format: .number)
-                .keyboardType(.decimalPad)
-                .font(.custom("Roboto-Light", size: 18))
-                .padding()
-                .background(.lightGreen.opacity(0.1))
-                .overlay(RoundedRectangle(cornerRadius: 10)
-                    .stroke(.darkGreen, lineWidth: 2))
-                .foregroundColor(.black)
-                .cornerRadius(10)
-                .padding(.bottom, 16)
+            TextField("\(editProfileViewModel.editSavingsGoal) kr", value: $editVM.editSavingsGoal, format: .number)
+                .modifier(EditProfileTextFieldModifier())
 
             Spacer()
 
             Button(action: {
-                onboardingViewModel.updateUser(
+                editProfileViewModel.updateUser(
                     context: modelContext,
-                    updatedName: editName,
-                    updatedDate: editStartDate,
-                    updatedDosor: Double(editDosor),
-                    updatedPortions: editPortioner,
-                    updatedPrice: editPrice,
-                    updatedSavingsGoal: editSavingsGoal
+                    updatedName: editProfileViewModel.editName,
+                    updatedDate: editProfileViewModel.editStartDate,
+                    updatedDosor: editProfileViewModel.editDosor,
+                    updatedPortions: editProfileViewModel.editPortioner,
+                    updatedPrice: editProfileViewModel.editPrice,
+                    updatedSavingsGoal: editProfileViewModel.editSavingsGoal
                 )
 
                 dismiss()
             }) {
                 Text("Spara")
-                    .font(.custom("Roboto-Bold", size: 18))
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(.darkGreen)
-                    .cornerRadius(10)
+                    .modifier(ButtonModifier(foregroundColor: .white, backgroundColor: .darkGreen))
             }
             Spacer()
         }
@@ -146,16 +99,14 @@ struct EditProfileView: View {
         .onAppear {
             let descriptor = FetchDescriptor<User>()
             if let existingUser = try?
-                
-            
                 modelContext.fetch(descriptor).first {
-                originalName = existingUser.name
-                editName = existingUser.name
-                editStartDate = existingUser.startDate
-                editDosor = existingUser.numberOfDosor
-                editPortioner = existingUser.portionsPerDosa
-                editPrice = existingUser.pricePerDosa
-                editSavingsGoal = existingUser.savingsGoal
+                editProfileViewModel.originalName = existingUser.name
+                editProfileViewModel.editName = existingUser.name
+                editProfileViewModel.editStartDate = existingUser.startDate
+                editProfileViewModel.editDosor = existingUser.numberOfDosor
+                editProfileViewModel.editPortioner = existingUser.portionsPerDosa
+                editProfileViewModel.editPrice = existingUser.pricePerDosa
+                editProfileViewModel.editSavingsGoal = existingUser.savingsGoal
             }        }
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {

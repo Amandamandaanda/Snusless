@@ -22,15 +22,58 @@ class HomeViewModel{
         if let index = user.streak.checkedinDays.firstIndex(where: {
             Calendar.current.isDateInToday($0) 
         }) {
-            user.streak.checkedinDays.remove(at: index)
+//            user.streak.checkedinDays.remove(at: index)
+//            user.totalSaved = max(0, user.totalSaved - user.dailySavings)
         } else {
             user.streak.checkedinDays.append(today)
+            updateLongestStreak(for: user)
+            user.totalSaved += user.dailySavings
         }
         
         do {
             try context.save()
         } catch {
             errorMessage = "Kunde inte spara"
+        }
+    }
+    
+    func resetStreak(user: User, context: ModelContext) {
+        errorMessage = nil
+        
+        // Save longest streak before resetting
+        updateLongestStreak(for: user)
+        
+        // Reset the streak
+        user.streak.resetStreak()
+        
+        do {
+            try context.save()
+        } catch {
+            errorMessage = "Kunde inte spara"
+        }
+    }
+    
+    func checkAndResetStreakIfBroken(user: User, context: ModelContext) {
+        // Check if the streak is broken (missed more than 1 day)
+        if user.streak.isStreakBroken {
+            // Save the longest streak before resetting
+            updateLongestStreak(for: user)
+            
+            // Reset the streak
+            user.streak.resetStreak()
+            
+            do {
+                try context.save()
+            } catch {
+                errorMessage = "Kunde inte spara"
+            }
+        }
+    }
+    
+    private func updateLongestStreak(for user: User) {
+        let currentStreak = user.streak.currentStreak
+        if currentStreak > user.longestStreak {
+            user.longestStreak = currentStreak
         }
     }
 }

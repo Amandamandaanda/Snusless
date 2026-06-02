@@ -58,12 +58,7 @@ struct ProfileView: View {
                 showingEditProfileSheet = true
             } label: {
                 Text("Redigera")
-                    .font(.custom("Roboto-Bold", size: 18))
-                    .foregroundColor(.darkGreen)
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(.lightGreen.opacity(0.2))
-                    .cornerRadius(15)
+                    .modifier(ButtonModifier(backgroundColor: .lightGreen.opacity(0.2)))
             }
 
             Spacer()
