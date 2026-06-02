@@ -14,4 +14,8 @@ extension User {
     func calculateSavings(forDays days: Int) -> Double {
         return Double(self.numberOfDosor) * self.pricePerDosa * Double(days)
     }
+    
+    var dailySavings: Double {
+        return Double(self.numberOfDosor) * self.pricePerDosa
+    }
 }
