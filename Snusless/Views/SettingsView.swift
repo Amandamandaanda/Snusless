@@ -26,7 +26,6 @@ struct SettingsView: View {
                 Text("Slå på notiser")
             }
             .padding()
-            .frame(maxWidth: .infinity)
             .background(Color.gray.opacity(0.1))
             .clipShape(RoundedRectangle(cornerRadius: 16))
             .onChange(of: isNotificationAuthorized) { _, newValue in
@@ -37,6 +36,7 @@ struct SettingsView: View {
                 }
             }
             .padding()
+            
             
             if isNotificationAuthorized {
                 DatePicker("Välj tid för dina påminnelser", selection: $notificationDate, displayedComponents: [.hourAndMinute])
