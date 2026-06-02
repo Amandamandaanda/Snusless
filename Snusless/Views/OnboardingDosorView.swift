@@ -111,7 +111,7 @@ struct OnboardingDosorView: View {
             }
         }
         .onAppear {
-            // Ekran açılır açılmaz ViewModel'deki başlangıç değerlerini senkronize ediyoruz
+            
             onboardingViewModel.numberOfDosor = dosorCount
             onboardingViewModel.portionsPerDosa = Int(portionCount)
         }
