@@ -18,7 +18,7 @@ extension SettingsView {
         dateComponents.hour = Calendar.current.component(.hour, from: date)
         dateComponents.minute = Calendar.current.component(.minute, from: date)
         
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: true)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["dailyCheckInReminder"])
         
@@ -42,7 +42,7 @@ extension SettingsView {
         }
     }
     
-    func cancelNotificationPermission() {
+    func cancelNotification() {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["dailyCheckInReminder"])
     }
 }

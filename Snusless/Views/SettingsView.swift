@@ -7,6 +7,7 @@
 
 import SwiftData
 import SwiftUI
+import UserNotifications
 
 struct SettingsView: View {
     @Query private var users: [User]
@@ -15,9 +16,38 @@ struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var viewModel = SettingsViewModel()
     @State private var isPresentingDeleteAlert: Bool = false
+    @State private var notificationDate = Date()
+    @State private var isNotificationAuthorized: Bool = false
 
     var body: some View {
         VStack(spacing: 24) {
+            
+            Toggle(isOn: $isNotificationAuthorized) {
+                Text("Slå på notiser")
+            }
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(Color.gray.opacity(0.1))
+            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .onChange(of: isNotificationAuthorized) { _, newValue in
+                if newValue {
+                    requestNotificationPermission(date: notificationDate)
+                } else {
+                    cancelNotification()
+                }
+            }
+            .padding()
+            
+            if isNotificationAuthorized {
+                DatePicker("Välj tid för dina påminnelser", selection: $notificationDate, displayedComponents: [.hourAndMinute])
+                    .onChange(of: notificationDate) { _, newDate in
+                        sendNotification(date: newDate)
+                    }
+                    
+                }
+            
+            
+            
             Button {
                 isPresentingDeleteAlert = true
             } label: {
