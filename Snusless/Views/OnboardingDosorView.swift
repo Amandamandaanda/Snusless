@@ -5,23 +5,18 @@
 //  Created by Pinar Bildirici on 2026-05-19.
 //
 
-
 import SwiftUI
 
 struct OnboardingDosorView: View {
     @Environment(OnboardingViewModel.self) private var onboardingViewModel
 
     @State private var portionCount: Double = 20.0
+    @State private var dosorCount: Double = 1.0
     
     var onNextStep: () -> Void
     var onPreviousStep: () -> Void
     
-    
-    
     var body: some View {
-        @Bindable var onboardingVM = onboardingViewModel
-        
-
         ZStack {
             Color(.lightGreen)
                 .ignoresSafeArea()
@@ -29,25 +24,28 @@ struct OnboardingDosorView: View {
             VStack(spacing: 30) {
                 Spacer()
                 
+                //Slider//
                 VStack(spacing: 15) {
                     Text("Hur många snusdosor\nanvänder du per dag?")
                         .font(.custom("Roboto-Bold", size: 22))
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
                     
-                    TextField("", value: $onboardingVM.numberOfDosor, format: .number, prompt: Text("Antal")
-                        .font(.custom("Roboto-Light", size: 18)))
-                        .keyboardType(.numberPad)
-                        .multilineTextAlignment(.center)
-                        .padding(.vertical, 10)
-                        .padding(.horizontal, 20)
-                        .background(Color.white)
-                        .foregroundColor(.black)
-                        .cornerRadius(10)
-                        .frame(width: 120)
+                    Text("\(dosorCount, format: .number.precision(.fractionLength(1)))")
+                        .font(.custom("Roboto-Light", size: 20))
+                        .bold()
+                        .foregroundColor(.white)
+
+                    Slider(value: $dosorCount, in: 0...5, step: 0.5)
+                        .accentColor(.white)
+                        .padding(.horizontal, 40)
+                        .onChange(of: dosorCount) { _, newValue in
+                            onboardingViewModel.numberOfDosor = newValue
+                        }
                 }
                 
                 Spacer().frame(height: 20)
+                
                 
                 VStack(spacing: 15) {
                     Text("Hur många portioner\när det i en snusdosa?")
@@ -63,7 +61,7 @@ struct OnboardingDosorView: View {
                     Slider(value: $portionCount, in: 0...100, step: 1)
                         .accentColor(.white)
                         .padding(.horizontal, 40)
-                        .onChange(of: portionCount) {_, newValue in
+                        .onChange(of: portionCount) { _, newValue in
                             onboardingViewModel.portionsPerDosa = Int(newValue)
                         }
                     
@@ -97,9 +95,6 @@ struct OnboardingDosorView: View {
                     
                     Spacer()
                     
-                    
-                    
-                    
                     Button(action: saveAndProceed) {
                         Image(systemName: "arrow.right")
                             .font(.title3)
@@ -115,13 +110,19 @@ struct OnboardingDosorView: View {
                 .padding(.bottom, 10)
             }
         }
+        .onAppear {
+            // Ekran açılır açılmaz ViewModel'deki başlangıç değerlerini senkronize ediyoruz
+            onboardingViewModel.numberOfDosor = dosorCount
+            onboardingViewModel.portionsPerDosa = Int(portionCount)
+        }
     }
     
     private func saveAndProceed() {
-        onboardingViewModel.portionsPerDosa = Int(portionCount) 
-            if onboardingViewModel.errorMessage.isEmpty {
-                onNextStep()
-            }
+        onboardingViewModel.portionsPerDosa = Int(portionCount)
+        onboardingViewModel.numberOfDosor = dosorCount
+        if onboardingViewModel.errorMessage.isEmpty {
+            onNextStep()
+        }
     }
 }
 
@@ -135,4 +136,3 @@ struct OnboardingDosorView: View {
         .environment(OnboardingViewModel())
         .environment(\.locale, Locale(identifier: "ENG"))
 }
-

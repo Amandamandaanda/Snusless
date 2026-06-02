@@ -11,7 +11,7 @@ import SwiftData
 @Observable
 class OnboardingViewModel {
     var name: String = ""
-    var numberOfDosor: Int? = nil
+    var numberOfDosor: Double? = nil
     var pricePerDosa: Double? = nil
     var savingGoal: Int? = nil
     var portionsPerDosa: Int = 20
@@ -90,7 +90,7 @@ class OnboardingViewModel {
         }
         
        
-    func updateUser(context: ModelContext, updatedName: String, updatedDate: Date, updatedDosor: Int, updatedPortions: Int, updatedPrice: Double, updatedSavingsGoal: Int) {
+    func updateUser(context: ModelContext, updatedName: String, updatedDate: Date, updatedDosor: Double, updatedPortions: Int, updatedPrice: Double, updatedSavingsGoal: Int) {
             do {
                 let descriptor = FetchDescriptor<User>()
                 if let existingUser = try context.fetch(descriptor).first {

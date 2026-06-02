@@ -54,6 +54,13 @@ struct HomeView: View {
                             savedAmount: user.calculateSavings(forDays: user.streak.currentStreak),
                             savingsGoal: user.savingsGoal
                         )
+                        
+                        
+                        
+                        PortionsCard(
+                                dosor: user.numberOfDosor,
+                                portionsPerDosa: user.portionsPerDosa
+                            )
             
                         
                         Button {

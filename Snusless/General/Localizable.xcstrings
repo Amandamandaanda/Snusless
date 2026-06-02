@@ -52,6 +52,7 @@
       }
     },
     "%lld dosor" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -70,6 +71,9 @@
           }
         }
       }
+    },
+    "%lld portioner" : {
+
     },
     "%lld st" : {
       "localizations" : {
@@ -164,6 +168,7 @@
       }
     },
     "Antal" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -172,6 +177,9 @@
           }
         }
       }
+    },
+    "Antal dosor" : {
+
     },
     "Antal snusdosor per dag" : {
       "localizations" : {
@@ -216,6 +224,9 @@
           }
         }
       }
+    },
+    "Dagens Portioner" : {
+
     },
     "Ditt namn" : {
       "localizations" : {

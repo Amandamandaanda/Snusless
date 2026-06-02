@@ -16,7 +16,7 @@ struct EditProfileView: View {
     @State private var editName: String = ""
     @State private var originalName: String = ""
     @State private var editStartDate: Date = Date()
-    @State private var editDosor: Int = 0
+    @State private var editDosor: Double = 0.0
     @State private var editPrice: Double = 0.0
     @State private var editPortioner: Int = 0
     @State private var editSavingsGoal: Int = 0
@@ -60,9 +60,12 @@ struct EditProfileView: View {
 
             Text("Antal snusdosor per dag")
                 .font(.custom("Roboto-Medium", size: 16))
+            
+            Slider(value: $editDosor, in: 0...10, step: 0.5)
+                .accentColor(.darkGreen)
 
-            TextField("\(editDosor) dosor", value: $editDosor, format: .number)
-                .keyboardType(.numberPad)
+            TextField("Antal dosor", value: $editDosor, format: .number.precision(.fractionLength(1)))
+                .keyboardType(.decimalPad)
                 .font(.custom("Roboto-Light", size: 18))
                 .padding()
                 .background(.lightGreen.opacity(0.1))
@@ -71,7 +74,7 @@ struct EditProfileView: View {
                 .foregroundColor(.black)
                 .cornerRadius(10)
                 .padding(.bottom, 16)
-
+            
             Text("Portioner per snusdosa")
                 .font(.custom("Roboto-Medium", size: 16))
 
@@ -121,7 +124,7 @@ struct EditProfileView: View {
                     context: modelContext,
                     updatedName: editName,
                     updatedDate: editStartDate,
-                    updatedDosor: editDosor,
+                    updatedDosor: Double(editDosor),
                     updatedPortions: editPortioner,
                     updatedPrice: editPrice,
                     updatedSavingsGoal: editSavingsGoal
