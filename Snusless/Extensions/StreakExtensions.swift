@@ -49,6 +49,26 @@ extension Streak {
         return streak
     }
     
+    var isStreakBroken: Bool {
+        let calendar = Calendar.current
+        
+        let uniqueDays = Set(
+            checkedinDays.map{ calendar.startOfDay(for: $0)}
+        )
+        
+        let sortedDays = uniqueDays.sorted(by: >)
+        
+        guard let latest = sortedDays.first else {
+            return false
+        }
+        
+        let today = calendar.startOfDay(for: Date())
+        let diff = calendar.dateComponents([.day], from: latest, to: today).day ?? 0
+        
+        // If more than 1 day has passed, streak is broken
+        return diff > 1
+    }
+    
     static func startingStreak(for user: User) -> Streak {
         let streak = user.streak
         
@@ -68,6 +88,10 @@ extension Streak {
             currentDate = calendar.date(byAdding: .day, value: 1, to: currentDate)!
         }
         return streak
+    }
+    
+    func resetStreak() {
+        checkedinDays.removeAll()
     }
 }
 
