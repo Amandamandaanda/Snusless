@@ -57,7 +57,9 @@ class OnboardingViewModel {
             portionsPerDosa: portionsPerDosa,
             savingsGoal: savingGoal ?? 0,
             startDate: startDate,
-            streak: Streak()
+            streak: Streak(),
+            snusTakenCount: 0,
+            totalSnusNotTaken: 0
         )
 
         user.streak = Streak.startingStreak(for: user)
