@@ -493,6 +493,9 @@
         }
       }
     },
+    "Slå på notiser" : {
+
+    },
     "Snusless" : {
       "localizations" : {
         "en" : {
@@ -582,6 +585,9 @@
           }
         }
       }
+    },
+    "Välj tid för dina påminnelser" : {
+
     },
     "Välkommen!" : {
       "localizations" : {
