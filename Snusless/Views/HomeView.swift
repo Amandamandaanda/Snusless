@@ -16,11 +16,11 @@ struct HomeView: View {
     private var modelContext
 
     @State private var viewModel = HomeViewModel()
-    
+
     @State private var disableButton = false
 
     var body: some View {
-        
+
         NavigationStack {
             ZStack {
                 VStack(spacing: 24) {
@@ -64,18 +64,20 @@ struct HomeView: View {
                                     user: user,
                                     context: modelContext
                                 )
+                                disableButton = true
                             } label: {
                                 Text("Jag klarade dagen!")
-                                .font(.custom("Roboto-Medium", size: 18))
-                                .bold()
-                                .foregroundColor(.white)
-                                .padding(.vertical)
-                                .padding(.horizontal, 10)
-                                
+                                    .font(.custom("Roboto-Medium", size: 18))
+                                    .bold()
+                                    .foregroundColor(.white)
+                                    .padding(.vertical)
+                                    .padding(.horizontal, 10)
+
                             }
                             .frame(maxWidth: .infinity)
-                            .background( disableButton ? .darkGreen.opacity(0.2) :
-                                .darkGreen
+                            .background(
+                                disableButton
+                                    ? .darkGreen.opacity(0.2) : .darkGreen
                             )
                             .clipShape(RoundedRectangle(cornerRadius: 12))
                             .disabled(disableButton ? true : false)
@@ -85,10 +87,10 @@ struct HomeView: View {
                                     user: user,
                                     context: modelContext
                                 )
-                                
+
                                 disableButton = true
                                 user.dayOfLostStreak = Date()
-                                
+
                             } label: {
                                 Text("Jag tog en snus")
                                     .font(.custom("Roboto-Medium", size: 18))
@@ -115,8 +117,16 @@ struct HomeView: View {
                         user: user,
                         context: modelContext
                     )
-                    
-                    if user.dayOfLostStreak != Calendar.current.startOfDay(for: Date()) {
+
+                    if let dayOfLostStreak = user.dayOfLostStreak {
+                        disableButton = Calendar.current.isDateInToday(
+                            dayOfLostStreak
+                        )
+                    } else if user.streak.checkedinDays.firstIndex(where: {
+                        Calendar.current.isDateInToday($0)
+                    }) != nil {
+                        disableButton = true
+                    } else {
                         disableButton = false
                     }
                 }
