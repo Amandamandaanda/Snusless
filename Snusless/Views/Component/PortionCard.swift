@@ -9,24 +9,26 @@ import SwiftUI
 
 struct PortionsCard: View {
  
-    let dosor: Double
-    let portionsPerDosa: Int
+    
+    let title: String
+    let description: String
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Dagens Portioner")
+            Text(title)
                 .font(.custom("Roboto-Medium", size: 16))
-                .foregroundColor(.secondary)
+                .foregroundColor(.darkGreen)
             
-            // Double*Int//
-            Text("\(Int(dosor * Double(portionsPerDosa))) portioner")
-                .font(.custom("Roboto-Bold", size: 24))
-                .foregroundColor(.white)
+            Text(description)
+                .font(.custom("Roboto-Bold", size: 18))
+                .foregroundColor(.black)
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color.lightGreen)
-        .cornerRadius(12)
+        .background(.lightGreen.opacity(0.1))
+        .overlay(RoundedRectangle(cornerRadius: 10)
+            .stroke(.darkGreen, lineWidth: 2))
+        .cornerRadius(10)
         .shadow(color: .black.opacity(0.1), radius: 4, x: 0, y: 2)
         .padding(.horizontal, 20)
     }
@@ -34,5 +36,5 @@ struct PortionsCard: View {
 
 
 #Preview {
-    PortionsCard(dosor: 1.5, portionsPerDosa: 20)
+    PortionsCard(title: "Du har inte tagit", description: "15 portioner snus")
 }
