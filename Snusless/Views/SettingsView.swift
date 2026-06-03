@@ -17,12 +17,23 @@ struct SettingsView: View {
     @State private var viewModel = SettingsViewModel()
     @State private var isPresentingDeleteAlert: Bool = false
     @State private var notificationDate = Date()
-    @State private var isNotificationAuthorized: Bool = false
+    @AppStorage("notificationsEnabled")
+    private var isNotificationAuthorized: Bool = false
 
     var body: some View {
         VStack(spacing: 24) {
             
-            Toggle(isOn: $isNotificationAuthorized) {
+            Toggle("Slå på notiser", isOn: $isNotificationAuthorized)
+                .foregroundStyle(.black)
+                .toggleStyle(NotificationToggleStyle())
+                .onChange(of: isNotificationAuthorized) { _, newValue in
+                    if newValue {
+                        requestNotificationPermission( date: notificationDate)
+                    } else {
+                        cancelNotification()
+                    }
+                }
+     /*       Toggle(isOn: $isNotificationAuthorized) {
                 Text("Slå på notiser")
             }
             .padding()
@@ -36,18 +47,15 @@ struct SettingsView: View {
                 }
             }
             .padding()
-            
+            */
             
             if isNotificationAuthorized {
                 DatePicker("Välj tid för dina påminnelser", selection: $notificationDate, displayedComponents: [.hourAndMinute])
                     .onChange(of: notificationDate) { _, newDate in
                         sendNotification(date: newDate)
                     }
-                    
                 }
-            
-            
-            
+
             Button {
                 isPresentingDeleteAlert = true
             } label: {
@@ -59,7 +67,6 @@ struct SettingsView: View {
 
                     Image(systemName: "trash")
                         .foregroundStyle(.red)
-
                 }
                 .padding()
                 .background(Color.red.opacity(0.1))
@@ -77,10 +84,9 @@ struct SettingsView: View {
         .alert("Är du säker?", isPresented: $isPresentingDeleteAlert) {
             Button("Radera", role: .destructive) {
                 viewModel.deleteData(users: users, context: modelContext)
-
             }
+            
             Button("Avbryt", role: .cancel) {
-
             }
         } message: {
             Text("All data kommer att raderas.")
@@ -89,7 +95,6 @@ struct SettingsView: View {
             if isEmpty {
                 dismiss()
             }
-
         }
     }
 }
