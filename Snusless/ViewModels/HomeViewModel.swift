@@ -19,11 +19,10 @@ class HomeViewModel{
         
         let today = Calendar.current.startOfDay(for: Date())
         
-        if let index = user.streak.checkedinDays.firstIndex(where: {
-            Calendar.current.isDateInToday($0) 
-        }) {
-//            user.streak.checkedinDays.remove(at: index)
-//            user.totalSaved = max(0, user.totalSaved - user.dailySavings)
+        if user.streak.checkedinDays.firstIndex(where: {
+            Calendar.current.isDateInToday($0)
+        }) != nil {
+
         } else {
             user.streak.checkedinDays.append(today)
             updateLongestStreak(for: user)

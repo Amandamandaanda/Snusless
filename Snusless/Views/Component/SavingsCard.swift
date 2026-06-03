@@ -33,17 +33,22 @@ struct SavingsCard: View {
                 .position(x: 75, y: 142)
 
             VStack {
-                if longestStreak > 0 {
-                    VStack {
-                        Text("Längsta streak")
-                            .font(.custom("Afacad-Regular", size: 16))
-                            .foregroundColor(.white)
-                        Text("\(longestStreak) dagar")
-                            .font(.custom("Afacad-Bold", size: 18))
-                            .foregroundColor(.darkGreen)
-                    }
-                    .padding(.top, 10)
+
+                VStack {
+                    Text("Längsta streak:")
+                        .font(.custom("Afacad-Regular", size: 16))
+                        .foregroundColor(.white)
+                    Text(
+                        longestStreak > 0
+                            ? LocalizedStringKey("\(longestStreak) dagar")
+                            : LocalizedStringKey("Ingen streak hittad")
+                    )
+                    .font(.custom("Afacad-Bold", size: 18))
+                    .foregroundColor(
+                        longestStreak > 0 ? .darkGreen : .black.opacity(0.3)
+                    )
                 }
+                .padding(.top, 10)
 
                 Spacer()
 
