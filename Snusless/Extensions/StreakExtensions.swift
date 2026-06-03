@@ -81,7 +81,7 @@ extension Streak {
 
         var currentDate = start
 
-        while currentDate <= today {
+        while currentDate < today {
 
             streak.checkedinDays.append(currentDate)
 
