@@ -58,10 +58,8 @@ struct HomeView: View {
                             longestStreak: user.longestStreak
                         )
 
-                        PortionsCard(
-                            dosor: user.numberOfDosor,
-                            portionsPerDosa: user.portionsPerDosa
-                        )
+                        
+                     
 
                         HStack(spacing: 12) {
                             Button {
