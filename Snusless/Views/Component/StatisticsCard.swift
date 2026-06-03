@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PortionsCard: View {
+struct StatisticsCard: View {
  
     
     let title: String
@@ -38,5 +38,5 @@ struct PortionsCard: View {
 
 
 #Preview {
-    PortionsCard(title: "Du har inte tagit", description: "15 portioner snus", foregroundColorTitle: Color.darkGreen)
+    StatisticsCard(title: "Du har inte tagit", description: "15 portioner snus", foregroundColorTitle: Color.darkGreen)
 }
