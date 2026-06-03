@@ -33,21 +33,6 @@ struct SettingsView: View {
                         cancelNotification()
                     }
                 }
-     /*       Toggle(isOn: $isNotificationAuthorized) {
-                Text("Slå på notiser")
-            }
-            .padding()
-            .background(Color.gray.opacity(0.1))
-            .clipShape(RoundedRectangle(cornerRadius: 16))
-            .onChange(of: isNotificationAuthorized) { _, newValue in
-                if newValue {
-                    requestNotificationPermission(date: notificationDate)
-                } else {
-                    cancelNotification()
-                }
-            }
-            .padding()
-            */
             
             if isNotificationAuthorized {
                 DatePicker("Välj tid för dina påminnelser", selection: $notificationDate, displayedComponents: [.hourAndMinute])
