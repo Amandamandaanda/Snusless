@@ -69,6 +69,9 @@ struct SettingsView: View {
         .alert("Är du säker?", isPresented: $isPresentingDeleteAlert) {
             Button("Radera", role: .destructive) {
                 viewModel.deleteData(users: users, context: modelContext)
+                
+                isNotificationAuthorized = false
+                cancelNotification()
             }
             
             Button("Avbryt", role: .cancel) {
