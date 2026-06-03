@@ -14,6 +14,23 @@ struct CustomTabBarView: View {
         HStack(alignment: .center) {
             Spacer()
             Button {
+                selectedTab = .statistics
+            } label: {
+                VStack(spacing: 1) {
+                    Image(systemName: selectedTab == .statistics ? "chart.bar.fill" : "chart.bar")
+                    Text("Statistik")
+                        .font(.custom("Roboto-Regular", size: 12))
+                }
+            }
+            .frame(width: 80, height: 50)
+            .background(
+                       Capsule()
+                        .fill(selectedTab == .statistics ? .lightGreen.opacity(0.2) : .clear)
+                   )
+            .foregroundColor(selectedTab == .statistics ? .darkGreen : .secondary)
+            
+            Spacer()
+            Button {
                 selectedTab = .home
             } label: {
                 VStack(spacing: 1) {
@@ -48,7 +65,7 @@ struct CustomTabBarView: View {
 
             Spacer()
         }
-        .frame(width: 200, height: 64)
+        .frame(width: 300, height: 64)
         .background(
                    Capsule()
                        .fill(.lightGreen.opacity(0.1))
