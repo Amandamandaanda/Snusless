@@ -8,6 +8,8 @@
 import Foundation
 
 enum TabSelection {
+    case statistics
     case home
-    case profile
+    case profile 
+  
 }
