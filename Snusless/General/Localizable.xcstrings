@@ -409,6 +409,16 @@
         }
       }
     },
+    "Max streak: " : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Max streak: "
+          }
+        }
+      }
+    },
     "Namn" : {
       "localizations" : {
         "en" : {
@@ -425,6 +435,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Name:"
+          }
+        }
+      }
+    },
+    "Nuvarande streak" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Current streak:"
           }
         }
       }
