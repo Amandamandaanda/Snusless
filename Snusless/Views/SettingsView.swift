@@ -39,6 +39,7 @@ struct SettingsView: View {
                     .onChange(of: notificationDate) { _, newDate in
                         sendNotification(date: newDate)
                     }
+                    .padding(.horizontal, 10)
                 }
 
             Button {
