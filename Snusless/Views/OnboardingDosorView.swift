@@ -11,13 +11,12 @@ struct OnboardingDosorView: View {
     @Environment(OnboardingViewModel.self) private var onboardingViewModel
 
     @State private var portionCount: Double = 20.0
+    @State private var dosorCount: Double = 1.0
 
     var onNextStep: () -> Void
     var onPreviousStep: () -> Void
 
     var body: some View {
-        @Bindable var onboardingVM = onboardingViewModel
-
         ZStack {
             Color(.lightGreen)
                 .ignoresSafeArea()
@@ -31,13 +30,17 @@ struct OnboardingDosorView: View {
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
 
-                    TextField(
-                        "",
-                        value: $onboardingVM.numberOfDosor,
-                        format: .number,
-                        prompt: Text("Antal")
-                    )
-                    .modifier(OnboardingTextFieldModifier())
+                    Text("\(dosorCount, format: .number.precision(.fractionLength(1)))")
+                        .font(.custom("Roboto-Light", size: 20))
+                        .bold()
+                        .foregroundColor(.white)
+
+                    Slider(value: $dosorCount, in: 0...5, step: 0.5)
+                        .accentColor(.white)
+                        .padding(.horizontal, 40)
+                        .onChange(of: dosorCount) { _, newValue in
+                            onboardingViewModel.numberOfDosor = newValue
+                        }
                 }
 
                 Spacer().frame(height: 20)
@@ -89,11 +92,7 @@ struct OnboardingDosorView: View {
 
                     Spacer()
 
-                    Button {
-                        Task {
-                            onNextStep()
-                        }
-                    } label: {
+                    Button(action: saveAndProceed) {
                         Image(systemName: "arrow.right")
                             .modifier(
                                 ArrowButtonModifier(
@@ -108,10 +107,16 @@ struct OnboardingDosorView: View {
             }
             .padding(20)
         }
+        .onAppear {
+            
+            onboardingViewModel.numberOfDosor = dosorCount
+            onboardingViewModel.portionsPerDosa = Int(portionCount)
+        }
     }
 
     private func saveAndProceed() {
         onboardingViewModel.portionsPerDosa = Int(portionCount)
+        onboardingViewModel.numberOfDosor = dosorCount
         if onboardingViewModel.errorMessage.isEmpty {
             onNextStep()
         }

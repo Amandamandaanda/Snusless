@@ -11,12 +11,32 @@
         }
       }
     },
+    "%.0f portioner snus" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%.0f portions of snus"
+          }
+        }
+      }
+    },
     "%@" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@"
+          }
+        }
+      }
+    },
+    "%@ dosor" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ cans"
           }
         }
       }
@@ -57,16 +77,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld days"
-          }
-        }
-      }
-    },
-    "%lld dosor" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld dosor"
           }
         }
       }
@@ -163,16 +173,6 @@
         }
       }
     },
-    "Antal" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Number"
-          }
-        }
-      }
-    },
     "Antal snusdosor per dag" : {
       "localizations" : {
         "en" : {
@@ -237,12 +237,42 @@
         }
       }
     },
+    "Du har klarat dig utan:" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du have made it without:"
+          }
+        }
+      }
+    },
     "Du har sparat" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "You have saved"
+          }
+        }
+      }
+    },
+    "Du har sparat:" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You have saved:"
+          }
+        }
+      }
+    },
+    "Du har tagit:" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You have taken:"
           }
         }
       }
@@ -369,6 +399,16 @@
         }
       }
     },
+    "Max rekord snus utan att ta snus" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Max portions without taking a portion:"
+          }
+        }
+      }
+    },
     "Namn" : {
       "localizations" : {
         "en" : {
@@ -405,6 +445,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Portions per can"
+          }
+        }
+      }
+    },
+    "portioner snus" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "portions of snus"
           }
         }
       }
@@ -552,6 +602,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Start date: "
+          }
+        }
+      }
+    },
+    "Statistik" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statistics"
           }
         }
       }

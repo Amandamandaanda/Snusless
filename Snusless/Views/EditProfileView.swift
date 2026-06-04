@@ -15,8 +15,6 @@ struct EditProfileView: View {
     
     @State private var editProfileViewModel = EditProfileViewModel()
 
-   
-
     var body: some View {
         @Bindable var editVM = editProfileViewModel
         VStack(alignment: .leading, spacing: 4) {
@@ -51,10 +49,13 @@ struct EditProfileView: View {
 
             Text("Antal snusdosor per dag")
                 .font(.custom("Roboto-Medium", size: 16))
+            
+            Slider(value: $editVM.editDosor, in: 0...10, step: 0.5)
+                .accentColor(.darkGreen)
 
-            TextField("\(editProfileViewModel.editDosor) dosor", value: $editVM.editDosor, format: .number)
+            TextField("\(editProfileViewModel.editDosor, format: .number.precision(.fractionLength(1))) dosor", value: $editVM.editDosor, format: .number)
                 .modifier(EditProfileTextFieldModifier())
-
+            
             Text("Portioner per snusdosa")
                 .font(.custom("Roboto-Medium", size: 16))
 

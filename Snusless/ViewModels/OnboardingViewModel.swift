@@ -11,7 +11,7 @@ import SwiftData
 @Observable
 class OnboardingViewModel {
     var name: String = ""
-    var numberOfDosor: Int? = nil
+    var numberOfDosor: Double? = nil
     var pricePerDosa: Double? = nil
     var savingGoal: Int? = nil
     var portionsPerDosa: Int = 20
@@ -57,7 +57,9 @@ class OnboardingViewModel {
             portionsPerDosa: portionsPerDosa,
             savingsGoal: savingGoal ?? 0,
             startDate: startDate,
-            streak: Streak()
+            streak: Streak(),
+            snusTakenCount: 0,
+            totalSnusNotTaken: 0
         )
 
         user.streak = Streak.startingStreak(for: user)

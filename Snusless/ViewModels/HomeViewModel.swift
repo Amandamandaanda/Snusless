@@ -42,8 +42,15 @@ class HomeViewModel{
         // Save longest streak before resetting
         updateLongestStreak(for: user)
         
+        if user.calculatePortions() > user.totalSnusNotTaken {
+            user.totalSnusNotTaken = user.calculatePortions()
+        }
         // Reset the streak
         user.streak.resetStreak()
+        
+        // Add snus taken to user
+        user.snusTakenCount += 1
+        
         
         do {
             try context.save()

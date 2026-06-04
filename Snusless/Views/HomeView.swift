@@ -58,6 +58,9 @@ struct HomeView: View {
                             longestStreak: user.longestStreak
                         )
 
+                        
+                     
+
                         HStack(spacing: 12) {
                             Button {
                                 viewModel.checkToday(

@@ -18,4 +18,8 @@ extension User {
     var dailySavings: Double {
         return Double(self.numberOfDosor) * self.pricePerDosa
     }
+    
+    func calculatePortions() -> Double {
+        return Double(self.numberOfDosor) * Double(self.portionsPerDosa) * Double(self.streak.currentStreak)
+    }
 }

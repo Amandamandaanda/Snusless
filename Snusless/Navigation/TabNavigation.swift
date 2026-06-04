@@ -2,6 +2,8 @@ import SwiftUI
 
 struct TabNavigation: View {
     @Binding var selectedTab: TabSelection
+ 
+
     
     var body: some View {
         NavigationStack {
@@ -10,18 +12,24 @@ struct TabNavigation: View {
                     switch selectedTab {
                     case .home:
                         HomeView()
-                            .transition(.move(edge: .leading))
+                            
                     case .profile:
                         ProfileView()
-                            .transition(.move(edge: .trailing))
+                  
+
+                    case .statistics:
+                        StatisticsView()
+                        
+
                     }
                 }
                 .frame(maxHeight: .infinity)
-                .animation(.easeInOut, value: selectedTab)
                 
                 CustomTabBarView(selectedTab: $selectedTab)
 
             }
+           
+            
         }
     }
 }
