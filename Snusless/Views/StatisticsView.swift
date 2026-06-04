@@ -18,6 +18,13 @@ struct StatisticsView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             if let user = users.first {
+                
+                StatisticsCard(title: String(localized: "Du har sparat:"), description: "\(Int(user.totalSaved)) kr")
+                
+                StatisticsCard(title: String(localized: "Nuvarande streak"), description: "\(user.streak.currentStreak) dagar")
+                
+                StatisticsCard(title: String(localized: "Max streak: "), description: "\(user.longestStreak) dagar")
+                
                 StatisticsCard(
                     title: String(localized: "Du har klarat dig utan:"),
                     description: String(format: String(localized:  "%.0f portioner snus"), user.calculatePortions())
@@ -27,8 +34,7 @@ struct StatisticsView: View {
                 
                 StatisticsCard(title: String(localized: "Maximum snus du skippat:"), description: user.totalSnusNotTaken == 0 ? String(format: "%.0f portioner snus", user.calculatePortions()) : String(format: String(localized: "%.0f portioner snus"), user.totalSnusNotTaken))
                 
-                StatisticsCard(title: String(localized: "Du har sparat:"), description: "\(Int(user.totalSaved)) kr")
-                
+                               
                 if user.snusTakenCount > 0 {
                     StatisticsCard(title: String(localized: "Du har tagit:"), description: "\(user.snusTakenCount) \(String(localized: "portioner snus"))"
                                  , foregroundColorTitle: .errorRed)
