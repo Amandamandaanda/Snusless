@@ -242,7 +242,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Du have made it without:"
+            "value" : "You have made it without:"
           }
         }
       }
@@ -399,12 +399,12 @@
         }
       }
     },
-    "Max rekord snus utan att ta snus" : {
+    "Maximum snus du skippat:" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Max portions without taking a portion:"
+            "value" : "Maximum snus not taken:"
           }
         }
       }
@@ -564,7 +564,14 @@
       }
     },
     "Slå på notiser" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enable notifications"
+          }
+        }
+      }
     },
     "Snusless" : {
       "localizations" : {
@@ -667,7 +674,14 @@
       }
     },
     "Välj tid för dina påminnelser" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose a time for notifications"
+          }
+        }
+      }
     },
     "Välkommen!" : {
       "localizations" : {

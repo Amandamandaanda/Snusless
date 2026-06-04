@@ -30,7 +30,9 @@ struct StatisticsView: View {
                     description: String(format: String(localized:  "%.0f portioner snus"), user.calculatePortions())
                 )
                 
-                StatisticsCard(title: String(localized: "Max rekord snus utan att ta snus"), description: user.totalSnusNotTaken == 0 ? String(format: "%.0f portioner snus", user.calculatePortions()) : String(format: String(localized: "%.0f portioner snus"), user.totalSnusNotTaken))
+                
+                
+                StatisticsCard(title: String(localized: "Maximum snus du skippat:"), description: user.totalSnusNotTaken == 0 ? String(format: "%.0f portioner snus", user.calculatePortions()) : String(format: String(localized: "%.0f portioner snus"), user.totalSnusNotTaken))
                 
                                
                 if user.snusTakenCount > 0 {
