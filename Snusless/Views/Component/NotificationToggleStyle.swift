@@ -17,9 +17,9 @@ struct NotificationToggleStyle: ToggleStyle {
             
             Spacer()
             
-            Image(systemName: configuration.isOn ? "checkmark.square.fill" : "bell")
+            Image(systemName: configuration.isOn ? "bell.fill" : "bell")
                 
-                .foregroundColor(.primary)
+                .foregroundColor(.darkGreen)
         }
         .padding()
         .background(Color.lightGreen.opacity(0.1)
