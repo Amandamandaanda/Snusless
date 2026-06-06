@@ -16,7 +16,7 @@ class User {
     var portionsPerDosa: Int
     var savingsGoal: Int
     var startDate: Date
-    var streak: Streak
+    @Relationship(deleteRule: .cascade) var streak: Streak
     var longestStreak: Int
     var totalSaved: Double
     var dayOfLostStreak: Date?
