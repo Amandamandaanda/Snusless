@@ -24,23 +24,16 @@ struct OnboardingNameView: View {
                 Spacer()
 
                 Text("Välkommen!")
-                    .font(.custom("Roboto-Bold", size: 26))
+                    .font(.custom("Roboto-Bold", size: 32))
                     .foregroundStyle(.white)
                     .padding()
 
                 Text("Vänligen skriv ditt namn för att börja")
-                    .font(.custom("Roboto-Bold", size: 18))
+                    .font(.custom("Roboto-Bold", size: 22))
                     .foregroundStyle(.white)
 
                 TextField("Ditt namn", text: $onboardingVM.name)
-                    .font(.custom("Roboto-Medium", size: 16))
-                    .padding()
-                    .foregroundStyle(.white)
-                    .tint(.white)
-                    .background {
-                        Color(.white.opacity(0.4))
-                    }
-                    .cornerRadius(20)
+                    .modifier(TextFieldModifier(fontSize: 18, keyboardType: .default))
                     .onChange(of: onboardingVM.name) { _, newValue in
                         let filtered = newValue.filter {
                             $0.isLetter || $0.isWhitespace

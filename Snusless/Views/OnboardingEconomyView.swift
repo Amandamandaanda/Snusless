@@ -35,7 +35,7 @@ struct OnboardingEconomyView: View {
                         format: .number,
                         prompt: Text("40kr")
                     )
-                    .modifier(OnboardingTextFieldModifier())
+                    .modifier(TextFieldModifier(fontSize: 18, frameWidth: 140, textAlignment: .center))
                 }
 
                 VStack(spacing: 12) {
@@ -50,7 +50,7 @@ struct OnboardingEconomyView: View {
                         format: .number,
                         prompt: Text("1000kr")
                     )
-                    .modifier(OnboardingTextFieldModifier())
+                    .modifier(TextFieldModifier(fontSize: 18, frameWidth: 140, textAlignment: .center))
                 }
 
                 if !onboardingViewModel.errorMessage.isEmpty {

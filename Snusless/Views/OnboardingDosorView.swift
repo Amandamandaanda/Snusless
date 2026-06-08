@@ -31,8 +31,7 @@ struct OnboardingDosorView: View {
                         .multilineTextAlignment(.center)
 
                     Text("\(dosorCount, format: .number.precision(.fractionLength(1)))")
-                        .font(.custom("Roboto-Light", size: 20))
-                        .bold()
+                        .font(.custom("Roboto-Bold", size: 20))
                         .foregroundColor(.white)
 
                     Slider(value: $dosorCount, in: 0...5, step: 0.5)
@@ -52,8 +51,7 @@ struct OnboardingDosorView: View {
                         .multilineTextAlignment(.center)
 
                     Text("\(Int(onboardingViewModel.portionsPerDosa))")
-                        .font(.custom("Roboto-Light", size: 20))
-                        .bold()
+                        .font(.custom("Roboto-Bold", size: 20))
                         .foregroundColor(.white)
 
                     Slider(value: $portionCount, in: 10...30, step: 1)

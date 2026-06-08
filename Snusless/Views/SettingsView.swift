@@ -23,30 +23,40 @@ struct SettingsView: View {
     var body: some View {
         VStack(spacing: 24) {
             
-            Toggle("Slå på notiser", isOn: $isNotificationAuthorized)
-                .foregroundStyle(.black)
-                .toggleStyle(NotificationToggleStyle())
-                .onChange(of: isNotificationAuthorized) { _, newValue in
-                    if newValue {
-                        requestNotificationPermission( date: notificationDate)
-                    } else {
-                        cancelNotification()
+            VStack(spacing: 20) {
+                Toggle("Slå på notiser", isOn: $isNotificationAuthorized)
+                    .font(.custom("Roboto-Bold", size: 16))
+                    .toggleStyle(NotificationToggleStyle())
+                    .onChange(of: isNotificationAuthorized) { _, newValue in
+                        if newValue {
+                            requestNotificationPermission( date: notificationDate)
+                        } else {
+                            cancelNotification()
+                        }
                     }
+                
+                if isNotificationAuthorized {
+                    DatePicker("Välj tid för dina påminnelser", selection: $notificationDate, displayedComponents: [.hourAndMinute])
+                        .onChange(of: notificationDate) { _, newDate in
+                            sendNotification(date: newDate)
+                        }
+                        .tint(.darkGreen)
+                        .font(.custom("Roboto-Regular", size: 16))
                 }
-            
-            if isNotificationAuthorized {
-                DatePicker("Välj tid för dina påminnelser", selection: $notificationDate, displayedComponents: [.hourAndMinute])
-                    .onChange(of: notificationDate) { _, newDate in
-                        sendNotification(date: newDate)
-                    }
-                    .padding(.horizontal, 10)
-                }
+            }
+            .foregroundStyle(.darkGreen)
+            .padding()
+            .background(Color.lightGreen.opacity(0.1)
+            )
+            .clipShape(RoundedRectangle(cornerRadius: 16)
+            )
 
             Button {
                 isPresentingDeleteAlert = true
             } label: {
                 HStack {
                     Text("Rensa data")
+                        .font(.custom("Roboto-Bold", size: 16))
                         .foregroundStyle(.red)
 
                     Spacer()
