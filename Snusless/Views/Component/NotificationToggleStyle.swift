@@ -21,10 +21,10 @@ struct NotificationToggleStyle: ToggleStyle {
                 
                 .foregroundColor(.darkGreen)
         }
-        .padding()
-        .background(Color.lightGreen.opacity(0.1)
-        )
-        .clipShape(RoundedRectangle(cornerRadius: 16)
-        )
+//        .padding()
+//        .background(Color.lightGreen.opacity(0.1)
+//        )
+//        .clipShape(RoundedRectangle(cornerRadius: 16)
+//        )
     }
 }

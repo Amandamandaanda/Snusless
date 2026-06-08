@@ -58,7 +58,7 @@ struct ProfileView: View {
                 showingEditProfileSheet = true
             } label: {
                 Text("Redigera")
-                    .modifier(ButtonModifier(backgroundColor: .lightGreen.opacity(0.2)))
+                    .modifier(ButtonModifier())
             }
 
             Spacer()

@@ -32,6 +32,7 @@
       }
     },
     "%@ dosor" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -92,6 +93,7 @@
       }
     },
     "%lld st" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -111,7 +113,14 @@
         }
       }
     },
+    "0" : {
+
+    },
+    "5" : {
+
+    },
     "10" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -120,6 +129,9 @@
           }
         }
       }
+    },
+    "20" : {
+
     },
     "30" : {
       "localizations" : {
@@ -174,6 +186,7 @@
       }
     },
     "Antal snusdosor per dag" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -182,6 +195,9 @@
           }
         }
       }
+    },
+    "Antal snusdosor per dag:" : {
+
     },
     "Är du säker?" : {
       "comment" : "An alert that appears when the user taps the \"Rensa data\" button in the settings view. The alert asks the user if they are sure they want to delete all data.",
@@ -399,22 +415,22 @@
         }
       }
     },
-    "Maximum snus du skippat:" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Maximum snus not taken:"
-          }
-        }
-      }
-    },
     "Max streak: " : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Max streak: "
+          }
+        }
+      }
+    },
+    "Maximum snus du skippat:" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maximum snus not taken:"
           }
         }
       }
@@ -460,6 +476,7 @@
       }
     },
     "Portioner per snusdosa" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -468,6 +485,9 @@
           }
         }
       }
+    },
+    "Portioner per snusdosa:" : {
+
     },
     "portioner snus" : {
       "localizations" : {

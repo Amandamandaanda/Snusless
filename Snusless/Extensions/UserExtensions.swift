@@ -10,8 +10,12 @@ import Foundation
 import Foundation
 
 extension User {
-   
-    func calculateSavings(forDays days: Int) -> Double {
+    
+    func calculateSavings(since startDate: Date) -> Double {
+        let calendar = Calendar.current
+
+        let days = calendar.dateComponents([.day], from: startDate, to: Date()).day ?? 0
+
         return Double(self.numberOfDosor) * self.pricePerDosa * Double(days)
     }
     

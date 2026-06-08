@@ -19,6 +19,10 @@ class EditProfileViewModel {
     var editPortioner: Int = 0
     var editSavingsGoal: Int = 0
     
+    var isNameValid: Bool {
+        editName.trimmingCharacters(in: .whitespaces).count >= 2
+    }
+    
     func updateUser(context: ModelContext, updatedName: String, updatedDate: Date, updatedDosor: Double, updatedPortions: Int, updatedPrice: Double, updatedSavingsGoal: Int) {
             do {
                 let descriptor = FetchDescriptor<User>()
@@ -32,6 +36,8 @@ class EditProfileViewModel {
                     existingUser.savingsGoal = updatedSavingsGoal
 
                     existingUser.streak = Streak.startingStreak(for: existingUser)
+                    
+                    existingUser.totalSaved = existingUser.calculateSavings(since: updatedDate)
                     
                     try context.save()
                     print("Användardata har uppdaterats i SwiftData och ViewModel:\n\(updatedName)\n\(updatedDate.formattedMedium())\n\(updatedDosor)\n\(updatedPortions)\n\(updatedPrice)\n\(updatedSavingsGoal)")

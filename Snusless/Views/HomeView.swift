@@ -58,9 +58,6 @@ struct HomeView: View {
                             longestStreak: user.longestStreak
                         )
 
-                        
-                     
-
                         HStack(spacing: 12) {
                             Button {
                                 viewModel.checkToday(
@@ -136,17 +133,6 @@ struct HomeView: View {
             }
         }
     }
-
-    // Too see names of fonts to be able to use customs
-    //    init() {
-    //        for familyName in UIFont.familyNames {
-    //            print(familyName)
-    //
-    //            for fontName in UIFont.fontNames(forFamilyName: familyName) {
-    //                print("-- \(fontName)")
-    //            }
-    //        }
-    //    }
 }
 
 #Preview("Swedish") {
