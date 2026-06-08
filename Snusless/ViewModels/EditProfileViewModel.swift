@@ -37,6 +37,8 @@ class EditProfileViewModel {
 
                     existingUser.streak = Streak.startingStreak(for: existingUser)
                     
+                    existingUser.totalSaved = existingUser.calculateSavings(since: updatedDate)
+                    
                     try context.save()
                     print("Användardata har uppdaterats i SwiftData och ViewModel:\n\(updatedName)\n\(updatedDate.formattedMedium())\n\(updatedDosor)\n\(updatedPortions)\n\(updatedPrice)\n\(updatedSavingsGoal)")
                 }
