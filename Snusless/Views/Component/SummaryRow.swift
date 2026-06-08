@@ -14,7 +14,7 @@ struct SummaryRow: View {
     var body: some View {
         HStack {
             Text(title)
-                .font(.custom("Roboto-Light", size: 16))
+                .font(.custom("Roboto-Regular", size: 16))
                 .foregroundColor(.white.opacity(0.9))
             Spacer()
             Text(value)

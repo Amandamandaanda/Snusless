@@ -30,7 +30,7 @@ struct OnboardingDosorView: View {
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
 
-                    Text("\(dosorCount, format: .number.precision(.fractionLength(1)))")
+                    Text("\(String(format: "%.1f",dosorCount))")
                         .font(.custom("Roboto-Bold", size: 20))
                         .foregroundColor(.white)
 
@@ -40,6 +40,15 @@ struct OnboardingDosorView: View {
                         .onChange(of: dosorCount) { _, newValue in
                             onboardingViewModel.numberOfDosor = newValue
                         }
+                    
+                    HStack {
+                        Text("0")
+                        Spacer()
+                        Text("5")
+                    }
+                    .foregroundColor(.white.opacity(0.6))
+                    .font(.custom("Roboto-Light", size: 14))
+                    .padding(.horizontal, 40)
                 }
 
                 Spacer().frame(height: 20)
@@ -54,7 +63,7 @@ struct OnboardingDosorView: View {
                         .font(.custom("Roboto-Bold", size: 20))
                         .foregroundColor(.white)
 
-                    Slider(value: $portionCount, in: 10...30, step: 1)
+                    Slider(value: $portionCount, in: 20...30, step: 1)
                         .accentColor(.white)
                         .padding(.horizontal, 40)
                         .onChange(of: portionCount) { _, newValue in
@@ -62,7 +71,7 @@ struct OnboardingDosorView: View {
                         }
 
                     HStack {
-                        Text("10")
+                        Text("20")
                         Spacer()
                         Text("30")
                     }

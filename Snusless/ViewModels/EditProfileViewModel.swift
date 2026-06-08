@@ -19,6 +19,10 @@ class EditProfileViewModel {
     var editPortioner: Int = 0
     var editSavingsGoal: Int = 0
     
+    var isNameValid: Bool {
+        editName.trimmingCharacters(in: .whitespaces).count >= 2
+    }
+    
     func updateUser(context: ModelContext, updatedName: String, updatedDate: Date, updatedDosor: Double, updatedPortions: Int, updatedPrice: Double, updatedSavingsGoal: Int) {
             do {
                 let descriptor = FetchDescriptor<User>()

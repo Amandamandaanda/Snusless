@@ -33,24 +33,3 @@ struct TextFieldModifier: ViewModifier {
     }
 
 }
-
-//struct EditProfileTextFieldModifier: ViewModifier {
-//    var keyboardType: UIKeyboardType = .decimalPad
-//
-//    func body(content: Content) -> some View {
-//        content
-//            .padding()
-//            .font(.custom("Roboto-Medium", size: 16))
-//            .keyboardType(keyboardType)
-//            .background(.lightGreen.opacity(0.1))
-//            .overlay(
-//                RoundedRectangle(cornerRadius: 10)
-//                    .stroke(.darkGreen, lineWidth: 2)
-//            )
-//            .foregroundColor(.black)
-//            .cornerRadius(10)
-//            .padding(.bottom, 16)
-//
-//    }
-//}
-
