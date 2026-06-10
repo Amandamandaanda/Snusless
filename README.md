@@ -12,49 +12,49 @@ Snusless empowers users to break free from snus addiction by making the quitting
   <strong>Onboarding Start View</strong>
 </p>
 <p align="center">
-  <img src="screenshots/onboarding-start.png" width="250" alt="Onboarding Start"/>
+  <img src="Snusless/Screenshots/onboarding-start.png" width="250" alt="Onboarding Start"/>
 </p>
 
 <p align="center">
   <strong>Onboarding Summary View</strong>
 </p>
 <p align="center">
-  <img src="screenshots/onboarding-summary.png" width="250" alt="Onboarding Summary"/>
+  <img src="Snusless/Screenshots/onboarding-summary.png" width="250" alt="Onboarding Summary"/>
 </p>
 
 <p align="center">
   <strong>Home View</strong>
 </p>
 <p align="center">
-  <img src="screenshots/home-view.png" width="250" alt="Home View"/>
+  <img src="Snusless/Screenshots/home-view.png" width="250" alt="Home View"/>
 </p>
 
 <p align="center">
   <strong>Profile View</strong>
 </p>
 <p align="center">
-  <img src="screenshots/profile-view.png" width="250" alt="Profile View"/>
+  <img src="Snusless/Screenshots/profile-view.png" width="250" alt="Profile View"/>
 </p>
 
 <p align="center">
   <strong>Statistics View</strong>
 </p>
 <p align="center">
-  <img src="screenshots/statistics-view.png" width="250" alt="Statistics View"/>
+  <img src="Snusless/Screenshots/statistics-view.png" width="250" alt="Statistics View"/>
 </p>
 
 <p align="center">
   <strong>Edit Profile View</strong>
 </p>
 <p align="center">
-  <img src="screenshots/edit-profile.png" width="250" alt="Edit Profile"/>
+  <img src="Snusless/Screenshots/edit-profile.png" width="250" alt="Edit Profile"/>
 </p>
 
 <p align="center">
   <strong>Settings View</strong>
 </p>
 <p align="center">
-  <img src="screenshots/settings.png" width="250" alt="Settings"/>
+  <img src="Snusless/Screenshots/settings.png" width="250" alt="Settings"/>
 </p>
 
 
