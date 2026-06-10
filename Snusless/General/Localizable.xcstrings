@@ -31,17 +31,6 @@
         }
       }
     },
-    "%@ dosor" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ cans"
-          }
-        }
-      }
-    },
     "%@ kr" : {
       "localizations" : {
         "en" : {
@@ -92,17 +81,6 @@
         }
       }
     },
-    "%lld st" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld st"
-          }
-        }
-      }
-    },
     "%lld%%" : {
       "localizations" : {
         "en" : {
@@ -114,24 +92,34 @@
       }
     },
     "0" : {
-
-    },
-    "5" : {
-
-    },
-    "10" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "10"
+            "value" : "0"
+          }
+        }
+      }
+    },
+    "5" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5"
           }
         }
       }
     },
     "20" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "20"
+          }
+        }
+      }
     },
     "30" : {
       "localizations" : {
@@ -185,19 +173,15 @@
         }
       }
     },
-    "Antal snusdosor per dag" : {
-      "extractionState" : "stale",
+    "Antal snusdosor per dag:" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Number of cans per day"
+            "value" : "Number of cans per day:"
           }
         }
       }
-    },
-    "Antal snusdosor per dag:" : {
-
     },
     "Är du säker?" : {
       "comment" : "An alert that appears when the user taps the \"Rensa data\" button in the settings view. The alert asks the user if they are sure they want to delete all data.",
@@ -293,12 +277,12 @@
         }
       }
     },
-    "Hej! 👋" : {
+    "Hej!" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hi! 👋"
+            "value" : "Hi!"
           }
         }
       }
@@ -475,19 +459,15 @@
         }
       }
     },
-    "Portioner per snusdosa" : {
-      "extractionState" : "stale",
+    "Portioner per snusdosa:" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Portions per can"
+            "value" : "Portions per can: "
           }
         }
       }
-    },
-    "Portioner per snusdosa:" : {
-
     },
     "portioner snus" : {
       "localizations" : {

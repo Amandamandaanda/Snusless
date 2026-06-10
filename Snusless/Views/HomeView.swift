@@ -26,10 +26,15 @@ struct HomeView: View {
                 VStack(spacing: 24) {
                     HStack {
                         VStack(alignment: .leading) {
-                            Text("Hej! 👋")
-                                .font(.custom("Roboto-Regular", size: 24))
-                                .foregroundColor(.secondary)
-
+                            HStack {
+                                Text("Hej!")
+                                    .font(.custom("Roboto-Regular", size: 24))
+                                    .foregroundColor(.secondary)
+                                
+                                Image(systemName: "hand.wave.fill")
+                                    .font(.system(size: 26))
+                                    .foregroundStyle(Color.emojiYellow)
+                            }
                             Text(
                                 "\(users.first?.name ?? String(localized: "Ingen användare hittad"))!"
                             )
