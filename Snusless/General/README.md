@@ -176,4 +176,3 @@ Developed in 2026 as part of the Mobile Application Development Class of Folkuni
 ---
 
 **Note**: Snusless is designed to support individuals in their journey to quit snus. While the app provides tracking and motivation tools, users experiencing addiction should also consider consulting healthcare professionals for comprehensive support.
-
