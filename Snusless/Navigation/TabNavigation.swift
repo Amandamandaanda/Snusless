@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct TabNavigation: View {
-    @Binding var selectedTab: TabSelection
+    @State private var selectedTab: TabSelection = .home
  
 
     
@@ -36,6 +36,6 @@ struct TabNavigation: View {
 
 #Preview {
     NavigationStack {
-        TabNavigation(selectedTab: .constant(.home))
+        TabNavigation()
     }
 }

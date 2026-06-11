@@ -12,14 +12,13 @@ struct RootNavigation: View {
     @State private var onboardingViewModel = OnboardingViewModel()
     @Query private var users: [User]
     
-    @Binding var selectedTab: TabSelection
     
     var body: some View {
         Group {
             if users.isEmpty {
-                OnboardingNavigation(selectedTab: $selectedTab)
+                OnboardingNavigation()
             } else {
-                TabNavigation(selectedTab: $selectedTab)
+                TabNavigation()
             }
         }
         .environment(onboardingViewModel)
@@ -27,13 +26,13 @@ struct RootNavigation: View {
 }
 
 #Preview("Swedish") {
-    RootNavigation( selectedTab: .constant(.home))
+    RootNavigation()
         .environment(OnboardingViewModel())
         .modelContainer(for: User.self, inMemory: true)
 }
 
 #Preview("English") {
-    RootNavigation( selectedTab: .constant(.home))
+    RootNavigation()
         .environment(OnboardingViewModel())
         .environment(\.locale, Locale(identifier: "ENG"))
         .modelContainer(for: User.self, inMemory: true)

@@ -12,7 +12,6 @@ struct OnboardingNavigation: View {
     @Environment(OnboardingViewModel.self) var onboardingViewModel
     @Environment(\.modelContext) private var modelContext
     
-    @Binding var selectedTab: TabSelection
     
     @State private var isGoingForward: Bool = false
     
@@ -73,7 +72,7 @@ struct OnboardingNavigation: View {
             case .onboardingSummary:
                 OnboardingSummaryView(saveUser: {
                     onboardingViewModel.saveUser(context: modelContext)
-                    selectedTab = .home
+                    
                     
                 }, onPreviousStep: {
                     isGoingForward = false
@@ -84,7 +83,7 @@ struct OnboardingNavigation: View {
                  
                 
             case .onboardingDone:
-                RootNavigation(selectedTab: $selectedTab)
+                RootNavigation()
                     .transition(.scale)
                 
             }
@@ -159,6 +158,6 @@ struct OnboardingNavigation: View {
 }
 
 #Preview {
-    OnboardingNavigation(selectedTab: .constant(.home))
+    OnboardingNavigation()
         .environment(OnboardingViewModel())
 }

@@ -56,7 +56,7 @@ struct LaunchView: View {
             }
             
         } else {
-            RootNavigation( selectedTab: $selectedTab)
+            RootNavigation()
         }
     }
 }
