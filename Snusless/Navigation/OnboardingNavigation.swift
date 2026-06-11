@@ -39,7 +39,6 @@ struct OnboardingNavigation: View {
                     
            
             case .onboardingDosor:
-                @Bindable var onboardingVM = onboardingViewModel
                 OnboardingDosorView(
                     onNextStep: {
                         isGoingForward = true
@@ -55,7 +54,6 @@ struct OnboardingNavigation: View {
                 
        
             case .onboardingEconomy:
-                @Bindable var onboardingVM = onboardingViewModel
                 OnboardingEconomyView(
                     onNextStep: {
 
@@ -73,7 +71,6 @@ struct OnboardingNavigation: View {
 
                 
             case .onboardingSummary:
-                @Bindable var onboardingVM = onboardingViewModel
                 OnboardingSummaryView(saveUser: {
                     onboardingViewModel.saveUser(context: modelContext)
                     selectedTab = .home
