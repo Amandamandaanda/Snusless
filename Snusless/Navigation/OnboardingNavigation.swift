@@ -13,42 +13,42 @@ struct OnboardingNavigation: View {
     @Environment(\.modelContext) private var modelContext
     
     
-    @State private var isGoingForward: Bool = false
+    
     
     var body: some View {
         VStack {
             switch onboardingViewModel.onboardingState {
             case .onboardingName:
                 OnboardingNameView(onNextStep: {
-                    isGoingForward = true
+                    onboardingViewModel.isGoingForward = true
                     onboardingViewModel.onboardingState = .onboardingDate
                 })
-                .transition(slideTransition(isGoingForward: isGoingForward))
+                .transition(slideTransition(isGoingForward: onboardingViewModel.isGoingForward))
 
             case .onboardingDate:
                 OnboardingDateView(onNextStep: {
-                    isGoingForward = true
+                    onboardingViewModel.isGoingForward = true
                     onboardingViewModel.onboardingState = .onboardingDosor
                     
                 }, onPreviousStep: {
-                    isGoingForward = false
+                    onboardingViewModel.isGoingForward = false
                     onboardingViewModel.onboardingState = .onboardingName
                 })
-                .transition(slideTransition(isGoingForward: isGoingForward))
+                .transition(slideTransition(isGoingForward: onboardingViewModel.isGoingForward))
                     
            
             case .onboardingDosor:
                 OnboardingDosorView(
                     onNextStep: {
-                        isGoingForward = true
+                        onboardingViewModel.isGoingForward = true
                         onboardingViewModel.onboardingState = .onboardingEconomy
                     },
                     onPreviousStep: {
-                        isGoingForward = false
+                        onboardingViewModel.isGoingForward = false
                         onboardingViewModel.onboardingState = .onboardingDate
                     }
                 )
-                .transition(slideTransition(isGoingForward: isGoingForward))
+                .transition(slideTransition(isGoingForward: onboardingViewModel.isGoingForward))
 
                 
        
@@ -56,17 +56,17 @@ struct OnboardingNavigation: View {
                 OnboardingEconomyView(
                     onNextStep: {
 
-                        isGoingForward = true
+                        onboardingViewModel.isGoingForward = true
                         onboardingViewModel.onboardingState = .onboardingSummary
 
 
                     },
                     onPreviousStep: {
-                        isGoingForward = false
+                        onboardingViewModel.isGoingForward = false
                         onboardingViewModel.onboardingState = .onboardingDosor
                     }
                 )
-                .transition(slideTransition(isGoingForward: isGoingForward))
+                .transition(slideTransition(isGoingForward: onboardingViewModel.isGoingForward))
 
                 
             case .onboardingSummary:
@@ -75,10 +75,10 @@ struct OnboardingNavigation: View {
                     
                     
                 }, onPreviousStep: {
-                    isGoingForward = false
+                    onboardingViewModel.isGoingForward = false
                     onboardingViewModel.onboardingState = .onboardingEconomy
                 })
-                .transition(slideTransition(isGoingForward: isGoingForward))
+                .transition(slideTransition(isGoingForward: onboardingViewModel.isGoingForward))
 
                  
                 
@@ -89,65 +89,7 @@ struct OnboardingNavigation: View {
             }
 
             if onboardingViewModel.onboardingState != .onboardingDone {
-                HStack {
-                    Button {
-                        isGoingForward = onboardingViewModel.onboardingState.rawValue > OnboardingState.onboardingName.rawValue
-
-                        onboardingViewModel.onboardingState = .onboardingName
-                    } label: {
-                        Image(systemName: onboardingViewModel.isActive(.onboardingName) ? "circle.fill" : "circle")
-                    }
-                    
-                    Button {
-                        isGoingForward = onboardingViewModel.onboardingState.rawValue > OnboardingState.onboardingDate.rawValue
-                        
-                            onboardingViewModel.onboardingState = .onboardingDate
-                        
-                        
-                    } label: {
-                        Image(systemName: onboardingViewModel.isActive(.onboardingDate) ? "circle.fill" : "circle")
-                    }
-                    .disabled(!onboardingViewModel.isNameValid)
-                    
-                    Button {
-                        if onboardingViewModel.isNameValid {
-                            isGoingForward = onboardingViewModel.onboardingState.rawValue >
-                            OnboardingState.onboardingDosor.rawValue
-                            onboardingViewModel.onboardingState = .onboardingDosor
-                        }
-                      
-                    } label: {
-                        
-                        Image(systemName: onboardingViewModel.isActive(.onboardingDosor) ? "circle.fill" : "circle")
-                    }
-                    .disabled(!onboardingViewModel.isNameValid)
-                    
-                    
-                    Button {
-                        isGoingForward = onboardingViewModel.onboardingState.rawValue >
-                        OnboardingState.onboardingEconomy.rawValue
-                        onboardingViewModel.onboardingState = .onboardingEconomy
-                    } label: {
-                        Image(systemName: onboardingViewModel.isActive(.onboardingEconomy) ? "circle.fill" : "circle")
-                            
-                    }
-                    .disabled(!((onboardingViewModel.numberOfDosor ?? 0) > 0))
-                    
-                    
-                    Button {
-                        isGoingForward = onboardingViewModel.onboardingState.rawValue >
-                        OnboardingState.onboardingSummary.rawValue
-                        
-                        onboardingViewModel.onboardingState = .onboardingSummary
-                    } label: {
-                        Image(systemName: onboardingViewModel.isActive(.onboardingSummary) ? "circle.fill" : "circle")
-                            
-                    }
-                    .disabled(!((onboardingViewModel.savingGoal ?? 0) > 0))
-                }
-                .foregroundColor(.white)
-                .background(.lightGreen)
-                .padding()
+                OnboardingNavigationTabView()
             }
             
         }
