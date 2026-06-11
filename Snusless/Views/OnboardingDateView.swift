@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct OnboardingDateView: View {
-
     @Environment(OnboardingViewModel.self) private var onboardingViewModel
 
     var onNextStep: () -> Void
@@ -17,7 +16,6 @@ struct OnboardingDateView: View {
 
     var body: some View {
         @Bindable var onboardingVM = onboardingViewModel
-
         ZStack {
             Color(.lightGreen)
                 .ignoresSafeArea()
