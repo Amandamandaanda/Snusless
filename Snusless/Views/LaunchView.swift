@@ -20,7 +20,7 @@ struct LaunchView: View {
                 VStack(spacing: 20) {
                     Spacer()
                     
-                    Image("snusless")
+                    Image("SnuslessIcon")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 120, height: 120)
