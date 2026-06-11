@@ -32,6 +32,7 @@ struct HomeView: View {
                                     .foregroundColor(.secondary)
                                 
                                 Image(systemName: "hand.wave.fill")
+                                    .rotationEffect(Angle(degrees: 15))
                                     .font(.system(size: 26))
                                     .foregroundStyle(Color.emojiYellow)
                             }

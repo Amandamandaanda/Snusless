@@ -12,7 +12,7 @@
 
 /* Begin PBXFileReference section */
 		AB826ECF2FD94AE5000E99BA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		FE8F22CB2FB46EAF00495480 /* Snusless.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snusless.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE8F22CB2FB46EAF00495480 /* Snusless.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Snusless.app; path = "/Users/jonathanstrid/IOS/Projects/Snusless/build/Debug-iphoneos/Snusless.app"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -51,17 +51,8 @@
 			isa = PBXGroup;
 			children = (
 				01F4284D2FBC4A0900E453CD /* Snusless */,
-				FE8F22CC2FB46EAF00495480 /* Products */,
 				AB826ECF2FD94AE5000E99BA /* README.md */,
 			);
-			sourceTree = "<group>";
-		};
-		FE8F22CC2FB46EAF00495480 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				FE8F22CB2FB46EAF00495480 /* Snusless.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -115,7 +106,7 @@
 			mainGroup = FE8F22C22FB46EAF00495480;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = FE8F22CC2FB46EAF00495480 /* Products */;
+			productRefGroup = FE8F22C22FB46EAF00495480;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
