@@ -13,7 +13,7 @@ struct TextFieldModifier: ViewModifier {
     var keyboardType: UIKeyboardType = .decimalPad
     var backgroundColor: Color = .white
     var foregroundColor: Color = .black
-    var frameWidth: CGFloat = .infinity
+    var frameWidth: CGFloat = 360
     var textAlignment: TextAlignment = .leading
 
     func body(content: Content) -> some View {
@@ -29,7 +29,5 @@ struct TextFieldModifier: ViewModifier {
             .cornerRadius(10)
             .frame(width: frameWidth)
             .padding(.bottom, 16)
-
     }
-
 }

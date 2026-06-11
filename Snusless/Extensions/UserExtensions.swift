@@ -26,4 +26,10 @@ extension User {
     func calculatePortions() -> Double {
         return Double(self.numberOfDosor) * Double(self.portionsPerDosa) * Double(self.streak.currentStreak)
     }
+    
+    // Calculation for ProgressView
+    var progressFraction: Double {
+        guard self.savingsGoal > 0 else { return 0 }
+        return min(self.totalSaved / Double(self.savingsGoal), 1.0)
+    }
 }

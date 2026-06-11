@@ -57,11 +57,7 @@ struct HomeView: View {
                     if let user = users.first {
 
                         SavingsCard(
-                            days: user.streak.currentStreak,
-                            savedAmount: user.totalSaved,
-                            savingsGoal: user.savingsGoal,
-                            longestStreak: user.longestStreak
-                        )
+                            user: user)
 
                         HStack(spacing: 12) {
                             Button {

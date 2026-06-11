@@ -10,8 +10,6 @@ import SwiftData
 
 
 struct StatisticsView: View {
-  
-
     @State private var viewModel = HomeViewModel()
     @Query private var users: [User]
     
@@ -30,11 +28,8 @@ struct StatisticsView: View {
                     description: String(format: String(localized:  "%.0f portioner snus"), user.calculatePortions())
                 )
                 
-                
-                
                 StatisticsCard(title: String(localized: "Maximum snus du skippat:"), description: user.totalSnusNotTaken == 0 ? String(format: "%.0f portioner snus", user.calculatePortions()) : String(format: String(localized: "%.0f portioner snus"), user.totalSnusNotTaken))
                 
-                               
                 if user.snusTakenCount > 0 {
                     StatisticsCard(title: String(localized: "Du har tagit:"), description: "\(user.snusTakenCount) \(String(localized: "portioner snus"))"
                                  , foregroundColorTitle: .errorRed)
@@ -51,7 +46,6 @@ struct StatisticsView: View {
                     .font(.custom("Roboto-Bold", size: 20))
                     .foregroundColor(.black)
             }
-
         }
     }
 }

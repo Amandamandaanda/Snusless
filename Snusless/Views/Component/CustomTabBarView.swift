@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CustomTabBarView: View {
     @Binding var selectedTab: TabSelection
-
+    
     var body: some View {
         HStack(alignment: .center) {
             Spacer()
@@ -24,9 +24,9 @@ struct CustomTabBarView: View {
             }
             .frame(width: 80, height: 50)
             .background(
-                       Capsule()
-                        .fill(selectedTab == .statistics ? .lightGreen.opacity(0.2) : .clear)
-                   )
+                Capsule()
+                    .fill(selectedTab == .statistics ? .lightGreen.opacity(0.2) : .clear)
+            )
             .foregroundColor(selectedTab == .statistics ? .darkGreen : .secondary)
             
             Spacer()
@@ -41,11 +41,11 @@ struct CustomTabBarView: View {
             }
             .frame(width: 80, height: 50)
             .background(
-                       Capsule()
-                        .fill(selectedTab == .home ? .lightGreen.opacity(0.2) : .clear)
-                   )
+                Capsule()
+                    .fill(selectedTab == .home ? .lightGreen.opacity(0.2) : .clear)
+            )
             .foregroundColor(selectedTab == .home ? .darkGreen : .secondary)
-
+            
             Spacer()
             Button {
                 selectedTab = .profile
@@ -58,23 +58,23 @@ struct CustomTabBarView: View {
             }
             .frame(width: 80, height: 50)
             .background(
-                       Capsule()
-                        .fill(selectedTab == .profile ? .lightGreen.opacity(0.2) : .clear)
-                   )
+                Capsule()
+                    .fill(selectedTab == .profile ? .lightGreen.opacity(0.2) : .clear)
+            )
             .foregroundColor(selectedTab == .profile ? .darkGreen : .secondary)
-
+            
             Spacer()
         }
         .frame(width: 300, height: 64)
         .background(
-                   Capsule()
-                       .fill(.lightGreen.opacity(0.1))
-               )
-               .overlay(
-                          Capsule()
-                              .stroke(.black.opacity(0.1), lineWidth: 0.3)
-                      )
-
+            Capsule()
+                .fill(.lightGreen.opacity(0.1))
+        )
+        .overlay(
+            Capsule()
+                .stroke(.black.opacity(0.1), lineWidth: 0.3)
+        )
+        
     }
 }
 

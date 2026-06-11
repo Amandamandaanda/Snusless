@@ -19,6 +19,7 @@ class OnboardingViewModel {
     var errorMessage: String = ""
 
     var onboardingState: OnboardingState = .onboardingName
+    var isGoingForward: Bool = false
 
     var isNameValid: Bool {
         name.trimmingCharacters(in: .whitespaces).count >= 2
@@ -82,7 +83,6 @@ class OnboardingViewModel {
             errorMessage =
                 "Användaren kunde inte sparas: \(error.localizedDescription)"
         }
-
     }
 
     func validation() -> Bool {

@@ -18,13 +18,8 @@ struct NotificationToggleStyle: ToggleStyle {
             Spacer()
             
             Image(systemName: configuration.isOn ? "bell.fill" : "bell")
-                
+            
                 .foregroundColor(.darkGreen)
         }
-//        .padding()
-//        .background(Color.lightGreen.opacity(0.1)
-//        )
-//        .clipShape(RoundedRectangle(cornerRadius: 16)
-//        )
     }
 }
