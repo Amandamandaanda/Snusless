@@ -2,9 +2,7 @@ import SwiftUI
 
 struct TabNavigation: View {
     @State private var selectedTab: TabSelection = .home
- 
 
-    
     var body: some View {
         NavigationStack {
             VStack {
@@ -15,21 +13,15 @@ struct TabNavigation: View {
                             
                     case .profile:
                         ProfileView()
-                  
 
                     case .statistics:
                         StatisticsView()
-                        
-
                     }
                 }
                 .frame(maxHeight: .infinity)
                 
                 CustomTabBarView(selectedTab: $selectedTab)
-
             }
-           
-            
         }
     }
 }

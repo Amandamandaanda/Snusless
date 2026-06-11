@@ -83,7 +83,6 @@ class OnboardingViewModel {
             errorMessage =
                 "Användaren kunde inte sparas: \(error.localizedDescription)"
         }
-
     }
 
     func validation() -> Bool {

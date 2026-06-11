@@ -15,7 +15,7 @@ struct OnboardingNavigationTabView: View {
         HStack {
             Button {
                 onboardingViewModel.isGoingForward = onboardingViewModel.onboardingState.rawValue > OnboardingState.onboardingName.rawValue
-
+                
                 onboardingViewModel.onboardingState = .onboardingName
             } label: {
                 Image(systemName: onboardingViewModel.isActive(.onboardingName) ? "circle.fill" : "circle")
@@ -24,7 +24,7 @@ struct OnboardingNavigationTabView: View {
             Button {
                 onboardingViewModel.isGoingForward = onboardingViewModel.onboardingState.rawValue > OnboardingState.onboardingDate.rawValue
                 
-                    onboardingViewModel.onboardingState = .onboardingDate
+                onboardingViewModel.onboardingState = .onboardingDate
                 
                 
             } label: {
@@ -38,7 +38,7 @@ struct OnboardingNavigationTabView: View {
                     OnboardingState.onboardingDosor.rawValue
                     onboardingViewModel.onboardingState = .onboardingDosor
                 }
-              
+                
             } label: {
                 
                 Image(systemName: onboardingViewModel.isActive(.onboardingDosor) ? "circle.fill" : "circle")
@@ -52,7 +52,7 @@ struct OnboardingNavigationTabView: View {
                 onboardingViewModel.onboardingState = .onboardingEconomy
             } label: {
                 Image(systemName: onboardingViewModel.isActive(.onboardingEconomy) ? "circle.fill" : "circle")
-                    
+                
             }
             .disabled(!((onboardingViewModel.numberOfDosor ?? 0) > 0))
             
@@ -64,7 +64,7 @@ struct OnboardingNavigationTabView: View {
                 onboardingViewModel.onboardingState = .onboardingSummary
             } label: {
                 Image(systemName: onboardingViewModel.isActive(.onboardingSummary) ? "circle.fill" : "circle")
-                    
+                
             }
             .disabled(!((onboardingViewModel.savingGoal ?? 0) > 0))
         }

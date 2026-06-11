@@ -12,7 +12,6 @@ import Foundation
 class SettingsViewModel {
     
     var errorMessage: String?
-    
     func deleteData(users: [User], context: ModelContext) {
         
         errorMessage = nil

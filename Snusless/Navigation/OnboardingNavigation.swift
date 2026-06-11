@@ -11,10 +11,7 @@ import SwiftData
 struct OnboardingNavigation: View {
     @Environment(OnboardingViewModel.self) var onboardingViewModel
     @Environment(\.modelContext) private var modelContext
-    
-    
-    
-    
+
     var body: some View {
         VStack {
             switch onboardingViewModel.onboardingState {
@@ -36,7 +33,6 @@ struct OnboardingNavigation: View {
                 })
                 .transition(slideTransition(isGoingForward: onboardingViewModel.isGoingForward))
                     
-           
             case .onboardingDosor:
                 OnboardingDosorView(
                     onNextStep: {
@@ -50,16 +46,12 @@ struct OnboardingNavigation: View {
                 )
                 .transition(slideTransition(isGoingForward: onboardingViewModel.isGoingForward))
 
-                
-       
             case .onboardingEconomy:
                 OnboardingEconomyView(
                     onNextStep: {
 
                         onboardingViewModel.isGoingForward = true
                         onboardingViewModel.onboardingState = .onboardingSummary
-
-
                     },
                     onPreviousStep: {
                         onboardingViewModel.isGoingForward = false
@@ -67,36 +59,29 @@ struct OnboardingNavigation: View {
                     }
                 )
                 .transition(slideTransition(isGoingForward: onboardingViewModel.isGoingForward))
-
                 
             case .onboardingSummary:
                 OnboardingSummaryView(saveUser: {
                     onboardingViewModel.saveUser(context: modelContext)
-                    
                     
                 }, onPreviousStep: {
                     onboardingViewModel.isGoingForward = false
                     onboardingViewModel.onboardingState = .onboardingEconomy
                 })
                 .transition(slideTransition(isGoingForward: onboardingViewModel.isGoingForward))
-
-                 
                 
             case .onboardingDone:
                 RootNavigation()
                     .transition(.scale)
-                
             }
 
             if onboardingViewModel.onboardingState != .onboardingDone {
                 OnboardingNavigationTabView()
             }
-            
         }
         .background(.lightGreen)
         .animation(.smooth(duration: 0.3), value: onboardingViewModel.onboardingState)
     }
-    
 }
 
 #Preview {
