@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct SnuslessApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LaunchView()
+                .preferredColorScheme(.light)
         }
+        .modelContainer(for: [User.self, Streak.self])
     }
 }
